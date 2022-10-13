@@ -5,7 +5,7 @@
 # \<Chess Game\>
  > Your author list below should include links to all members GitHub (remove existing author).
  
- > Authors: \<[Jeffrey McDaniel](https://github.com/jmcda001)\>   \<[Win Thant Tin Han](https://github.com/WinThant16)\>
+ > Authors: \<[Jeffrey McDaniel](https://github.com/jmcda001)\>   \<[Win Thant Tin Han](https://github.com/WinThant16)\> \<[Jeralson Paredes](https://github.com/jeralsonep)\> \<[Isabel Chen](https://github.com/issy16)\>
 
 
 #\<Description\>
