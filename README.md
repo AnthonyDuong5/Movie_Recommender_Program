@@ -3,7 +3,7 @@
  > Prompt text is any lines beginning with "\>"
  > Replace anything between \<...\> with your project specifics and remove angle brackets. For example, you need to name your project and replace the header right below this line with that title (no angle brackets). 
  
-# \Chess Game\
+# Chess Game
  
  > Authors: \<[Win Thant Tin Han](https://github.com/WinThant16)\> \<[Jeralson Paredes](https://github.com/jeralsonep)\> \<[Isabel Chen](https://github.com/issy16)\> \<[Anthony Duong](https://github.com/AnthonyDuong5)\>
 
