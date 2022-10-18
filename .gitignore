@@ -1,0 +1,9 @@
+README.md.swp
+main
+.DS_Store
+graveyard/
+main.dSYM/
+recommender.vcxproj.filters
+recommender.vcxproj.user
+.vs/
+x64
