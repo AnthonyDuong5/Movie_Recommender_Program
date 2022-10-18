@@ -1,9 +1,10 @@
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=8862210&assignment_repo_type=AssignmentRepo)
+
  
  > Authors: \<[Win Thant Tin Han](https://github.com/WinThant16)\> \<[Jeralson Paredes](https://github.com/jeralsonep)\> \<[Isabel Chen](https://github.com/issy16)\> \<[Anthony Duong](https://github.com/AnthonyDuong5)\>
 
-
 #Description
+
 
 > This is a traditional two-player chess game, with added features such as saving and loading of incomplete games, allowing players to undo moves, and/or playing with a computer player.
 
@@ -16,20 +17,16 @@
  > * Each member of the group **must** be committing code regularly and make sure their code is correctly attributed to them. We will be checking attributions to determine if there was equal contribution to the project.
  > * **Each member of the group must actively participate in the Github Project board, writing unit tests, and reviewing commited code.**
 > * All project phases are to be submitted to this GitHub repository. You should modify this README file to reflect the different phases of the project. In addition, you should regularly hold sprint meetings with your group. You will need to hold two to three scrum/check-in meetings with your lab TA/reader at different times in addition to the final demo.
+> In this application movies are organized into categories and subcategories to represent their genres and subgenres respectively. The application allows displaying movies under different genres/subgenres or listing movies using different combined ciritera (e.g. director and genre). A user can provide a name of a movie that he/she likes and the application can recommend a list of movies that the user might like. Different recommendation algorithms can be implemented (e.g. based on the movie genre, director, actors) and the resulting recommendations can also be sorted based on their rating, release date, etc.
 
 ## Project Description
- > Your project description should summarize the project you are proposing. Be sure to include:
- > * Why is it important or interesting to you?
- > As a group, this will be our first entry-level game. This project will help us gain experience in creating software programs and we're interested in how online chess games are created.  
- > * What languages/tools/technologies do you plan to use? (This list may change over the course of the project)
+ > This project will help us gain experience in creating software programs involving databases. We're interested in how we can implement a database into an algorithm that can display movies based on certain criteria.
  > We will be using C++ as our main programming language.
- > * What will be the input/output of your project?
- > The user will use the keyboard to input moves into the game. The output will then be a chessboard displaying the current situation of the game. The user may also choose to input commands like save, undo, and playing with a computer player. 
- > * What are the features that the project provides?
- > The Chess Game will allow users to play against CPUs by creating new matches, undoing moves, and saving incomplete matches. 
+ > The user will use the keyboard to input desired movie criteria (e.g. genre, year, rating). The output will then be a list of movies that correlate with the given criteria. 
+ > The movie recommender will allow users to find certain movies based on certain criteria. For example, users can provide a movie and the application will recommend a list of movies that are similar to the provided movie. Additionally, users can also sort lists of movies based on rating, release date, genre, etc.
+ 
  > This description should be in enough detail that the TA/instructor can determine the complexity of the project and if it is sufficient for the team members to complete in the time allotted. 
- > 
- > You also need to set up an empty project board using GitHub projects (board view). Make sure you add the board under your project repository. You should also have a Product Backlog and In testing columns added.
+
  > ## Phase II
  > In addition to completing the "Class Diagram" section below, you will need to:
  > * Create an "Epic" (note) for each feature. Place these epics in the `Product Backlog` column
