@@ -6,7 +6,7 @@
 #include <stdlib.h>    
 
 #include "json/json.hpp"
-#include "movie.cpp"
+#include "movie.h"
 
 using namespace std;
 using json = nlohmann::json;
