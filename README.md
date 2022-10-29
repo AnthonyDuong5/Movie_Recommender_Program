@@ -29,8 +29,12 @@ The movie recommender will allow users to find certain movies based on certain c
 ## Class Diagram
  > Include a **class diagram(s)** for your project and a **description** of the diagram(s). Your class diagram(s) should include all the main classes you plan for the project. This should be in sufficient detail that another group could pick up the project this point and successfully complete it. Use proper UML notation (as discussed in the course slides).
 
- ![Movie Recommender](https://user-images.githubusercontent.com/74810222/198770114-6340f3f3-4bfc-423f-9def-c3264eaa10e2.png)
+ ![Movie Recommender](https://user-images.githubusercontent.com/74810222/198850940-cb5644f4-899a-4d82-b037-6d26566551b4.png)
 
+## Diagram Description
+The current plan is to create threee classes. The ```Movie``` Class will store all the necessary categories that each movie has, such as ```MovieTitle```, ```Director```, ```Cast```, ```Rating```, ```ImdbID```, and ```itemID```, all of which will be set to private. There will be helper functions that can help the programmer retrieve values for each of these variables.
+
+This brings us to the next class, ```MovieList```. ```MovieList``` will be the class that needs the most implementation, as there will be many different functions. We will firstly have two declared vectors, namely ```vector<Movie>List``` and ```vector<Movie>SortedList```. The difference is that the former will contain all the movies before the sorting has been done, while the latter will only contain sorted values. There will be a function called ```readMovieListFile()``` that will be used to read a database of movies and store them into the ```vector<Movie>List```. So far, we will only implement it for ```.json``` files, but we will look to expand to ```.txt``` and ```.csv``` files as well. The ```sortList()``` function will run individual sort functions depending on user input. For example, if the user wants to sort by Movie Title, it will call the function ```sortByMovieTitle()```. Lastly, there will also be the function that prints the sorted List, called ```printList()```.
  
  > ## Phase III
  > You will need to schedule a check-in for the second scrum meeting with the same reader you had your first scrum meeting with (using Calendly). Your entire team must be present. This meeting will occur on week 8 during lab time.
