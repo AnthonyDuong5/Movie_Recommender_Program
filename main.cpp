@@ -1,9 +1,9 @@
-#include <iostream>
+//#include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
 #include <stdio.h>  
-#include <stdlib.h>    
+#include <stdlib.h> 
 
 #include "json/json.hpp"
 #include "movie.h"
@@ -21,7 +21,7 @@ int main(){
 
     vector <movie> movieList;
     
-    for (int i=0; i < 10; i++){
+    for (int i=0; i <1000; i++){
     string temp = data[i]["imdbId"];
     int imbd = atoi(temp.c_str());
  
