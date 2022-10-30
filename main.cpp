@@ -21,7 +21,7 @@ int main(){
 
     vector <movie> movieList;
     
-    for (int i=0; i <1000; i++){
+    for (int i=0; i <8000; i++){
     string temp = data[i]["imdbId"];
     int imbd = atoi(temp.c_str());
  
