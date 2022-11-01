@@ -16,7 +16,8 @@ The movie recommender will allow users to find certain movies based on certain c
  
 ## Class Diagram
  
- ![Movie Recommender](https://user-images.githubusercontent.com/74810222/198850940-cb5644f4-899a-4d82-b037-6d26566551b4.png)
+![Movie Recommender](https://user-images.githubusercontent.com/74810222/199172861-30c0a5e7-519a-4892-9e39-902ac3c33684.png)
+
 
 ## Diagram Description
 The current plan is to create three classes. The ```Movie``` class will store all the necessary categories that each movie has, such as ```MovieTitle```, ```Director```, ```Cast```, ```Rating```, ```ImdbID```, and ```ItemID```, all of which will be set to private. There will be helper functions that can help the programmer retrieve values for each of these variables.
