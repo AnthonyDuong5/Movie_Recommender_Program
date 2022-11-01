@@ -1,4 +1,4 @@
-//#include <iostream>
+#include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
@@ -11,7 +11,8 @@
 using namespace std;
 using json = nlohmann::json;
 
-void printMovie(movie);
+void printMovie(const movie&);
+void getYear(movie&);
 
 int main(){
 
@@ -27,6 +28,7 @@ int main(){
         int imbd = atoi(temp.c_str()); 
 
         movie m1 (data[i]["title"],data[i]["directedBy"],data[i]["starring"],data[i]["avgRating"],imbd,data[i]["item_id"]);
+        getYear(m1);
         movieList.push_back(m1);
         printMovie(movieList.at(i));
         
@@ -37,13 +39,31 @@ int main(){
 
 }
 
- void printMovie(movie m){
+ void printMovie(const movie &m){
     cout<<"title: "<<m.title<<endl;
+    cout<<"year: "<<m.year<<endl;
     cout<<"director: "<<m.director<<endl;
     cout<<"casting: "<<m.cast<<endl;
     cout<<"rating: "<<m.rating<<endl;
     cout<<"IMDB ID: "<<m.imbdId<<endl;
     cout<<"item: "<<m.itemId<<endl;
  };
-
-    
+ void getYear(movie &m){
+    string title = m.title;
+    for(int i = 0; i < title.size(); i++){
+        if(title.at(i)=='('&& (title.at(i+1)=='1'||title.at(i+1)=='2')){
+            m.year = (int(title.at(i+1))-48)*1000 +
+                     (int(title.at(i+2))-48)*100  +
+                     (int(title.at(i+3))-48)*10   +
+                     (int(title.at(i+4))-48); 
+            break;
+        }
+        if((title.at(i)=='1'&& title.at(i+1)=='9')||(title.at(i)=='2'&&title.at(i+1)=='0')){
+            m.year = (int(title.at(i+1))-48)*1000 +
+                     (int(title.at(i+2))-48)*100  +
+                     (int(title.at(i+3))-48)*10   +
+                     (int(title.at(i+4))-48); 
+            break;
+        }
+    }
+ }
