@@ -58,12 +58,6 @@ int main(){
                      (int(title.at(i+4))-48); 
             break;
         }
-        if((title.at(i)=='1'&& title.at(i+1)=='9')||(title.at(i)=='2'&&title.at(i+1)=='0')){
-            m.year = (int(title.at(i+1))-48)*1000 +
-                     (int(title.at(i+2))-48)*100  +
-                     (int(title.at(i+3))-48)*10   +
-                     (int(title.at(i+4))-48); 
-            break;
-        }
+        else (m.year = 0);
     }
  }
