@@ -32,8 +32,8 @@ int main(){
         movieList.push_back(m1);
        
     }
-    cout<<"data size = "<<data.size()<<endl;
-    cout<<i<<" items in movieList"<<endl;
+    cout<< "data size = "<< data.size() << endl;
+    cout<< "Movie list initially has: " << i <<" items." << endl;
     clean(movieList);
 
 }
@@ -69,6 +69,15 @@ int main(){
         }
     }
     int j = m.size();
-    cout<<j<<" movies from 1990."<<endl;
+    cout << j << " movies from 1990." << endl;
+
+    double minRating = 3.5;
+    for( it = m.begin();it < m.end(); it++){
+        if(it->rating < minRating){
+            it=m.erase(it);
+        }
+    }
+    int listQty = m.size();
+    cout << listQty << " movies with a rating higher than " << minRating << endl;
     
  }
