@@ -1,4 +1,4 @@
-#include "movie.h"
+#include "movie.hpp"
 
 #include "gtest/gtest.h"
 
