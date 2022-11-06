@@ -27,7 +27,6 @@ class movie{
         int getImdbId() const;
         int getItemId() const;
         string getGenre() const;
-        // void setYear(int movieyear);
     };
         
 
