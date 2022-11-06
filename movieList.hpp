@@ -12,10 +12,10 @@ class movieList{
 		vector <movie> list;
 		vector <movie> sortedlist;
 
-
 	public:
 		movieList();
-		void readMovieListFile();
+		void readMovieListFiles();
+		string parseString(const string &);
 		void getCriteria();
 		void sortList();
 		void sortByMovieTitle(string movieName);
@@ -24,7 +24,8 @@ class movieList{
 		void sortByYear(int movieYear);
 		void sortAlphabetical();
 
-		void printMovie(const movie&);
+		vector<movie> returnList();
+		void printMovies(const vector<movie>&);
 };		
 
 

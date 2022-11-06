@@ -16,9 +16,9 @@ class movie{
         double rating;
         int imdbId;
         int itemId;
-    
+        string Genre;
     public: 
-        movie(string title, string director, string cast, double rating, int imdbId, int itemId);
+        movie(string title, string director, string cast, double rating, int imdbId, int itemId, int year, string Genre);
         string getTitle() const;
         int getYear() const;
         string getDirector() const;
@@ -26,7 +26,7 @@ class movie{
         double getRating() const;
         int getImdbId() const;
         int getItemId() const;
-
+        string getGenre() const;
         void setYear(int movieyear);
     };
         
