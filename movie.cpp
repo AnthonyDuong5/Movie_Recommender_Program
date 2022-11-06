@@ -35,8 +35,3 @@ int movie::getItemId() const {
 string movie::getGenre() const {
 	return Genre;
 }
-
-// void movie::setYear(int movieyear) {
-// 	year = movieyear;
-// }
-
