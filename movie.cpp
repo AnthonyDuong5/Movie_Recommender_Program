@@ -36,7 +36,7 @@ string movie::getGenre() const {
 	return Genre;
 }
 
-void movie::setYear(int movieyear) {
-	year = movieyear;
-}
+// void movie::setYear(int movieyear) {
+// 	year = movieyear;
+// }
 
