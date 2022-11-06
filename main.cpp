@@ -56,7 +56,7 @@ int main(){
   
     double minRating = 3.5;
     for( it = m.begin();it < m.end(); it++){
-        if(it->rating < minRating){
+        if(it->getRating() < minRating){
             it=m.erase(it);
         }
     }
@@ -64,7 +64,7 @@ int main(){
     
     int minYear = 1990;
     for ( it = m.begin(); it < m.end(); it++){
-        if (it->year <minYear){
+        if (it->getYear() <minYear){
             it=m.erase(it);
         }
     }
@@ -72,7 +72,7 @@ int main(){
 
    
     for( it = m.begin();it < m.end(); it++){
-        if(it->director==""||it->cast==""){
+        if(it->getDirector()==""||it->getCast()==""){
             it=m.erase(it);
         }
     }
