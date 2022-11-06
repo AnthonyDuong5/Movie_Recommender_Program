@@ -11,31 +11,17 @@
 using namespace std;
 using json = nlohmann::json;
 
+vector<movie> getDatafromJson ();
 void printMovie(const movie&);
 void getYear(movie&);
+void clean(vector<movie>&);
+
 
 int main(){
 
-                   
-    std::ifstream f("data/metadata_updated.json");
-    json data = json::parse(f);
-
-    vector <movie> movieList;
-    int i = 0;
-    for (i= 0; i <data.size(); i++){
-       
-        string temp = data[i]["imdbId"];
-        int imbd = atoi(temp.c_str()); 
-
-        movie m1 (data[i]["title"],data[i]["directedBy"],data[i]["starring"],data[i]["avgRating"],imbd,data[i]["item_id"]);
-        getYear(m1);
-        movieList.push_back(m1);
-        printMovie(movieList.at(i));
-        
-        cout<<endl;
-       
-    }
-    cout<<i<<" items."<<endl;
+ 
+    vector <movie> movieList = getDatafromJson();
+    clean(movieList);
 
 }
 
@@ -60,4 +46,55 @@ int main(){
         }
         else (m.year = 0);
     }
+ }
+ void clean(vector<movie> &m){
+    vector<movie>::iterator it;
+  
+    double minRating = 3.5;
+    for( it = m.begin();it < m.end(); it++){
+        if(it->rating < minRating){
+            it=m.erase(it);
+        }
+    }
+    cout << m.size() << " movies with a rating higher than " << minRating << endl;
+    
+    int minYear = 1990;
+    for ( it = m.begin(); it < m.end(); it++){
+        if (it->year <minYear){
+            it=m.erase(it);
+        }
+    }
+    cout << m.size() << " movies from" << minYear<<endl;
+
+   
+    for( it = m.begin();it < m.end(); it++){
+        if(it->director==""||it->cast==""){
+            it=m.erase(it);
+        }
+    }
+    cout<< m.size()<<" items after cleaning."<<endl;
+
+ }
+
+ vector<movie> getDatafromJson (){
+                 
+    std::ifstream f("data/metadata_updated.json");
+    json data = json::parse(f);
+    vector <movie> movieList;
+    int i = 0;
+    for (i= 0; i <data.size(); i++){
+       
+        string temp = data[i]["imdbId"];
+        int imbd = atoi(temp.c_str()); 
+
+        movie m1 (data[i]["title"],data[i]["directedBy"],data[i]["starring"],data[i]["avgRating"],imbd,data[i]["item_id"]);
+        getYear(m1);
+        movieList.push_back(m1);
+       
+    }
+
+    cout<<"data size = "<<data.size()<<endl;
+    cout<<i<<" items in movieList"<<endl;
+
+    return movieList;
  }
