@@ -7,11 +7,13 @@ ADD_SUBDIRECTORY(googletest)
 ADD_EXECUTABLE(movie_recommender
     main.cpp
     movie.cpp
+    movieList.cpp
 )
 
 ADD_EXECUTABLE(test
     movie.cpp
     test.cpp
+    movieList.cpp
 )
 
 TARGET_LINK_LIBRARIES(test gtest)
