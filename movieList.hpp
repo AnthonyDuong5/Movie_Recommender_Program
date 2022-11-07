@@ -7,6 +7,7 @@
 #include <vector>
 using namespace std;
 
+
 class movieList{
 	private:
 		vector <movie> list;

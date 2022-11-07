@@ -1,0 +1,57 @@
+//reads each string and parses through each row to get genre
+string movieList::parseStringFromCSV(const string &movieString){
+	int commaCount = 0;
+	bool checkQuotes = false;
+	int QuoteCount = 0;
+	char curChar;
+	string movie = movieString;
+	string GenrePrint = "";
+	//each string has "movieID,title,genres"
+	//the title can contain , as well, and for those, we have to skip
+	for (int i =0; i < movie.length()-1; ++i){
+		if (movie.at(i) == '"'){
+			checkQuotes == true;
+			++QuoteCount;
+		}
+		if (movie.at(i) == ',' && checkQuotes == false && (QuoteCount == 0 || QuoteCount == 2)){
+			++commaCount;
+		}
+		if (commaCount == 2){
+			curChar = movie.at(i+1);
+			GenrePrint += curChar;
+		}
+	}
+	return GenrePrint;
+}
+
+
+
+void writeToJson( vector<movie>& m){
+    json newdata;
+    vector<movie>::iterator it;
+    std::ofstream out("newdata.json");
+    for( it = m.begin();it < m.end(); it++){
+       newdata["title"]=it->title;
+       newdata["directedBy"]=it->director;
+       newdata["starring"]=it->cast;
+       newdata["avgRating"]=it->rating;
+       newdata["imdbId"]=it->imbdId;
+       newdata["item_id"]=it->itemId;
+       out << setw(4) << newdata << endl;
+    }
+   }
+   
+   
+   
+   string movieList::ParseGenra(int item_id){
+       string genra;
+       ifstream csvFile("data/csvjson.json");
+       json moviedataFromcsv = json::parse(csvFile);
+       for (int i = 0; i < moviedataFromcsv.size(); i++){
+           if (moviedataFromcsv[i]["movieId"]==item_id){
+               genra =  moviedataFromcsv[i]["genres"];
+               moviedataFromcsv.erase(i);
+           }
+       }
+       return genra;
+   }

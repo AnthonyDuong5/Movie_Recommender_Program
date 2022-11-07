@@ -38,69 +38,22 @@ string movieList::parseStringFromCSV(const string &movieString){
 	return GenrePrint;
 }
 
-string movieList:: parseGenrefromJson(int item_id, json & data2){
-    string genra = "";
-    for (int i = 0; i < data2.size(); i++){
-        if (data2[i]["movieId"]==item_id){
-            genra =  data2[i]["genres"];
-            data2.erase(i);
-        }
-    }
-    return genra;
-};
-void movieList::readMovieListFiles(){
-	//we create vector of strings that solely store genre.
-	// ifstream movieGenre;
-	// movieGenre.open("data/movies.csv");
-	// if (!movieGenre.is_open()){
-	// 	cout << "File not open" << endl;
-	// }
-	// vector <string> Movies;
-	// int counter = 0;
-	// string line;
 
-	// while (getline (movieGenre, line, '\n')){
-	// 	//reads the text until we get to the comma, then stop and store that into the variable called line
-	// 	Movies.push_back(line);
-	// 	++counter;
-	// }
-	//parse strings in vector
-	// string movieString, genreString = "";
-	// vector <string> genre;
-	// for (int i = 1; i < Movies.size(); ++i){
-	// 	movieString = Movies.at(i);
-	// 	genre.push_back(parseStringFromCSV(movieString));		//calls parseString function
-	// }
-	
+void movieList::readMovieListFiles(){
+
 	
 	//read json file.
-	fstream f("data/metadata_updated.json");
-	fstream csvf("data/csvjson.json");
+	fstream f("data/newdata.json");
     json moviedata = json::parse(f);
-	json data2 = json::parse(csvf);
+	
 
     int countMovies = 0;
-	for (countMovies = 0; countMovies < 62423; ++countMovies){
-		string tempMovieInfo = moviedata[countMovies]["imdbId"];
-		int imdb = atoi(tempMovieInfo.c_str());								//converts string to int
+	for (countMovies = 0; countMovies < moviedata.size(); ++countMovies){
 		
-		int movieYear = 0;
-		string title = moviedata[countMovies]["title"];
-		for(int i = 0; i < title.size(); i++){
-			if(title.at(i)=='('&& (title.at(i+1)=='1'||title.at(i+1)=='2')){
-				movieYear = (int(title.at(i+1))-48)*1000 + (int(title.at(i+2))-48)*100  +
-							(int(title.at(i+3))-48)*10   + (int(title.at(i+4))-48); 
-				
-				break;
-			}
-        	else (movieYear = 0);
-		}
 
-		string genre = parseGenrefromJson(moviedata[countMovies]["item_id"],data2);
-		//review this construction.
 		movie Movie1 (moviedata[countMovies]["title"], moviedata[countMovies]["directedBy"], 
 					  moviedata[countMovies]["starring"], moviedata[countMovies]["avgRating"],
-					  imdb, moviedata[countMovies]["item_id"], movieYear, genre);
+					  moviedata[countMovies]["imdbId"], moviedata[countMovies]["item_id"], moviedata[countMovies]["year"], moviedata[countMovies]["genres"]);
 		
 		list.push_back(Movie1);
 	}

@@ -33,5 +33,5 @@ int movie::getItemId() const {
 	return itemId;
 }
 string movie::getGenre() const {
-	return Genre;
+	return genre;
 }
