@@ -1,8 +1,8 @@
 #include "movie.hpp"
 #include <string>
 
-movie::movie(string title, string director, string cast, double rating, int imdbId, int itemId, int year, string Genre)
-:title(title),director(director),cast(cast),rating(rating),imdbId(imdbId),itemId(itemId),year(year), Genre(Genre)
+movie::movie(string title, string director, string cast, double rating, int imdbId, int itemId, int year, string genre)
+:title(title),director(director),cast(cast),rating(rating),imdbId(imdbId),itemId(itemId),year(year), genre(genre)
 {}
 
 string movie::getTitle() const {
@@ -33,5 +33,5 @@ int movie::getItemId() const {
 	return itemId;
 }
 string movie::getGenre() const {
-	return Genre;
+	return genre;
 }

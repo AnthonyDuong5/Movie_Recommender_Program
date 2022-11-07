@@ -7,6 +7,7 @@
 #include <vector>
 using namespace std;
 
+
 class movieList{
 	private:
 		vector <movie> list;
@@ -15,7 +16,7 @@ class movieList{
 	public:
 		movieList();
 		void readMovieListFiles();
-		string parseString(const string &);
+		string parseStringFromCSV(const string &);
 		void getCriteria();
 		void sortList();
 		void sortByMovieTitle(string movieName);
