@@ -12,44 +12,16 @@ using json = nlohmann::json;
 
 movieList::movieList(){}
 
-//reads each string and parses through each row to get genre
-string movieList::parseStringFromCSV(const string &movieString){
-	int commaCount = 0;
-	bool checkQuotes = false;
-	int QuoteCount = 0;
-	char curChar;
-	string movie = movieString;
-	string GenrePrint = "";
-	//each string has "movieID,title,genres"
-	//the title can contain , as well, and for those, we have to skip
-	for (int i =0; i < movie.length()-1; ++i){
-		if (movie.at(i) == '"'){
-			checkQuotes == true;
-			++QuoteCount;
-		}
-		if (movie.at(i) == ',' && checkQuotes == false && (QuoteCount == 0 || QuoteCount == 2)){
-			++commaCount;
-		}
-		if (commaCount == 2){
-			curChar = movie.at(i+1);
-			GenrePrint += curChar;
-		}
-	}
-	return GenrePrint;
-}
-
 
 void movieList::readMovieListFiles(){
 
-	
 	//read json file.
 	fstream f("data/newdata.json");
     json moviedata = json::parse(f);
-	
 
     int countMovies = 0;
 	for (countMovies = 0; countMovies < moviedata.size(); ++countMovies){
-		
+
 
 		movie Movie1 (moviedata[countMovies]["title"], moviedata[countMovies]["directedBy"], 
 					  moviedata[countMovies]["starring"], moviedata[countMovies]["avgRating"],
