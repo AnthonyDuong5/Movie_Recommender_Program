@@ -1,0 +1,28 @@
+void clean(vector<movie> &m){
+    vector<movie>::iterator it;
+
+    double minRating = 3.5;
+    for( it = m.begin();it < m.end(); it++){
+        if(it->rating < minRating){
+            it=m.erase(it);
+        }
+    }
+    cout << m.size() << " movies with a rating higher than " << minRating << endl;
+
+    int minYear = 1990;
+    for ( it = m.begin(); it < m.end(); it++){
+        if (it->year <minYear){
+            it=m.erase(it);
+        }
+    }
+    cout << m.size() << " movies from" << minYear<<endl;
+
+
+    for( it = m.begin();it < m.end(); it++){
+        if(it->director==""||it->cast==""){
+            it=m.erase(it);
+        }
+    }
+    cout<< m.size()<<" items after cleaning."<<endl;
+
+ }
