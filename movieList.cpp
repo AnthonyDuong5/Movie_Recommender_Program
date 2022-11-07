@@ -13,7 +13,7 @@ using json = nlohmann::json;
 movieList::movieList(){}
 
 //reads each string and parses through each row to get genre
-string movieList::parseString(const string &movieString){
+string movieList::parseStringFromCSV(const string &movieString){
 	int commaCount = 0;
 	bool checkQuotes = false;
 	int QuoteCount = 0;
@@ -38,34 +38,47 @@ string movieList::parseString(const string &movieString){
 	return GenrePrint;
 }
 
+string movieList:: parseGenrefromJson(int item_id, json & data2){
+    string genra = "";
+    for (int i = 0; i < data2.size(); i++){
+        if (data2[i]["movieId"]==item_id){
+            genra =  data2[i]["genres"];
+            data2.erase(i);
+        }
+    }
+    return genra;
+};
 void movieList::readMovieListFiles(){
 	//we create vector of strings that solely store genre.
-	ifstream movieGenre;
-	movieGenre.open("data/movies.csv");
-	if (!movieGenre.is_open()){
-		cout << "File not open" << endl;
-	}
-	vector <string> Movies;
-	int counter = 0;
-	string line;
+	// ifstream movieGenre;
+	// movieGenre.open("data/movies.csv");
+	// if (!movieGenre.is_open()){
+	// 	cout << "File not open" << endl;
+	// }
+	// vector <string> Movies;
+	// int counter = 0;
+	// string line;
 
-	while (getline (movieGenre, line, '\n')){
-		//reads the text until we get to the comma, then stop and store that into the variable called line
-		Movies.push_back(line);
-		++counter;
-	}
+	// while (getline (movieGenre, line, '\n')){
+	// 	//reads the text until we get to the comma, then stop and store that into the variable called line
+	// 	Movies.push_back(line);
+	// 	++counter;
+	// }
 	//parse strings in vector
-	string movieString, genreString = "";
-	vector <string> genre;
-	for (int i = 1; i < Movies.size(); ++i){
-		movieString = Movies.at(i);
-		genre.push_back(parseString(movieString));		//calls parseString function
-	}
+	// string movieString, genreString = "";
+	// vector <string> genre;
+	// for (int i = 1; i < Movies.size(); ++i){
+	// 	movieString = Movies.at(i);
+	// 	genre.push_back(parseStringFromCSV(movieString));		//calls parseString function
+	// }
 	
 	
 	//read json file.
-	std::ifstream f("data/metadata_updated.json");
+	fstream f("data/metadata_updated.json");
+	fstream csvf("data/csvjson.json");
     json moviedata = json::parse(f);
+	json data2 = json::parse(csvf);
+
     int countMovies = 0;
 	for (countMovies = 0; countMovies < 62423; ++countMovies){
 		string tempMovieInfo = moviedata[countMovies]["imdbId"];
@@ -82,10 +95,12 @@ void movieList::readMovieListFiles(){
 			}
         	else (movieYear = 0);
 		}
+
+		string genre = parseGenrefromJson(moviedata[countMovies]["item_id"],data2);
 		//review this construction.
 		movie Movie1 (moviedata[countMovies]["title"], moviedata[countMovies]["directedBy"], 
 					  moviedata[countMovies]["starring"], moviedata[countMovies]["avgRating"],
-					  imdb, moviedata[countMovies]["item_id"], movieYear, genre.at(countMovies));
+					  imdb, moviedata[countMovies]["item_id"], movieYear, genre);
 		
 		list.push_back(Movie1);
 	}
