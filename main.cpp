@@ -11,13 +11,17 @@
 
 using namespace std;
 using json = nlohmann::json;
-// void printMovie(const movie&);
-// void getYear(movie&);
+
 
 int main(){
     movieList MovieDatabase;
     MovieDatabase.readMovieListFiles();
     cout << "database has been set" << endl;
-    MovieDatabase.printMovies(MovieDatabase.returnList());
+
+    //default print movie list below
+    //MovieDatabase.printMovies(MovieDatabase.returnList());
+
+    //testing sortYear
+    MovieDatabase.sortYear(MovieDatabase.returnList());
 }
 

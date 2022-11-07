@@ -22,10 +22,13 @@ class movieList{
 		void sortByMovieTitle(string movieName);
 		void sortByRating(double avgRating);
 		void sortByGenre(string movieGenre);
-		void sortByYear(int movieYear);
+				void sortByYear(int movieYear);		//initial function, changed to below function
 		void sortAlphabetical();
 
-		vector<movie> returnList();
+		//local testing sortByYear function
+		void sortYear(vector<movie>&);
+
+		vector<movie>& returnList();
 		void printMovies(const vector<movie>&);
 };		
 

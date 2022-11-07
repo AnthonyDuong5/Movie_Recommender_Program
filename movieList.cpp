@@ -7,6 +7,8 @@
 #include <stdlib.h>
 #include <fstream>
 
+#include <iostream>
+
 using namespace std;
 using json = nlohmann::json;
 
@@ -33,7 +35,9 @@ void movieList::readMovieListFiles(){
 }
 
 void movieList::printMovies(const vector<movie>& m){
+	//temporarily changed m.size() to a fixed vector size
 	for (int i =0; i < m.size(); ++i){
+		cout << "------------------" << endl;
 		cout<<"title: "<< m.at(i).getTitle()<<endl;
 		cout<<"year: "<< m.at(i).getYear()<<endl;
 		cout<<"director: "<<m.at(i).getDirector()<<endl;
@@ -44,6 +48,27 @@ void movieList::printMovies(const vector<movie>& m){
 		cout<<"Genre: "<<m.at(i).getGenre()<<endl;
 	}
 }
-vector<movie> movieList::returnList(){
+
+void movieList::sortYear(vector<movie>& newList) {
+
+	//can try to replace newList.size() to a fixed number to see the first movies in the list
+	//i've tried it and it seems to work in the lower end of the list as well
+	//note: last movie has an incorrect year and is in the wrong spot because of it
+	
+	int temp;
+	for (int j = 0; j < newList.size() - 1; ++j){
+		int min = newList.at(j).getYear();
+		temp = j;
+		for (int i = j+1; i < newList.size(); ++i) {
+			if (min > newList.at(i).getYear()) {
+				min = newList.at(i).getYear();
+				temp = i;
+			}
+		}
+		std::swap(newList.at(j), newList.at(temp));
+	}
+	printMovies(newList);
+}
+ vector<movie>& movieList::returnList(){
 	return list;
 }
