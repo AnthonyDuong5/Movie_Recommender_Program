@@ -19,12 +19,15 @@ class movieList{
 		string parseStringFromCSV(const string &);
 		void getCriteria();
 		void sortList();
-		void sortByMovieTitle(string movieName);
+		void sortByMovieTitle(vector<movie>& movieList);
 		void sortByRating(double avgRating);
 		void sortByGenre(string movieGenre);
 				void sortByYear(int movieYear);		//initial function, changed to below function
 		void sortAlphabetical();
 
+		void sortByAscendingTitle();
+		void sortByDescendingTitle();
+		void sortBySpecificTitle(vector<movie>& movieList, string movieName);
 		//local testing sortByYear function
 		void sortYear(vector<movie>&);
 

@@ -14,7 +14,6 @@ using json = nlohmann::json;
 
 movieList::movieList(){}
 
-
 void movieList::readMovieListFiles(){
 
 	//read json file.
@@ -69,6 +68,53 @@ void movieList::sortYear(vector<movie>& newList) {
 	}
 	printMovies(newList);
 }
+
+void movieList::sortByMovieTitle(vector<movie>& movieList){
+	//we use the sortedList vector to store the sorted movieList.
+	//for this implementation, we are just fetching movies that start with a certain letter.
+	cout << "Choose category to sort: "<< endl;
+	cout << "1. Ascending (A-Z)" << endl;
+	cout << "2. Descending (Z-A)" << endl;
+	cout << "3. Search by Movie Name" << endl;
+	int userSelection = 0;
+	cin >> userSelection;
+	while (userSelection == 0 || userSelection <0 || userSelection >3){
+		cout << "Please enter a valid choice from 1 to 3.";
+		cin >> userSelection;
+	}
+	
+	if (userSelection == 1){
+		sortByAscendingTitle();
+	}
+	else if (userSelection == 2){
+		sortByDescendingTitle();
+	}
+	else {
+		string movieName;
+		cout << "Enter a movie name: " ;
+		getline(cin, movieName);
+		sortBySpecificTitle(movieList, movieName);
+	}
+	//sortBySpecificTitle(movieName);
+	//if sortAscending
+
+	//if sortDescending
+}
+
+void movieList::sortBySpecificTitle(vector<movie>& movieList, string movieName){
+	for (int dbSize = 0; dbSize < movieList.size(); ++dbSize){
+
+	}
+}
+
+void movieList::sortByAscendingTitle(){
+	
+}
+void movieList::sortByDescendingTitle(){
+	
+}
+
  vector<movie>& movieList::returnList(){
 	return list;
 }
+
