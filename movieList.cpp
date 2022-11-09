@@ -31,6 +31,21 @@ void movieList::readMovieListFiles(){
 		}
 	}
 
+	json newdata;
+    vector<movie>::iterator i;
+    std::ofstream out("newdata2.json");
+    for( i = list.begin();i < list.end(); i++){
+       newdata["title"]=i->getTitle();
+       newdata["directedBy"]=i->getDirector();
+       newdata["starring"]=i->getCast();
+       newdata["avgRating"]=i->getRating();
+       newdata["imdbId"]=i->getImdbId();
+       newdata["item_id"]=i->getItemId();
+	   newdata["genres"]=i->getGenre();
+       newdata["year"]=i->getYear();
+       out << setw(4) << newdata << endl;
+    }
+
 }
 
 // sorts movies by rating in descending order
