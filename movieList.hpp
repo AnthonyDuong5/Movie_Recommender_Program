@@ -29,6 +29,7 @@ class movieList{
 		void sortYear(vector<movie>&);
 
 		vector<movie>& returnList();
+		vector<movie>& returnSortedList();
 		void printMovies(const vector<movie>&);
 };		
 
