@@ -36,18 +36,19 @@ void movieList::readMovieListFiles(){
 
 // sorts movies by rating in descending order
 void movieList::sortByRating() {
+	sortedlist = list;
 	int maxIdx;
 
-	for (unsigned i = 0; i + 1 < list.size(); ++i) {
+	for (unsigned i = 0; i + 1 < sortedlist.size(); ++i) {
 		maxIdx = i;
 
-		for (unsigned j = i + 1; j < list.size(); ++j) {
-			if (list.at(j).getRating() > list.at(maxIdx).getRating()) {
+		for (unsigned j = i + 1; j < sortedlist.size(); ++j) {
+			if (sortedlist.at(j).getRating() > sortedlist.at(maxIdx).getRating()) {
 				maxIdx = j;
 			}
 		}
 
-		swap(list.at(i), list.at(maxIdx));
+		swap(sortedlist.at(i), sortedlist.at(maxIdx));
 	}
 }
 
@@ -88,4 +89,8 @@ void movieList::sortYear(vector<movie>& newList) {
 }
  vector<movie>& movieList::returnList(){
 	return list;
+}
+
+vector<movie>& movieList::returnSortedList() {
+	return sortedlist;
 }
