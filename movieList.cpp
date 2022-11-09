@@ -34,6 +34,23 @@ void movieList::readMovieListFiles(){
 
 }
 
+// sorts movies by rating in descending order
+void movieList::sortByRating() {
+	int maxIdx;
+
+	for (unsigned i = 0; i + 1 < list.size(); ++i) {
+		maxIdx = i;
+
+		for (unsigned j = i + 1; j < list.size(); ++j) {
+			if (list.at(j).getRating() > list.at(maxIdx).getRating()) {
+				maxIdx = j;
+			}
+		}
+
+		swap(list.at(i), list.at(maxIdx));
+	}
+}
+
 void movieList::printMovies(const vector<movie>& m){
 	//temporarily changed m.size() to a fixed vector size
 	for (int i =0; i < m.size(); ++i){

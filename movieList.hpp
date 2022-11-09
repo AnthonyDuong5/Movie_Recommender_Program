@@ -20,7 +20,7 @@ class movieList{
 		void getCriteria();
 		void sortList();
 		void sortByMovieTitle(string movieName);
-		void sortByRating(double avgRating);
+		void sortByRating();
 		void sortByGenre(string movieGenre);
 				void sortByYear(int movieYear);		//initial function, changed to below function
 		void sortAlphabetical();
