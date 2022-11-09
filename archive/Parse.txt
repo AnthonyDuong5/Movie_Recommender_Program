@@ -28,15 +28,18 @@ string movieList::parseStringFromCSV(const string &movieString){
 
 void writeToJson( vector<movie>& m){
     json newdata;
-    vector<movie>::iterator it;
+    vector<movie>::iterator i;
     std::ofstream out("newdata.json");
-    for( it = m.begin();it < m.end(); it++){
-       newdata["title"]=it->title;
-       newdata["directedBy"]=it->director;
-       newdata["starring"]=it->cast;
-       newdata["avgRating"]=it->rating;
-       newdata["imdbId"]=it->imbdId;
-       newdata["item_id"]=it->itemId;
+    for( i = list.begin();i < list.end(); i++){
+       newdata["title"]=i->getTitle();
+       newdata["directedBy"]=i->getDirector();
+       newdata["starring"]=i->getCast();
+       newdata["avgRating"]=i->getRating();
+       newdata["imdbId"]=i->getImdbId();
+       newdata["item_id"]=i->getItemId();
+	   newdata["genres"]=i->getGenre();
+       newdata["year"]=i->getYear();
+
        out << setw(4) << newdata << endl;
     }
    }
