@@ -22,12 +22,13 @@ void movieList::readMovieListFiles(){
     int countMovies = 0;
 	for (countMovies = 0; countMovies < moviedata.size(); ++countMovies){
 
-
+		if(moviedata[countMovies]["starring"]!=""&& moviedata[countMovies]["directedBy"]!=""&&moviedata[countMovies]["avgRating"]>=3.5){
 		movie Movie1 (moviedata[countMovies]["title"], moviedata[countMovies]["directedBy"], 
 					  moviedata[countMovies]["starring"], moviedata[countMovies]["avgRating"],
 					  moviedata[countMovies]["imdbId"], moviedata[countMovies]["item_id"], moviedata[countMovies]["year"], moviedata[countMovies]["genres"]);
 		
 		list.push_back(Movie1);
+		}
 	}
 
 }
