@@ -19,7 +19,9 @@ class movieList{
 		string parseStringFromCSV(const string &);
 		void getCriteria();
 		void sortList();
-		void sortByMovieTitle(string movieName);
+		//void sortByMovieTitle(string movieName);
+			void sortAscendingTitles();
+			void sortDescendingTitles();
 		void sortByRating();
 		void sortByGenre(string movieGenre);
 				void sortByYear(int movieYear);		//initial function, changed to below function
