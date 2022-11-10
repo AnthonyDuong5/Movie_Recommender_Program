@@ -71,11 +71,14 @@ void movieList::sortYear(vector<movie>& newList) {
 
 void movieList::sortByMovieTitle(vector<movie>& movieList){
 	//we use the sortedList vector to store the sorted movieList.
+	
 	//for this implementation, we are just fetching movies that start with a certain letter.
+	//=========================================================================
+	/*remove prompt, just make separate functions and test them individually */
 	cout << "Choose category to sort: "<< endl;
 	cout << "1. Ascending (A-Z)" << endl;
 	cout << "2. Descending (Z-A)" << endl;
-	cout << "3. Search by Movie Name" << endl;
+	cout << "3. Search by Letter" << endl;
 	int userSelection = 0;
 	cin >> userSelection;
 	while (userSelection == 0 || userSelection <0 || userSelection >3){
@@ -90,10 +93,10 @@ void movieList::sortByMovieTitle(vector<movie>& movieList){
 		sortByDescendingTitle();
 	}
 	else {
-		string movieName;
-		cout << "Enter a movie name: " ;
-		getline(cin, movieName);
-		sortBySpecificTitle(movieList, movieName);
+		char movieLetter;
+		cout << "Enter a letter: " ;
+		cin >> movieLetter
+		sortBySpecificTitle(movieList, movieLetter);
 	}
 	//sortBySpecificTitle(movieName);
 	//if sortAscending
@@ -101,7 +104,7 @@ void movieList::sortByMovieTitle(vector<movie>& movieList){
 	//if sortDescending
 }
 
-void movieList::sortBySpecificTitle(vector<movie>& movieList, string movieName){
+void movieList::sortBySpecificTitle(vector<movie>& movieList, char movieLetter){
 	for (int dbSize = 0; dbSize < movieList.size(); ++dbSize){
 
 	}

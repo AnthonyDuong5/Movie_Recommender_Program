@@ -27,7 +27,7 @@ class movieList{
 
 		void sortByAscendingTitle();
 		void sortByDescendingTitle();
-		void sortBySpecificTitle(vector<movie>& movieList, string movieName);
+		void sortBySpecificTitle(vector<movie>& movieList, char movieLetter);
 		//local testing sortByYear function
 		void sortYear(vector<movie>&);
 
