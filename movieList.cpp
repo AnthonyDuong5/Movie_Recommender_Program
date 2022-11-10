@@ -87,6 +87,45 @@ void movieList::sortYear(vector<movie>& newList) {
 	}
 	printMovies(newList);
 }
+
+// void movieList::sortByMovieTitle(string movieName) {
+
+// }
+
+void movieList::sortAscendingTitles(){
+	sortedlist = list;
+	int titleTop;
+	for (unsigned i = 0; i < sortedlist.size(); ++i){
+		titleTop = i;
+		for (unsigned j = i + 1; j < sortedlist.size(); ++j){
+			if (sortedlist.at(j).getTitle() < sortedlist.at(titleTop).getTitle() ){
+				titleTop = j;
+			}
+		}
+		swap (sortedlist.at(i), sortedlist.at(titleTop));
+	}
+}
+
+void movieList::sortDescendingTitles(){
+	sortedlist = list;
+	int titleLast;
+	for (unsigned i = 0; i < sortedlist.size(); ++i){
+		titleLast = i;
+		for (unsigned j = i + 1; j < sortedlist.size(); ++j){
+			if (sortedlist.at(j).getTitle() > sortedlist.at(titleLast).getTitle() ){
+				titleLast = j;
+			}
+		}
+		swap (sortedlist.at(i), sortedlist.at(titleLast));
+	}
+}
+
+// void movieList::sortMovieByString(string m1){
+// 	sortedlist = list;
+// 	int title;
+	
+// }
+
  vector<movie>& movieList::returnList(){
 	return list;
 }
