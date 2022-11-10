@@ -14,23 +14,45 @@ using json = nlohmann::json;
 
 movieList::movieList(){}
 
+
 void movieList::readMovieListFiles(){
 
 	//read json file.
-	fstream f("data/newdata.json");
+	fstream f("data/MovieDatabase.json");
     json moviedata = json::parse(f);
 
     int countMovies = 0;
 	for (countMovies = 0; countMovies < moviedata.size(); ++countMovies){
 
-
+	
 		movie Movie1 (moviedata[countMovies]["title"], moviedata[countMovies]["directedBy"], 
 					  moviedata[countMovies]["starring"], moviedata[countMovies]["avgRating"],
 					  moviedata[countMovies]["imdbId"], moviedata[countMovies]["item_id"], moviedata[countMovies]["year"], moviedata[countMovies]["genres"]);
 		
 		list.push_back(Movie1);
+	
 	}
 
+
+}
+
+
+//sorts movies by rating in descending order
+void movieList::sortByRating() {
+	sortedlist = list;
+	int maxIdx;
+
+	for (unsigned i = 0; i + 1 < sortedlist.size(); ++i) {
+		maxIdx = i;
+
+		for (unsigned j = i + 1; j < sortedlist.size(); ++j) {
+			if (sortedlist.at(j).getRating() > sortedlist.at(maxIdx).getRating()) {
+				maxIdx = j;
+			}
+		}
+
+		swap(sortedlist.at(i), sortedlist.at(maxIdx));
+	}
 }
 
 void movieList::printMovies(const vector<movie>& m){
@@ -68,56 +90,10 @@ void movieList::sortYear(vector<movie>& newList) {
 	}
 	printMovies(newList);
 }
-
-void movieList::sortByMovieTitle(vector<movie>& movieList){
-	//we use the sortedList vector to store the sorted movieList.
-	
-	//for this implementation, we are just fetching movies that start with a certain letter.
-	//=========================================================================
-	/*remove prompt, just make separate functions and test them individually */
-	cout << "Choose category to sort: "<< endl;
-	cout << "1. Ascending (A-Z)" << endl;
-	cout << "2. Descending (Z-A)" << endl;
-	cout << "3. Search by Letter" << endl;
-	int userSelection = 0;
-	cin >> userSelection;
-	while (userSelection == 0 || userSelection <0 || userSelection >3){
-		cout << "Please enter a valid choice from 1 to 3.";
-		cin >> userSelection;
-	}
-	
-	if (userSelection == 1){
-		sortByAscendingTitle();
-	}
-	else if (userSelection == 2){
-		sortByDescendingTitle();
-	}
-	else {
-		char movieLetter;
-		cout << "Enter a letter: " ;
-		cin >> movieLetter
-		sortBySpecificTitle(movieList, movieLetter);
-	}
-	//sortBySpecificTitle(movieName);
-	//if sortAscending
-
-	//if sortDescending
-}
-
-void movieList::sortBySpecificTitle(vector<movie>& movieList, char movieLetter){
-	for (int dbSize = 0; dbSize < movieList.size(); ++dbSize){
-
-	}
-}
-
-void movieList::sortByAscendingTitle(){
-	
-}
-void movieList::sortByDescendingTitle(){
-	
-}
-
  vector<movie>& movieList::returnList(){
 	return list;
 }
 
+vector<movie>& movieList::returnSortedList() {
+	return sortedlist;
+}

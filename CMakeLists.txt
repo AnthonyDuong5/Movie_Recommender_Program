@@ -3,6 +3,7 @@ PROJECT(movie_recommender)
 SET(CMAKE_CXX_STANDARD 11)
 
 ADD_SUBDIRECTORY(googletest)
+INCLUDE_DIRECTORIES(googletest/include)
 
 ADD_EXECUTABLE(movie_recommender
     main.cpp
@@ -11,8 +12,8 @@ ADD_EXECUTABLE(movie_recommender
 )
 
 ADD_EXECUTABLE(test
-    movie.cpp
     test.cpp
+    movie.cpp
     movieList.cpp
 )
 
