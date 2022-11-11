@@ -96,8 +96,8 @@ void movieList::sortYear(vector<movie>& newList) {
 
 // }
 
-void movieList::sortAscendingTitles(){
-	sortedlist = list;
+void movieList::sortAscendingTitles(vector <movie>& l){
+	sortedlist = l;
 	int titleTop;
 	for (unsigned i = 0; i < sortedlist.size(); ++i){
 		titleTop = i;
@@ -110,8 +110,8 @@ void movieList::sortAscendingTitles(){
 	}
 }
 
-void movieList::sortDescendingTitles(){
-	sortedlist = list;
+void movieList::sortDescendingTitles(vector <movie>& l){
+	sortedlist = l;
 	int titleLast;
 	for (unsigned i = 0; i < sortedlist.size(); ++i){
 		titleLast = i;
@@ -124,15 +124,30 @@ void movieList::sortDescendingTitles(){
 	}
 }
 
-// void movieList::sortMovieByString(string m1){
-// 	sortedlist = list;
-// 	string lowercasem1 = tolower(m1);
-// 	string lowercasemsorted;
-// 	for (unsigned i = 0; i < sortedlist.size(); ++i){
-// 		lowercasemsorted = tolower(sortedlist.at(i).getTitle());
-// 	}
-	
-// }
+void movieList::sortMovieByString(string m1){
+	sortedlist = list;
+	vector<movie> newList;
+	string lowercasem1 = m1;
+	string lowercasemsorted;
+ 
+    // using transform() function and ::tolower in STL
+    transform(lowercasem1.begin(), lowercasem1.end(), lowercasem1.begin(), ::tolower);
+    cout<< "lowercase: " << lowercasem1<<endl;
+ 
+
+	for (unsigned i = 0; i < sortedlist.size(); ++i){
+		lowercasemsorted = sortedlist.at(i).getTitle();
+		transform(lowercasemsorted.begin(), lowercasemsorted.end(), lowercasemsorted.begin(), ::tolower);
+		if (lowercasemsorted.find(lowercasem1) != std::string::npos) {
+    		//cout << "found!" << '\n';
+			newList.push_back(returnSortedList().at(i));
+		}
+		
+	}
+	sortedlist = newList;
+	//this is not sorted by alphabetical order, so we run sort ascending
+	sortAscendingTitles(sortedlist);
+}
 
  vector<movie>& movieList::returnList(){
 	return list;

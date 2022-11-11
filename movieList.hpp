@@ -20,16 +20,14 @@ class movieList{
 		void getCriteria();
 		void sortList();
 		//void sortByMovieTitle(string movieName);
-			void sortAscendingTitles();
-			void sortDescendingTitles();
-			// void sortMovieByString(string );
+			void sortAscendingTitles(vector <movie>&);
+			void sortDescendingTitles(vector <movie>&);
+			void sortMovieByString(string );	//this finds all movies containing a specific string
 		void sortByRating();
 		void sortByGenre(string movieGenre);
 				void sortByYear(int movieYear);		//initial function, changed to below function
 		void sortAlphabetical();
 
-		void sortByAscendingTitle();
-		void sortByDescendingTitle();
 		void sortBySpecificTitle(vector<movie>& movieList, char movieLetter);
 		//local testing sortByYear function
 		void sortYear(vector<movie>&);
