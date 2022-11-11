@@ -1,6 +1,7 @@
 #include "movie.hpp"
 #include "movieList.hpp"
 #include "gtest/gtest.h"
+#include <vector>
 
 TEST(VectorTests, testException) {
     EXPECT_NO_THROW({
@@ -77,7 +78,8 @@ TEST (SortTest, testSortMovieByString){
 		cout << "rating: " << MovieDatabase.returnSortedList().at(i).getRating() << endl;
 		cout << "imbdid: " << MovieDatabase.returnSortedList().at(i).getImdbId() << endl;
 		cout << "itemid: " << MovieDatabase.returnSortedList().at(i).getItemId() << endl;
-		cout << "genre: " << MovieDatabase.returnSortedList().at(i).getGenre() << endl;
+		cout << "genre: " ;
+		for (auto gen : MovieDatabase.returnSortedList().at(i).getGenreList()){cout<<gen<<" ";}cout<<endl;
         cout << "--------------------------------------------------" << endl;
     }   
 }

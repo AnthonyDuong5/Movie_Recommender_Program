@@ -12,16 +12,18 @@
 using namespace std;
 using json = nlohmann::json;
 
-
+vector<string> getGenreList(movie&);
 int main(){
     movieList MovieDatabase;
     MovieDatabase.readMovieListFiles();
     cout << "database has been set" << endl;
-
+    
     //default print movie list below
     //MovieDatabase.printMovies(MovieDatabase.returnList());
 
     //testing sortYear
-    MovieDatabase.sortYear(MovieDatabase.returnList());
+    //MovieDatabase.sortYear(MovieDatabase.returnList());
+
+
 }
 
