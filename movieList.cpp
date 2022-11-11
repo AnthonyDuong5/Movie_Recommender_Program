@@ -30,6 +30,7 @@ void movieList::readMovieListFiles(){
 					  moviedata[countMovies]["imdbId"], moviedata[countMovies]["item_id"], moviedata[countMovies]["year"], moviedata[countMovies]["genres"]);
 		
 		list.push_back(Movie1);
+		Movie1.getGenreList();
 	
 	}
 

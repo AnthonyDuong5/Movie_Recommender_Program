@@ -1,6 +1,7 @@
 #include "movie.hpp"
 #include "movieList.hpp"
 #include "gtest/gtest.h"
+#include <vector>
 
 TEST(VectorTests, testException) {
     EXPECT_NO_THROW({
@@ -25,6 +26,7 @@ TEST(SortTests, testSortByRating) {
         cout << "--------------------------------------------------" << endl;
 	}
 }
+
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
