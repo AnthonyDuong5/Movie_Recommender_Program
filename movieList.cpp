@@ -55,18 +55,19 @@ void movieList::sortByRating() {
 	}
 }
 
-void movieList::printMovies(const vector<movie>& m){
+void movieList::printMovies(){
+	vector<movie> movieListPrint = returnSortedList();
 	//temporarily changed m.size() to a fixed vector size
-	for (int i =0; i < m.size(); ++i){
+	for (int i =0; i < movieListPrint.size(); ++i){
 		cout << "------------------" << endl;
-		cout<<"title: "<< m.at(i).getTitle()<<endl;
-		cout<<"year: "<< m.at(i).getYear()<<endl;
-		cout<<"director: "<<m.at(i).getDirector()<<endl;
-		cout<<"casting: "<<m.at(i).getCast()<<endl;
-		cout<<"rating: "<<m.at(i).getRating()<<endl;
-		cout<<"IMDB ID: "<<m.at(i).getImdbId()<<endl;
-		cout<<"item: "<<m.at(i).getItemId()<<endl;
-		cout<<"Genre: "<<m.at(i).getGenre()<<endl;
+		cout<<"title: "<< movieListPrint.at(i).getTitle()<<endl;
+		cout<<"year: "<< movieListPrint.at(i).getYear()<<endl;
+		cout<<"director: "<<movieListPrint.at(i).getDirector()<<endl;
+		cout<<"casting: "<<movieListPrint.at(i).getCast()<<endl;
+		cout<<"rating: "<<movieListPrint.at(i).getRating()<<endl;
+		cout<<"IMDB ID: "<<movieListPrint.at(i).getImdbId()<<endl;
+		cout<<"item: "<<movieListPrint.at(i).getItemId()<<endl;
+		cout<<"Genre: "<<movieListPrint.at(i).getGenre()<<endl;
 	}
 }
 
@@ -88,7 +89,7 @@ void movieList::sortYear(vector<movie>& newList) {
 		}
 		std::swap(newList.at(j), newList.at(temp));
 	}
-	printMovies(newList);
+	//printMovies(newList);
 }
 
 // void movieList::sortByMovieTitle(string movieName) {
@@ -125,7 +126,11 @@ void movieList::sortDescendingTitles(){
 
 // void movieList::sortMovieByString(string m1){
 // 	sortedlist = list;
-// 	int title;
+// 	string lowercasem1 = tolower(m1);
+// 	string lowercasemsorted;
+// 	for (unsigned i = 0; i < sortedlist.size(); ++i){
+// 		lowercasemsorted = tolower(sortedlist.at(i).getTitle());
+// 	}
 	
 // }
 
