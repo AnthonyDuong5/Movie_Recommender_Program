@@ -18,10 +18,10 @@ class movie{
         int imdbId;
         int itemId;
         string genre;
-        //vector<string> genreList;
+        vector<string> genreList;
 
     public: 
-        vector<string> genreList;
+        
         movie(string title, string director, string cast, double rating, int imdbId, int itemId, int year, string genre);
         string getTitle() const;
         int getYear() const;
@@ -31,7 +31,7 @@ class movie{
         int getImdbId() const;
         int getItemId() const;
         string getGenre() const;
-        void getGenreList();
+        void generateGenreList();
         vector<string> return_genreList();
 
         

@@ -24,18 +24,37 @@ void movieList::readMovieListFiles(){
     int countMovies = 0;
 	for (countMovies = 0; countMovies < moviedata.size(); ++countMovies){
 
-	
+		if (moviedata[countMovies]["genres"]!="(no genres listed)"){
 		movie Movie1 (moviedata[countMovies]["title"], moviedata[countMovies]["directedBy"], 
 					  moviedata[countMovies]["starring"], moviedata[countMovies]["avgRating"],
 					  moviedata[countMovies]["imdbId"], moviedata[countMovies]["item_id"], moviedata[countMovies]["year"], moviedata[countMovies]["genres"]);
-		
+		Movie1.generateGenreList();
 		list.push_back(Movie1);
-		Movie1.getGenreList();
+		}
 	
 	}
 
+	
+    json newdata;
+    vector<movie>::iterator i;
+    std::ofstream out("data/newdata.json");
+    for( i = list.begin();i < list.end(); i++){
+       newdata["title"]=i->getTitle();
+       newdata["directedBy"]=i->getDirector();
+       newdata["starring"]=i->getCast();
+       newdata["avgRating"]=i->getRating();
+       newdata["imdbId"]=i->getImdbId();
+       newdata["item_id"]=i->getItemId();
+	   newdata["genres"]=i->getGenre();
+       newdata["year"]=i->getYear();
+       newdata["genresList"]=i->return_genreList();
 
+       out << setw(4) << newdata << endl;
+    }
 }
+
+
+
 
 
 //sorts movies by rating in descending order
