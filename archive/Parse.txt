@@ -37,7 +37,6 @@ void writeToJson( vector<movie>& m){
        newdata["avgRating"]=i->getRating();
        newdata["imdbId"]=i->getImdbId();
        newdata["item_id"]=i->getItemId();
-	   newdata["genres"]=i->getGenre();
        newdata["year"]=i->getYear();
        newdata["genresList"]=m.return_genreList();
 
@@ -59,3 +58,19 @@ void writeToJson( vector<movie>& m){
        }
        return genra;
    }
+
+//parse genre from string and make it to a genrelist within the movie class.
+void movie::generateGenreList(){
+    
+    string delimiter = "|";
+    size_t pos = 0;
+    string s = genre;
+    string item;
+    while((pos=s.find(delimiter))!=string::npos){
+        item = s.substr(0,pos);
+        s.erase(0,pos+delimiter.length());
+        genreList.push_back(item);
+    }
+    genreList.push_back(s);      
+
+}

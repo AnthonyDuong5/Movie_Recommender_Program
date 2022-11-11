@@ -18,26 +18,26 @@ movieList::movieList(){}
 void movieList::readMovieListFiles(){
 
 	//read json file.
-	fstream f("data/MovieDatabase.json");
+	fstream f("data/newdata.json");
     json moviedata = json::parse(f);
 
     int countMovies = 0;
 	for (countMovies = 0; countMovies < moviedata.size(); ++countMovies){
 
-		if (moviedata[countMovies]["genres"]!="(no genres listed)"){
+		
 		movie Movie1 (moviedata[countMovies]["title"], moviedata[countMovies]["directedBy"], 
 					  moviedata[countMovies]["starring"], moviedata[countMovies]["avgRating"],
-					  moviedata[countMovies]["imdbId"], moviedata[countMovies]["item_id"], moviedata[countMovies]["year"], moviedata[countMovies]["genres"]);
-		Movie1.generateGenreList();
+					  moviedata[countMovies]["imdbId"], moviedata[countMovies]["item_id"], moviedata[countMovies]["year"], moviedata[countMovies]["genresList"]);
+		
 		list.push_back(Movie1);
-		}
+		
 	
 	}
 
 	
     json newdata;
     vector<movie>::iterator i;
-    std::ofstream out("data/newdata.json");
+    std::ofstream out("data/newdata2.json");
     for( i = list.begin();i < list.end(); i++){
        newdata["title"]=i->getTitle();
        newdata["directedBy"]=i->getDirector();
@@ -45,9 +45,8 @@ void movieList::readMovieListFiles(){
        newdata["avgRating"]=i->getRating();
        newdata["imdbId"]=i->getImdbId();
        newdata["item_id"]=i->getItemId();
-	   newdata["genres"]=i->getGenre();
        newdata["year"]=i->getYear();
-       newdata["genresList"]=i->return_genreList();
+       newdata["genresList"]=i->getGenreList();
 
        out << setw(4) << newdata << endl;
     }
@@ -86,7 +85,10 @@ void movieList::printMovies(const vector<movie>& m){
 		cout<<"rating: "<<m.at(i).getRating()<<endl;
 		cout<<"IMDB ID: "<<m.at(i).getImdbId()<<endl;
 		cout<<"item: "<<m.at(i).getItemId()<<endl;
-		cout<<"Genre: "<<m.at(i).getGenre()<<endl;
+		cout<<"Genre: ";
+		for (auto gen : m.at(i).getGenreList()){
+			cout<<gen<<" ";
+		}
 	}
 }
 

@@ -24,11 +24,6 @@ int main(){
     //testing sortYear
     //MovieDatabase.sortYear(MovieDatabase.returnList());
 
-    vector<string> Glist = MovieDatabase.returnList().at(1).return_genreList();
-    for (int i = 0 ; i < Glist.size(); i++){
-        cout<< Glist.at(i)<< " ";
-    }
-    cout<<endl;
 
 }
 
