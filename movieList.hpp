@@ -12,6 +12,7 @@ class movieList{
 	private:
 		vector <movie> list;
 		vector <movie> sortedlist;
+		vector <string> genres;
 
 	public:
 		movieList();
@@ -35,6 +36,8 @@ class movieList{
 		vector<movie>& returnList();
 		vector<movie>& returnSortedList();
 		void printMovies();
+		vector <string> setGenres();
+
 };		
 
 

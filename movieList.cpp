@@ -18,7 +18,7 @@ movieList::movieList(){}
 void movieList::readMovieListFiles(){
 
 	//read json file.
-	fstream f("data/newdata.json");
+	fstream f("data/MovieDatabase.json");
     json moviedata = json::parse(f);
 
     int countMovies = 0;
@@ -35,21 +35,7 @@ void movieList::readMovieListFiles(){
 	}
 
 	
-    json newdata;
-    vector<movie>::iterator i;
-    std::ofstream out("data/newdata2.json");
-    for( i = list.begin();i < list.end(); i++){
-       newdata["title"]=i->getTitle();
-       newdata["directedBy"]=i->getDirector();
-       newdata["starring"]=i->getCast();
-       newdata["avgRating"]=i->getRating();
-       newdata["imdbId"]=i->getImdbId();
-       newdata["item_id"]=i->getItemId();
-       newdata["year"]=i->getYear();
-       newdata["genresList"]=i->getGenreList();
-
-       out << setw(4) << newdata << endl;
-    }
+    
 }
 
 
@@ -87,7 +73,7 @@ void movieList::printMovies(){
 		cout<<"rating: "<<movieListPrint.at(i).getRating()<<endl;
 		cout<<"IMDB ID: "<<movieListPrint.at(i).getImdbId()<<endl;
 		cout<<"item: "<<movieListPrint.at(i).getItemId()<<endl;
-		cout<<"Genre: "; for (auto gen : m.at(i).getGenreList()){ cout<<gen<<" ";} cout<<endl;
+		cout<<"Genre: "; for (auto gen : movieListPrint.at(i).getGenreList()){ cout<<gen<<" ";} cout<<endl;
 
 	}
 }
