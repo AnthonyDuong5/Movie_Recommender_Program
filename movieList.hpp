@@ -16,6 +16,7 @@ class movieList{
 		
 
 	public:
+
 		movieList();
 		void readMovieListFiles();
 		string parseStringFromCSV(const string &);
@@ -29,12 +30,15 @@ class movieList{
 		void sortByRatingAscending();
 		void searchByRatings(double lowRating, double highRating);
 		void sortByGenre(string movieGenre);
-				void sortByYear(int movieYear);		//initial function, changed to below function
+
 		void sortAlphabetical();
 
 		void sortBySpecificTitle(vector<movie>& movieList, char movieLetter);
 		//local testing sortByYear function
-		void sortYear(vector<movie>&);
+
+		void sortByYearAscending();
+		void sortByYearDescending();
+		void selectYear(int);		//view movies in based on year
 
 		vector<movie>& returnList();
 		vector<movie>& returnSortedList();
