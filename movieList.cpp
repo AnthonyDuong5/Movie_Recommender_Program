@@ -22,24 +22,24 @@ Genre HashIt (std::string const& inString) {
 	//Genre g = "Adventure" does not work.
 	//Solution : Genre g = HashIt("Adventure")
     if (inString == "Adventure") return Adventure;
-	if (inString == "Action") return Action;
-	if (inString == "Animation") return Animation;
-	if (inString == "Children") return Children;
-	if (inString == "Comedy") return Comedy;	
-	if (inString == "Crime") return Crime;
-	if (inString == "Documentarys") return Documentarys;
-	if (inString == "Drama") return Drama;
-	if (inString == "Fantasy") return Fantasy;
-	if (inString == "Film-Noir") return FilmNoir;
-	if (inString == "Horror") return Horror;
-	if (inString == "IMAX") return IMAX;
-	if (inString == "Musical") return Musical;
-	if (inString == "Mystery") return Mystery;
-	if (inString == "Romance") return Romance;	
-	if (inString == "Sci-Fi") return SciFi;
-	if (inString == "Thriller") return Thriller;
-	if (inString == "War") return War;
-	if (inString == "Western") return Western;
+	else if (inString == "Action") return Action;
+	else if (inString == "Animation") return Animation;
+	else if (inString == "Children") return Children;
+	else if (inString == "Comedy") return Comedy;	
+	else if (inString == "Crime") return Crime;
+	else if (inString == "Documentarys") return Documentarys;
+	else if (inString == "Drama") return Drama;
+	else if (inString == "Fantasy") return Fantasy;
+	else if (inString == "Film-Noir") return FilmNoir;
+	else if (inString == "Horror") return Horror;
+	else if (inString == "IMAX") return IMAX;
+	else if (inString == "Musical") return Musical;
+	else if (inString == "Mystery") return Mystery;
+	else if (inString == "Romance") return Romance;	
+	else if (inString == "Sci-Fi") return SciFi;
+	else if (inString == "Thriller") return Thriller;
+	else if (inString == "War") return War;
+	else if(inString == "Western") return Western;
 }
 
 void movieList::readMovieListFiles(){

@@ -116,7 +116,7 @@ TEST(VectorTests, testException) {
         MovieDatabase.readMovieListFiles();
         cout << "database has been set" << endl;
         int input = 3; 
-        vector<movie> genreMovieList = MovieDatabase.searchByGenre(3);
+        vector<movie> genreMovieList = MovieDatabase.searchByGenre(16);
         cout << genreMovieList.size()<< " movies from Animation."<<endl;
         for (unsigned i = 0; i < 10; i ++) {
             cout << "--------------------------------------------------" << endl;
