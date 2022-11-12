@@ -21,9 +21,6 @@ int main(){
     //default print movie list below
     //MovieDatabase.printMovies(MovieDatabase.returnList());
 
-    //testing sortYear
-    //MovieDatabase.sortYear(MovieDatabase.returnList());
-
 
 }
 
