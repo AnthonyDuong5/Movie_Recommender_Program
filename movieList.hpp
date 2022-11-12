@@ -12,7 +12,7 @@ class movieList{
 	private:
 		vector <movie> list;
 		vector <movie> sortedlist;
-		vector <string> genres;
+		vector <string> genres;  //stores 19 genres 
 		
 
 	public:
@@ -39,9 +39,10 @@ class movieList{
 		void printMovies();
 
 			void setGenres();
-			vector <string> getGenres();
+			vector <string> getGenres(); 
 			void printGenres();
 			vector<movie> searchByGenre(Genre);
+			vector<movie> searchByGenre(int);
 
 		
 

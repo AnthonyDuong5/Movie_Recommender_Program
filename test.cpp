@@ -94,13 +94,30 @@ TEST(VectorTests, testException) {
         EXPECT_EQ(MovieDatabase.getGenres().size(),19);
     }
 
-     TEST(SortByGenres, searchByGenre){
+    //  TEST(SortByGenres, searchByGenre_Genre){
+    //     movieList MovieDatabase;
+    //     MovieDatabase.readMovieListFiles();
+    //     cout << "database has been set" << endl;
+    //     Genre gType = Mystery; 
+    //     vector<movie> genreMovieList = MovieDatabase.searchByGenre(gType);
+    //     cout << genreMovieList.size()<< " movies from Mystery."<<endl;
+    //     for (unsigned i = 0; i < 10; i ++) {
+    //         cout << "--------------------------------------------------" << endl;
+    //         cout << "title: " << genreMovieList.at(i).getTitle() << endl;
+    //         cout << "rating: " << genreMovieList.at(i).getRating() << endl;
+    //         cout << "genre: " ;
+    //         for (auto gen : genreMovieList.at(i).getGenreList()){cout<<gen<<" ";}cout<<endl;
+    //         cout << "--------------------------------------------------" << endl;
+    //     }
+    //  }
+
+        TEST(SortByGenres, searchByGenre_int){
         movieList MovieDatabase;
         MovieDatabase.readMovieListFiles();
         cout << "database has been set" << endl;
-        Genre gType = Mystery; 
-        vector<movie> genreMovieList = MovieDatabase.searchByGenre(gType);
-        cout << genreMovieList.size()<< " movies from Mystery."<<endl;
+        int input = 3; 
+        vector<movie> genreMovieList = MovieDatabase.searchByGenre(3);
+        cout << genreMovieList.size()<< " movies from Animation."<<endl;
         for (unsigned i = 0; i < 10; i ++) {
             cout << "--------------------------------------------------" << endl;
             cout << "title: " << genreMovieList.at(i).getTitle() << endl;
@@ -110,8 +127,6 @@ TEST(VectorTests, testException) {
             cout << "--------------------------------------------------" << endl;
         }
      }
-
-    
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);

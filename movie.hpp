@@ -8,25 +8,25 @@
 using namespace std;
 //declare enum  
 enum Genre{
-	Adventure,
-    Action,
-    Animation,
-    Children,
-    Comedy,
-    Crime,
-    Documentarys,
-    Drama,
-    Fantasy,
-    FilmNoir,
-    Horror,
-    IMAX,
-    Musical,
-    Mystery,
-    Romance,
-    SciFi,
-    Thriller,
-    War,
-    Western
+	Adventure=1,
+    Action=2,
+    Animation=3,
+    Children=4,
+    Comedy=5,
+    Crime=6,
+    Documentarys=7,
+    Drama=8,
+    Fantasy=9,
+    FilmNoir=10,
+    Horror=11,
+    IMAX=12,
+    Musical=13,
+    Mystery=14,
+    Romance=15,
+    SciFi=16,
+    Thriller=17,
+    War=18,
+    Western=19
 };
 class movie{
 
