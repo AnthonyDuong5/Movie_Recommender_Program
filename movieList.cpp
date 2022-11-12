@@ -174,21 +174,17 @@ void movieList::sortByYearDescending() {
 	}
 }
 
-void movieList::selectYear(int yearInput) {
-	sortedlist = list;
+void movieList::searchYearRange(int minYear, int maxYear) {
+	sortByYearAscending();
 	vector<movie> newList;
 	for (int i = 0; i < sortedlist.size() - 1; ++i){
-		int movieYear = sortedlist.at(i).getYear();
-		if(movieYear == yearInput) {
-			newList.push_back(returnSortedList().at(i));
+		int currentYear = sortedlist.at(i).getYear();
+		if(currentYear >= minYear && currentYear <= maxYear) {
+			newList.push_back(sortedlist.at(i));
 		}
 	}
 	sortedlist = newList;
 }
-
-// void movieList::sortByMovieTitle(string movieName) {
-
-// }
 
 void movieList::sortAscendingTitles(vector <movie>& l){
 	sortedlist = l;
@@ -217,8 +213,6 @@ void movieList::sortDescendingTitles(vector <movie>& l){
 		swap (sortedlist.at(i), sortedlist.at(titleLast));
 	}
 }
-
-
 
 void movieList::sortMovieByString(string m1){
 	sortedlist = list;
