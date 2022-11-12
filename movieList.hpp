@@ -12,7 +12,8 @@ class movieList{
 	private:
 		vector <movie> list;
 		vector <movie> sortedlist;
-		vector <string> genres;
+		vector <string> genres;  //stores 19 genres 
+		
 
 	public:
 
@@ -21,10 +22,10 @@ class movieList{
 		string parseStringFromCSV(const string &);
 		void getCriteria();
 		void sortList();
-		//void sortByMovieTitle(string movieName);
-			void sortAscendingTitles(vector <movie>&);
-			void sortDescendingTitles(vector <movie>&);
-			void sortMovieByString(string );	//this finds all movies containing a specific string
+	
+		void sortAscendingTitles(vector <movie>&);
+		void sortDescendingTitles(vector <movie>&);
+		void sortMovieByString(string );	
 		void sortByRating();
 		void sortByGenre(string movieGenre);
 
@@ -40,7 +41,14 @@ class movieList{
 		vector<movie>& returnList();
 		vector<movie>& returnSortedList();
 		void printMovies();
-		vector <string> setGenres();
+
+			void setGenres();
+			vector <string> getGenres(); 
+			void printGenres();
+			vector<movie> searchByGenre(Genre);
+			vector<movie> searchByGenre(int);
+
+		
 
 };		
 

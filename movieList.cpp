@@ -1,19 +1,46 @@
 #include "movieList.hpp"
-#include <string>
-#include <vector>
 #include "json/json.hpp"
 #include "movie.hpp"
+#include <string>
+#include <vector>
 #include <stdio.h>
 #include <stdlib.h>
 #include <fstream>
-
 #include <iostream>
+#include <algorithm>
+
+#define find_str( a, b ) std::find( a.begin(), a.end(), b ) == a.end() 
 
 using namespace std;
 using json = nlohmann::json;
 
 movieList::movieList(){}
 
+
+Genre HashIt (std::string const& inString) {
+	//C++ does not support string as a type, so convert string to Genre here.	
+	//Genre g = "Adventure" does not work.
+	//Solution : Genre g = HashIt("Adventure")
+    if (inString == "Adventure") return Adventure;
+	else if (inString == "Action") return Action;
+	else if (inString == "Animation") return Animation;
+	else if (inString == "Children") return Children;
+	else if (inString == "Comedy") return Comedy;	
+	else if (inString == "Crime") return Crime;
+	else if (inString == "Documentarys") return Documentarys;
+	else if (inString == "Drama") return Drama;
+	else if (inString == "Fantasy") return Fantasy;
+	else if (inString == "Film-Noir") return FilmNoir;
+	else if (inString == "Horror") return Horror;
+	else if (inString == "IMAX") return IMAX;
+	else if (inString == "Musical") return Musical;
+	else if (inString == "Mystery") return Mystery;
+	else if (inString == "Romance") return Romance;	
+	else if (inString == "Sci-Fi") return SciFi;
+	else if (inString == "Thriller") return Thriller;
+	else if (inString == "War") return War;
+	else if(inString == "Western") return Western;
+}
 
 void movieList::readMovieListFiles(){
 
@@ -29,13 +56,18 @@ void movieList::readMovieListFiles(){
 					  moviedata[countMovies]["starring"], moviedata[countMovies]["avgRating"],
 					  moviedata[countMovies]["imdbId"], moviedata[countMovies]["item_id"], moviedata[countMovies]["year"], moviedata[countMovies]["genresList"]);
 		
+		//store genres to vector<Genre>genre_list
+		for(int i = 0 ; i < moviedata[countMovies]["genresList"].size();i++){
+			string g = moviedata[countMovies]["genresList"][i];
+			Movie1.genre_list.push_back(HashIt(g));
+		}
+
 		list.push_back(Movie1);
-		
 	
 	}
+	//read Genres.txt from local and stores 19 genres into genres in movieList's member vector<string> genres. 
+	setGenres();
 
-	
-    
 }
 
 
@@ -153,6 +185,8 @@ void movieList::sortDescendingTitles(vector <movie>& l){
 	}
 }
 
+
+
 void movieList::sortMovieByString(string m1){
 	sortedlist = list;
 	vector<movie> newList;
@@ -185,3 +219,58 @@ void movieList::sortMovieByString(string m1){
 vector<movie>& movieList::returnSortedList() {
 	return sortedlist;
 }
+
+
+
+void movieList::setGenres(){
+	ifstream in( "data/Genres.txt" );
+	string genre;
+	while( getline( in, genre) ){
+		genres.push_back(genre);
+	}
+};
+vector<string> movieList::getGenres(){
+	return genres;
+}
+//list 19 genres from MovieDatabase
+void movieList::printGenres(){
+	for (int i = 0 ; i < genres.size(); i++){
+		cout<<i+1<<". "<<genres.at(i)<<endl;
+	}
+}
+
+vector<movie> movieList::searchByGenre(Genre g){
+	vector<movie> newlist;
+	for (int i = 0; i< list.size();i++){
+		vector <Genre> gen_list = list.at(i).genre_list;
+		for (auto x : gen_list){
+			if(x==g){
+				newlist.push_back(list.at(i));
+				break;
+			}
+		}
+	}
+	
+	return newlist;
+}
+
+vector<movie> movieList::searchByGenre(int userInput ){
+
+	vector<movie> newlist;
+	string gType = genres.at(userInput-1);
+	Genre g = HashIt(gType);
+	
+	for (int i = 0; i< list.size();i++){
+		vector <Genre> gen_list = list.at(i).genre_list;
+		for (auto x : gen_list){
+			if(x==g){
+				newlist.push_back(list.at(i));
+				break;
+			}
+		}
+	}
+
+	return newlist;
+}
+	
+
