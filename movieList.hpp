@@ -21,11 +21,13 @@ class movieList{
 		string parseStringFromCSV(const string &);
 		void getCriteria();
 		void sortList();
-	
+		//void sortByMovieTitle(string movieName);
 		void sortAscendingTitles(vector <movie>&);
 		void sortDescendingTitles(vector <movie>&);
-		void sortMovieByString(string );	
-		void sortByRating();
+		void sortMovieByString(string );	//this finds all movies containing a specific string
+		void sortByRatingDescending();
+		void sortByRatingAscending();
+		void searchByRatings(double lowRating, double highRating);
 		void sortByGenre(string movieGenre);
 				void sortByYear(int movieYear);		//initial function, changed to below function
 		void sortAlphabetical();

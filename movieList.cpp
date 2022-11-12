@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <fstream>
+#include <iterator>
 #include <iostream>
 #include <algorithm>
 
@@ -75,9 +76,9 @@ void movieList::readMovieListFiles(){
 
 
 //sorts movies by rating in descending order
-void movieList::sortByRating() {
+void movieList::sortByRatingDescending() {
 	sortedlist = list;
-	int maxIdx;
+	unsigned maxIdx;
 
 	for (unsigned i = 0; i + 1 < sortedlist.size(); ++i) {
 		maxIdx = i;
@@ -90,6 +91,38 @@ void movieList::sortByRating() {
 
 		swap(sortedlist.at(i), sortedlist.at(maxIdx));
 	}
+}
+
+//sorts movies by rating in ascending order
+void movieList::sortByRatingAscending() {
+	sortedlist = list;
+	unsigned minIdx;
+
+	for (unsigned i = 0; i + 1 < sortedlist.size(); ++i) {
+		minIdx = i;
+
+		for (unsigned j = i + 1; j < sortedlist.size(); ++j) {
+			if (sortedlist.at(j).getRating() < sortedlist.at(minIdx).getRating()) {
+				minIdx = j;
+			}
+		}
+
+		swap(sortedlist.at(i), sortedlist.at(minIdx));
+	}
+}
+
+//searches movies from a range of ratings
+void movieList::searchByRatings(double lowRating, double highRating) {
+	sortByRatingAscending();
+	vector<movie> searchList;
+
+	for (unsigned i = 0; i < sortedlist.size(); ++i) {
+		if (sortedlist.at(i).getRating() >= lowRating && sortedlist.at(i).getRating() <= highRating) {
+			searchList.push_back(sortedlist.at(i));
+		}
+	}
+
+	sortedlist = searchList;
 }
 
 void movieList::printMovies(){
@@ -173,7 +206,7 @@ void movieList::sortMovieByString(string m1){
  
     // using transform() function and ::tolower in STL
     transform(lowercasem1.begin(), lowercasem1.end(), lowercasem1.begin(), ::tolower);
-    cout<< "lowercase: " << lowercasem1<<endl;
+    // cout<< "lowercase: " << lowercasem1<<endl;
  
 
 	for (unsigned i = 0; i < sortedlist.size(); ++i){
