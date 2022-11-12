@@ -36,7 +36,11 @@ class movieList{
 		vector<movie>& returnList();
 		vector<movie>& returnSortedList();
 		void printMovies();
-		vector <string> setGenres();
+
+		void setGenres();
+		vector <string> getGenres();
+		void printGenres();
+		
 
 };		
 

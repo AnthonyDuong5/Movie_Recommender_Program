@@ -38,7 +38,7 @@ void writeToJson( vector<movie>& m){
        newdata["imdbId"]=i->getImdbId();
        newdata["item_id"]=i->getItemId();
        newdata["year"]=i->getYear();
-       newdata["genresList"]=m.return_genreList();
+       newdata["genresList"]=i->getGenreList();
 
        out << setw(4) << newdata << endl;
     }

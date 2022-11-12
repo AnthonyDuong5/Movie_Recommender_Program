@@ -23,7 +23,7 @@ int main(){
 
     //testing sortYear
     //MovieDatabase.sortYear(MovieDatabase.returnList());
-
+    MovieDatabase.setGenres();
 
 }
 

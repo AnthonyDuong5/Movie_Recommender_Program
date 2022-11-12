@@ -6,8 +6,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <fstream>
-
 #include <iostream>
+#include <algorithm>
+
+#define find_str( a, b ) std::find( a.begin(), a.end(), b ) == a.end() 
 
 using namespace std;
 using json = nlohmann::json;
@@ -163,3 +165,41 @@ void movieList::sortMovieByString(string m1){
 vector<movie>& movieList::returnSortedList() {
 	return sortedlist;
 }
+void movieList::setGenres(){
+	fstream f("data/MovieDatabase.json");
+    json moviedata = json::parse(f);
+   
+    std::ofstream out("genres.txt");
+
+    for( int i = 0 ; i < moviedata.size(); i++){
+     for(auto x : moviedata[i]["genresList"]){
+		out << x << endl;
+	 } 
+    }
+
+	ifstream in( "genres.txt" );
+	ofstream OUT( "uniqueGenres.txt" );
+	vector<string> lines, sorted_lines;
+	string str, sorted_str;
+	size_t pos = 0;
+
+	while( in )
+    {
+        getline( in, str );
+        sorted_str = str;
+        sort( sorted_str.begin(), sorted_str.end() );
+
+        if( find_str( sorted_lines, sorted_str ) )
+        {
+            lines.push_back( str );
+            sorted_lines.push_back( sorted_str );
+        }
+    }
+
+    for( const auto &i : lines )
+        OUT << i << std::endl;
+
+	in.close();
+	OUT.close();
+	
+};
