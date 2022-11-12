@@ -94,7 +94,6 @@ void movieList::sortByRating() {
 
 void movieList::printMovies(){
 	vector<movie> movieListPrint = returnSortedList();
-	//temporarily changed m.size() to a fixed vector size
 	for (int i =0; i < movieListPrint.size(); ++i){
 		cout << "------------------" << endl;
 
@@ -110,25 +109,48 @@ void movieList::printMovies(){
 	}
 }
 
-void movieList::sortYear(vector<movie>& newList) {
-
-	//can try to replace newList.size() to a fixed number to see the first movies in the list
-	//i've tried it and it seems to work in the lower end of the list as well
-	//note: last movie has an incorrect year and is in the wrong spot because of it
-	
-	int temp;
-	for (int j = 0; j < newList.size() - 1; ++j){
-		int min = newList.at(j).getYear();
-		temp = j;
-		for (int i = j+1; i < newList.size(); ++i) {
-			if (min > newList.at(i).getYear()) {
-				min = newList.at(i).getYear();
-				temp = i;
+void movieList::sortByYearAscending() {
+	sortedlist = list;
+	int yearTop;
+	for (int j = 0; j < sortedlist.size() - 1; ++j){
+		int min = sortedlist.at(j).getYear();
+		yearTop = j;
+		for (int i = j+1; i < sortedlist.size(); ++i) {
+			if (min > sortedlist.at(i).getYear()) {
+				min = sortedlist.at(i).getYear();
+				yearTop = i;
 			}
 		}
-		std::swap(newList.at(j), newList.at(temp));
+		std::swap(sortedlist.at(j), sortedlist.at(yearTop));
 	}
-	//printMovies(newList);
+}
+
+void movieList::sortByYearDescending() {
+	sortedlist = list;
+	int yearLast;
+	for (int j = 0; j < sortedlist.size() - 1; ++j){
+		int max = sortedlist.at(j).getYear();
+		yearLast = j;
+		for (int i = j+1; i < sortedlist.size(); ++i) {
+			if (max < sortedlist.at(i).getYear()) {
+				max = sortedlist.at(i).getYear();
+				yearLast = i;
+			}
+		}
+		std::swap(sortedlist.at(j), sortedlist.at(yearLast));
+	}
+}
+
+void movieList::selectYear(int yearInput) {
+	sortedlist = list;
+	vector<movie> newList;
+	for (int i = 0; i < sortedlist.size() - 1; ++i){
+		int movieYear = sortedlist.at(i).getYear();
+		if(movieYear == yearInput) {
+			newList.push_back(returnSortedList().at(i));
+		}
+	}
+	sortedlist = newList;
 }
 
 // void movieList::sortByMovieTitle(string movieName) {
