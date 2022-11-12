@@ -76218,20 +76218,6 @@
     "year": 2006
 },
 {
-    "avgRating": 3.56056,
-    "directedBy": "Steven Spielberg",
-    "genresList": [
-        "Action",
-        "Sci-Fi",
-        "Thriller"
-    ],
-    "imdbId": 1677720,
-    "item_id": 140956,
-    "starring": "Hannah John-Kamen, Tye Sheridan, Simon Pegg",
-    "title": "Ready Player One",
-    "year": 0
-},
-{
     "avgRating": 4.08824,
     "directedBy": "Mike Brett",
     "genresList": [
@@ -84047,18 +84033,7 @@
     "title": "Ko (2011)",
     "year": 2011
 },
-{
-    "avgRating": 3.5,
-    "directedBy": "Julien Duvivier",
-    "genresList": [
-        "Drama"
-    ],
-    "imdbId": 16232,
-    "item_id": 151038,
-    "starring": "André Heuzé,Henry Krauss,Charlote Barbier-Krauss,Fabien Haziza,Renée Jean",
-    "title": "Poil de Carotte (1925)",
-    "year": 1925
-},
+
 {
     "avgRating": 4.125,
     "directedBy": "Julien Duvivier",
@@ -85255,19 +85230,6 @@
     "starring": "Ving Rhames,Vondie Curtis-Hall,Jeremy Piven",
     "title": "Don King: Only in America (1997)",
     "year": 1997
-},
-{
-    "avgRating": 3.5,
-    "directedBy": "Lewis Milestone",
-    "genresList": [
-        "Crime",
-        "Drama"
-    ],
-    "imdbId": 20217,
-    "item_id": 152539,
-    "starring": "Norma Talmadge,Gilbert Roland,John Wray,Lilyan Tashman,Mary Doran",
-    "title": "New York Nights (1929)",
-    "year": 1929
 },
 {
     "avgRating": 3.7,
@@ -91698,18 +91660,6 @@
     "starring": "Cantinflas",
     "title": "El Extra (1962)",
     "year": 1962
-},
-{
-    "avgRating": 4.05,
-    "directedBy": "Germaine Dulac",
-    "genresList": [
-        "Mystery"
-    ],
-    "imdbId": 17775,
-    "item_id": 160976,
-    "starring": "Alex Allin,Genica Athanasiou,Lucien Bataille",
-    "title": "The Seashell and the Clergyman (1928)",
-    "year": 1928
 },
 {
     "avgRating": 3.78283,
@@ -105845,19 +105795,6 @@
     "year": 2009
 },
 {
-    "avgRating": 5.0,
-    "directedBy": "Dave Fleischer",
-    "genresList": [
-        "Animation",
-        "Comedy"
-    ],
-    "imdbId": 14811,
-    "item_id": 174251,
-    "starring": "Max Fleischer",
-    "title": "The Cure (1924)",
-    "year": 1924
-},
-{
     "avgRating": 3.5,
     "directedBy": "Robert Z. Leonard",
     "genresList": [
@@ -106319,18 +106256,6 @@
     "starring": "Brett Cullen,Cody Kasch,Gilles Marini,Ryan Merriman,Johann Urb",
     "title": "The Last Rescue (2015)",
     "year": 2015
-},
-{
-    "avgRating": 3.5,
-    "directedBy": "Victor Fleming",
-    "genresList": [
-        "Western"
-    ],
-    "imdbId": 20556,
-    "item_id": 174867,
-    "starring": "Gary Cooper,Walter Huston,Richard Arlen,Mary Brian,Helen Ware",
-    "title": "The Virginian (1929)",
-    "year": 1929
 },
 {
     "avgRating": 3.875,
@@ -115099,20 +115024,6 @@
 },
 {
     "avgRating": 3.5,
-    "directedBy": "Clarence G. Badger",
-    "genresList": [
-        "Adventure",
-        "Drama",
-        "Romance"
-    ],
-    "imdbId": 18386,
-    "item_id": 182799,
-    "starring": "Bebe Daniels,Richard Arlen,William Powell,Josephine Dunn,James Bradbury Jr.",
-    "title": "She's a Sheik (1927)",
-    "year": 1927
-},
-{
-    "avgRating": 3.5,
     "directedBy": "Barnaby Metschurat",
     "genresList": [
         "Children",
@@ -121460,20 +121371,6 @@
     "starring": "Ryuhei Matsuda,Atsuko Maeda,Akira Emoto,Masako Motai,Yudai Chiba",
     "title": "The Mohican Comes Home (2016)",
     "year": 2016
-},
-{
-    "avgRating": 3.5,
-    "directedBy": "Philip Schaeffer",
-    "genresList": [
-        "Horror",
-        "Mystery",
-        "Thriller"
-    ],
-    "imdbId": 6293796,
-    "item_id": 188451,
-    "starring": "Melina Chadbourne,Erin Curtis,Abby Eiland,Lillian Olive,Robyn Pucay",
-    "title": "Witch-Hunt",
-    "year": 0
 },
 {
     "avgRating": 3.6129,
