@@ -50,8 +50,6 @@ class movieList{
 
 // ------------------------- Incomplete/Pending Function Progress------------------- //
 
-	//should this function be removed? seems that function name has been changed
-	void sortByGenre(string movieGenre);
 
 	//unfinished functions or functions that can be removed if not needed
 	void sortBySpecificTitle(vector<movie>& movieList, char movieLetter);

@@ -41,6 +41,7 @@ Genre HashIt (std::string const& inString) {
 	else if (inString == "Thriller") return Thriller;
 	else if (inString == "War") return War;
 	else if(inString == "Western") return Western;
+	return Comedy;
 }
 
 void movieList::readMovieListFiles(){
@@ -250,24 +251,31 @@ vector<movie>& movieList::returnSortedList() {
 
 
 void movieList::setGenres(){
+
 	ifstream in( "data/Genres.txt" );
 	string genre;
 	while( getline( in, genre) ){
 		genres.push_back(genre);
 	}
+
 };
 vector<string> movieList::getGenres(){
+	     
 	return genres;
 }
-//list 19 genres from MovieDatabase
+
 void movieList::printGenres(){
+	//list 19 genres from MovieDatabase
 	for (int i = 0 ; i < genres.size(); i++){
 		cout<<i+1<<". "<<genres.at(i)<<endl;
 	}
+	
 }
 
 vector<movie> movieList::searchByGenre(Genre g){
+
 	vector<movie> newlist;
+	
 	for (int i = 0; i< list.size();i++){
 		vector <Genre> gen_list = list.at(i).genre_list;
 		for (auto x : gen_list){
