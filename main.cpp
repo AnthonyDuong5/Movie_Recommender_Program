@@ -15,16 +15,18 @@ using json = nlohmann::json;
 
 // vector<string> getGenreList(movie&);
 int main(){
-    // movieList MovieDatabase;
-    // MovieDatabase.readMovieListFiles();
-    // cout << "database has been set" << endl;
+    movieList MovieDatabase;
+    MovieDatabase.readMovieListFiles();
+    cout << "database has been set" << endl;
+
+    cout<<MovieDatabase.returnList().size()<<"movies" <<endl;
     
     //default print movie list below
     //MovieDatabase.printMovies(MovieDatabase.returnList());
 
     //testing sortYear
     //MovieDatabase.sortYear(MovieDatabase.returnList());
-    User user1;
+    //User user1;
     // user1.printMenu();
     // int choice = user1.getPrompt();
     // user1.processPrompt(choice);
