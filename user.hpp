@@ -26,7 +26,7 @@ class User {
 		vector <movie>& getFavoritesList(){ return Favorites;}
 		void printMenu();
 		int getPrompt();	//this gets user's choice from menu
-		void validatePrompt(const int& prompt);
+		void processPrompt(const int& prompt);
 		void AddToFavorite(const movie& m1);
 		void getCriteria();
 		void printTenRandomMovies();

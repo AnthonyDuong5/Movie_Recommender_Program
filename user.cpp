@@ -12,7 +12,12 @@
 
 using namespace std;
 
-User::User(){}
+User::User(){
+	UserName = "user1";		//we could ask the username later, doesn't matter much.
+    printMenu();
+    int choice = getPrompt();
+    processPrompt(choice);
+}
 
 void User::printMenu(){
 	//first output some prompt
@@ -34,5 +39,9 @@ int User::getPrompt(){
 		cin >> userPrompt;
 	}
 	return userPrompt;
+}
+
+void User::processPrompt(const int& prompt){
+
 }
 

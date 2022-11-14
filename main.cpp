@@ -25,8 +25,9 @@ int main(){
     //testing sortYear
     //MovieDatabase.sortYear(MovieDatabase.returnList());
     User user1;
-    user1.printMenu();
-    user1.getPrompt();
+    // user1.printMenu();
+    // int choice = user1.getPrompt();
+    // user1.processPrompt(choice);
     return 0;
 
 
