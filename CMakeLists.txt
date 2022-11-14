@@ -9,12 +9,14 @@ ADD_EXECUTABLE(movie_recommender
     main.cpp
     movie.cpp
     movieList.cpp
+    user.cpp
 )
 
 ADD_EXECUTABLE(test
     test.cpp
     movie.cpp
     movieList.cpp
+    user.cpp
 )
 
 TARGET_LINK_LIBRARIES(test gtest)
