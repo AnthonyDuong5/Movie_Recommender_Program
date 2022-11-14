@@ -26,6 +26,7 @@ int main(){
     //MovieDatabase.sortYear(MovieDatabase.returnList());
     User user1;
     user1.printMenu();
+    user1.getPrompt();
     return 0;
 
 
