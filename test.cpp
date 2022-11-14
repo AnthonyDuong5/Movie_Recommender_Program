@@ -1,7 +1,9 @@
 #include "movie.hpp"
 #include "movieList.hpp"
+#include "user.hpp"
 #include "gtest/gtest.h"
 #include <vector>
+#include <cstdlib>
 
 // TEST(VectorTest, testException) {
 //     EXPECT_NO_THROW({
@@ -254,8 +256,13 @@
 //     }
 // }
 
+TEST(UserMenu, RandomMovies) {
+    User user1;
+}
+
 
 int main(int argc, char **argv) {
+    srand(time(0));
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }

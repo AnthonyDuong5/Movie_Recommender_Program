@@ -19,6 +19,7 @@ class User {
 		string UserName;
 		vector<movie> Favorites;
 		vector<movie> DefaultList;
+		vector<movie> ViewedList;
 		int prompt = 0;
 
 	public:

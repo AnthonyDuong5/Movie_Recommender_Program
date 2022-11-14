@@ -15,6 +15,7 @@ using json = nlohmann::json;
 
 // vector<string> getGenreList(movie&);
 int main(){
+    srand(time(0));
     // movieList MovieDatabase;
     // MovieDatabase.readMovieListFiles();
     // cout << "database has been set" << endl;
