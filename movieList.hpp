@@ -24,7 +24,7 @@ class movieList{
 		//TITLE
 		void sortAscendingTitles(vector <movie>&);
 		void sortDescendingTitles(vector <movie>&);
-		void sortMovieByString(string );
+		void searchMovieTitle(string );
 
 		//RATING
 		void sortByRatingDescending();

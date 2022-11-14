@@ -8,6 +8,7 @@
 #include "json/json.hpp"
 #include "movie.hpp"
 #include "movieList.hpp"
+#include "user.hpp"
 
 using namespace std;
 using json = nlohmann::json;
@@ -21,8 +22,12 @@ int main(){
     //default print movie list below
     //MovieDatabase.printMovies(MovieDatabase.returnList());
 
-
-
+    //testing sortYear
+    //MovieDatabase.sortYear(MovieDatabase.returnList());
+    User user1;
+    // user1.printMenu();
+    // int choice = user1.getPrompt();
+    // user1.processPrompt(choice);
     return 0;
 
 

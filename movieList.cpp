@@ -215,7 +215,7 @@ void movieList::sortDescendingTitles(vector <movie>& l){
 	}
 }
 
-void movieList::sortMovieByString(string m1){
+void movieList::searchMovieTitle(string m1){
 	sortedlist = list;
 	vector<movie> newList;
 	string lowercasem1 = m1;

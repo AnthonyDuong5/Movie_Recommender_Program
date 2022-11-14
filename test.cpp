@@ -130,10 +130,10 @@
 //     }
 // }
 
-// TEST (SortTest, testSortMovieByString){
+// TEST (SortTest, testSearchMovieTitle){
 //     movieList MovieDatabase;
 //     MovieDatabase.readMovieListFiles();
-//     MovieDatabase.sortMovieByString("Hotel");
+//     MovieDatabase.searchMovieTitle("Hotel");
 //     //MovieDatabase.printMovies();
 //     for (unsigned i = 0; i < 15; ++i) {
 //         cout << "--------------------------------------------------" << endl;
