@@ -23,24 +23,25 @@ Genre HashIt (std::string const& inString) {
 	//Genre g = "Adventure" does not work.
 	//Solution : Genre g = HashIt("Adventure")
     if (inString == "Adventure") return Adventure;
-	if (inString == "Action") return Action;
-	if (inString == "Animation") return Animation;
-	if (inString == "Children") return Children;
-	if (inString == "Comedy") return Comedy;	
-	if (inString == "Crime") return Crime;
-	if (inString == "Documentarys") return Documentarys;
-	if (inString == "Drama") return Drama;
-	if (inString == "Fantasy") return Fantasy;
-	if (inString == "Film-Noir") return FilmNoir;
-	if (inString == "Horror") return Horror;
-	if (inString == "IMAX") return IMAX;
-	if (inString == "Musical") return Musical;
-	if (inString == "Mystery") return Mystery;
-	if (inString == "Romance") return Romance;	
-	if (inString == "Sci-Fi") return SciFi;
-	if (inString == "Thriller") return Thriller;
-	if (inString == "War") return War;
-	if (inString == "Western") return Western;
+	else if (inString == "Action") return Action;
+	else if (inString == "Animation") return Animation;
+	else if (inString == "Children") return Children;
+	else if (inString == "Comedy") return Comedy;	
+	else if (inString == "Crime") return Crime;
+	else if (inString == "Documentarys") return Documentarys;
+	else if (inString == "Drama") return Drama;
+	else if (inString == "Fantasy") return Fantasy;
+	else if (inString == "Film-Noir") return FilmNoir;
+	else if (inString == "Horror") return Horror;
+	else if (inString == "IMAX") return IMAX;
+	else if (inString == "Musical") return Musical;
+	else if (inString == "Mystery") return Mystery;
+	else if (inString == "Romance") return Romance;	
+	else if (inString == "Sci-Fi") return SciFi;
+	else if (inString == "Thriller") return Thriller;
+	else if (inString == "War") return War;
+	else if(inString == "Western") return Western;
+	return Comedy;
 }
 
 void movieList::readMovieListFiles(){
@@ -127,7 +128,6 @@ void movieList::searchByRatings(double lowRating, double highRating) {
 
 void movieList::printMovies(){
 	vector<movie> movieListPrint = returnSortedList();
-	//temporarily changed m.size() to a fixed vector size
 	for (int i =0; i < movieListPrint.size(); ++i){
 		cout << "------------------" << endl;
 
@@ -143,30 +143,49 @@ void movieList::printMovies(){
 	}
 }
 
-void movieList::sortYear(vector<movie>& newList) {
-
-	//can try to replace newList.size() to a fixed number to see the first movies in the list
-	//i've tried it and it seems to work in the lower end of the list as well
-	//note: last movie has an incorrect year and is in the wrong spot because of it
-	
-	int temp;
-	for (int j = 0; j < newList.size() - 1; ++j){
-		int min = newList.at(j).getYear();
-		temp = j;
-		for (int i = j+1; i < newList.size(); ++i) {
-			if (min > newList.at(i).getYear()) {
-				min = newList.at(i).getYear();
-				temp = i;
+void movieList::sortByYearAscending() {
+	sortedlist = list;
+	int yearTop;
+	for (int j = 0; j < sortedlist.size() - 1; ++j){
+		int min = sortedlist.at(j).getYear();
+		yearTop = j;
+		for (int i = j+1; i < sortedlist.size(); ++i) {
+			if (min > sortedlist.at(i).getYear()) {
+				min = sortedlist.at(i).getYear();
+				yearTop = i;
 			}
 		}
-		std::swap(newList.at(j), newList.at(temp));
+		std::swap(sortedlist.at(j), sortedlist.at(yearTop));
 	}
-	//printMovies(newList);
 }
 
-// void movieList::sortByMovieTitle(string movieName) {
+void movieList::sortByYearDescending() {
+	sortedlist = list;
+	int yearLast;
+	for (int j = 0; j < sortedlist.size() - 1; ++j){
+		int max = sortedlist.at(j).getYear();
+		yearLast = j;
+		for (int i = j+1; i < sortedlist.size(); ++i) {
+			if (max < sortedlist.at(i).getYear()) {
+				max = sortedlist.at(i).getYear();
+				yearLast = i;
+			}
+		}
+		std::swap(sortedlist.at(j), sortedlist.at(yearLast));
+	}
+}
 
-// }
+void movieList::searchYearRange(int minYear, int maxYear) {
+	sortByYearAscending();
+	vector<movie> newList;
+	for (int i = 0; i < sortedlist.size() - 1; ++i){
+		int currentYear = sortedlist.at(i).getYear();
+		if(currentYear >= minYear && currentYear <= maxYear) {
+			newList.push_back(sortedlist.at(i));
+		}
+	}
+	sortedlist = newList;
+}
 
 void movieList::sortAscendingTitles(vector <movie>& l){
 	sortedlist = l;
@@ -195,8 +214,6 @@ void movieList::sortDescendingTitles(vector <movie>& l){
 		swap (sortedlist.at(i), sortedlist.at(titleLast));
 	}
 }
-
-
 
 void movieList::sortMovieByString(string m1){
 	sortedlist = list;
@@ -234,24 +251,31 @@ vector<movie>& movieList::returnSortedList() {
 
 
 void movieList::setGenres(){
+
 	ifstream in( "data/Genres.txt" );
 	string genre;
 	while( getline( in, genre) ){
 		genres.push_back(genre);
 	}
+
 };
 vector<string> movieList::getGenres(){
+	     
 	return genres;
 }
-//list 19 genres from MovieDatabase
+
 void movieList::printGenres(){
+	//list 19 genres from MovieDatabase
 	for (int i = 0 ; i < genres.size(); i++){
 		cout<<i+1<<". "<<genres.at(i)<<endl;
 	}
+	
 }
 
 vector<movie> movieList::searchByGenre(Genre g){
+
 	vector<movie> newlist;
+	
 	for (int i = 0; i< list.size();i++){
 		vector <Genre> gen_list = list.at(i).genre_list;
 		for (auto x : gen_list){
