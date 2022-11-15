@@ -2,10 +2,17 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <iterator>
 #include <stdio.h>  
 #include <stdlib.h> 
 
 #include "menu.hpp"
+
+Menu::Menu() {
+	printMenu();
+    int choice = getPrompt();
+    processPrompt(choice);
+}
 
 void Menu::printMenu(){
 	//first output some prompt
@@ -35,33 +42,23 @@ void Menu::processPrompt(const int& prompt){
 
 void Menu::printTenRandomMovies() {
 	unsigned randIndex;
-	bool alreadyViewed;
-    
 
 	for (unsigned i = 0; i < 10; ++i) {
-		alreadyViewed = false;
-		randIndex = rand() % user1.getDefaultList().size();
+		randIndex = rand() % user.getViewingList().size();
 
-		for (unsigned j = 0; j < user1.getViewedList().size(); ++j) {
-			if (user1.getViewedList().at(j).getItemId() == user1.getDefaultList().at(randIndex).getItemId()) {
-				alreadyViewed = true;
-				break;
-			}
-		}
+		cout << i + 1 << "." << endl;
+		cout << "title: " << user.getViewingList().at(randIndex).getTitle() << endl;
+		cout << "year: " << user.getViewingList().at(randIndex).getYear() << endl;
+		cout << "director: " << user.getViewingList().at(randIndex).getDirector() << endl;
+		cout << "casting: " << user.getViewingList().at(randIndex).getCast() << endl;
+		cout << "rating: " << user.getViewingList().at(randIndex).getRating() << endl;
+		cout << "imbdid: " << user.getViewingList().at(randIndex).getImdbId() << endl;
+		cout << "itemid: " << user.getViewingList().at(randIndex).getItemId() << endl;
+		cout << "genre: ";
+		for (auto genre : user.getViewingList().at(randIndex).getGenreList()) {cout << genre << " ";} 
+		cout << endl;
+		cout << "--------------------------------------------------" << endl;
 
-		if (!alreadyViewed) {
-			cout << i + 1 << "." << endl;
-			cout << "title: " << user1.getDefaultList().at(randIndex).getTitle() << endl;
-			cout << "year: " << user1.getDefaultList().at(randIndex).getYear() << endl;
-			cout << "director: " << user1.getDefaultList().at(randIndex).getCast() << endl;
-			cout << "rating: " << user1.getDefaultList().at(randIndex).getRating() << endl;
-			cout << "imbdid: " << user1.getDefaultList().at(randIndex).getImdbId() << endl;
-			cout << "itemid: " << user1.getDefaultList().at(randIndex).getItemId() << endl;
-			cout << "genre: ";
-			for (auto genre : user1.getDefaultList().at(randIndex).getGenreList()) {cout << genre << " ";} 
-			cout << endl;
-			cout << "--------------------------------------------------" << endl;
-			user1.getViewedList().push_back(user1.getDefaultList().at(randIndex));
-		}
+		user.removeFromViewingList(randIndex);
 	}
 }

@@ -1,6 +1,7 @@
 #include "movie.hpp"
 #include "movieList.hpp"
 #include "user.hpp"
+#include "menu.hpp"
 #include "gtest/gtest.h"
 #include <vector>
 #include <cstdlib>
@@ -257,7 +258,7 @@
 // }
 
 TEST(UserMenu, RandomMovies) {
-    User user1;
+    Menu menu1;
 }
 
 

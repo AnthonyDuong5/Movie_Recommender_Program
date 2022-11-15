@@ -31,7 +31,8 @@ class User {
 		void AddToFavorite(const movie& m1);
 		vector <movie>& getFavoritesList(){ return Favorites;}
 		vector<movie> getDefaultList(){return DefaultList;}
-		vector<movie> getViewedList(){return ViewedList;}
+		vector<movie> getViewingList(){return ViewingList;}
+		void removeFromViewingList(unsigned idx);
 
 		//this function will use something from  movieList userFavList
 		vector<movie> getRec();
