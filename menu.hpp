@@ -12,7 +12,10 @@
 #include "user.hpp"
 
 class Menu {
-        User user1;
+	private:
+        User user;
+	public:
+		Menu();
 		void printMenu();
 		int getPrompt();	//this gets user's choice from menu
 		void processPrompt(const int& prompt);
