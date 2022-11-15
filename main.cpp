@@ -9,6 +9,7 @@
 #include "movie.hpp"
 #include "movieList.hpp"
 #include "user.hpp"
+#include "menu.hpp"
 
 using namespace std;
 using json = nlohmann::json;
