@@ -8,11 +8,11 @@
 #include <stdio.h>  
 #include <stdlib.h> 
 
-#include "json/json.hpp"
-#include "movie.hpp"
-#include "movieList.hpp"
+
+#include "user.hpp"
 
 class Menu {
+        User user1;
 		void printMenu();
 		int getPrompt();	//this gets user's choice from menu
 		void processPrompt(const int& prompt);
