@@ -19,7 +19,7 @@ class User {
 		string UserName;
 		vector<movie> Favorites;
 		vector<movie> DefaultList;
-		vector<movie> ViewedList;
+		vector<movie> ViewingList;
 		int prompt = 0;
 
 		//adding a movieList,can use funcions from the movieList
