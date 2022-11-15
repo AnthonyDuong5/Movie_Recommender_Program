@@ -52,7 +52,7 @@ void movieList::readMovieListFiles(){
 
     int countMovies = 0;
 	for (countMovies = 0; countMovies < moviedata.size(); ++countMovies){
-
+		
 		
 		movie Movie1 (moviedata[countMovies]["title"], moviedata[countMovies]["directedBy"], 
 					  moviedata[countMovies]["starring"], moviedata[countMovies]["avgRating"],
@@ -63,13 +63,12 @@ void movieList::readMovieListFiles(){
 			string g = moviedata[countMovies]["genresList"][i];
 			Movie1.genre_list.push_back(HashIt(g));
 		}
-
 		list.push_back(Movie1);
 	
 	}
 	//read Genres.txt from local and stores 19 genres into genres in movieList's member vector<string> genres. 
 	setGenres();
-
+	
 }
 
 
