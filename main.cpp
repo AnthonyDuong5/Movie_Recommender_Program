@@ -15,11 +15,12 @@ using json = nlohmann::json;
 
 // vector<string> getGenreList(movie&);
 int main(){
-    movieList MovieDatabase;
-    MovieDatabase.readMovieListFiles();
-    cout << "database has been set" << endl;
 
-    cout<<MovieDatabase.returnList().size()<<"movies" <<endl;
+    srand(time(0));
+    // movieList MovieDatabase;
+    // MovieDatabase.readMovieListFiles();
+    // cout << "database has been set" << endl;
+
     
     //default print movie list below
     //MovieDatabase.printMovies(MovieDatabase.returnList());

@@ -13,6 +13,9 @@
 using namespace std;
 
 User::User(){
+	movieList MovieDatabase;
+	MovieDatabase.readMovieListFiles();
+	DefaultList = MovieDatabase.returnList();
 	UserName = "user1";		//we could ask the username later, doesn't matter much.
     printMenu();
     int choice = getPrompt();
@@ -42,6 +45,37 @@ int User::getPrompt(){
 }
 
 void User::processPrompt(const int& prompt){
-
+	if (prompt == 1) printTenRandomMovies();
 }
 
+void User::printTenRandomMovies() {
+	unsigned randIndex;
+	bool alreadyViewed;
+
+	for (unsigned i = 0; i < 10; ++i) {
+		alreadyViewed = false;
+		randIndex = rand() % DefaultList.size();
+
+		for (unsigned j = 0; j < ViewedList.size(); ++j) {
+			if (ViewedList.at(j).getItemId() == DefaultList.at(randIndex).getItemId()) {
+				alreadyViewed = true;
+				break;
+			}
+		}
+
+		if (!alreadyViewed) {
+			cout << i + 1 << "." << endl;
+			cout << "title: " << DefaultList.at(randIndex).getTitle() << endl;
+			cout << "year: " << DefaultList.at(randIndex).getYear() << endl;
+			cout << "director: " << DefaultList.at(randIndex).getCast() << endl;
+			cout << "rating: " << DefaultList.at(randIndex).getRating() << endl;
+			cout << "imbdid: " << DefaultList.at(randIndex).getImdbId() << endl;
+			cout << "itemid: " << DefaultList.at(randIndex).getItemId() << endl;
+			cout << "genre: ";
+			for (auto genre : DefaultList.at(randIndex).getGenreList()) {cout << genre << " ";} 
+			cout << endl;
+			cout << "--------------------------------------------------" << endl;
+			ViewedList.push_back(DefaultList.at(randIndex));
+		}
+	}
+}
