@@ -22,15 +22,27 @@ class User {
 		vector<movie> ViewingList;
 		int prompt = 0;
 
+		//adding a movieList,can use funcions from the movieList
+		movieList userFavList;
+
 	public:
 		User();
-		vector <movie>& getFavoritesList(){ return Favorites;}
-		void printMenu();
-		int getPrompt();	//this gets user's choice from menu
-		void processPrompt(const int& prompt);
+
 		void AddToFavorite(const movie& m1);
-		void getCriteria();
-		void printTenRandomMovies();
+		vector <movie>& getFavoritesList(){ return Favorites;}
+		vector<movie> getDefaultList(){return DefaultList;}
+		vector<movie> getViewedList(){return ViewedList;}
+
+		//this function will use something from  movieList userFavList
+		vector<movie> getRec();
+
+		//void printMenu();
+		//int getPrompt();	//this gets user's choice from menu
+		//void processPrompt(const int& prompt);
+		//void getCriteria();
+		//void printTenRandomMovies();
+		
+
 };
 
 

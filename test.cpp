@@ -239,22 +239,22 @@
     //     }
     //  }
 
-TEST(SortByGenres, searchByGenre_int){
-    movieList MovieDatabase;
-    MovieDatabase.readMovieListFiles();
-    cout << "database has been set" << endl;
-    int input = 1; 
-    vector<movie> genreMovieList = MovieDatabase.searchByGenre(input);
-    cout << genreMovieList.size()<< " movies from Adventure."<<endl;
-    for (unsigned i = 0; i < 10; i ++) {
-        cout << "--------------------------------------------------" << endl;
-        cout << "title: " << genreMovieList.at(i).getTitle() << endl;
-        cout << "rating: " << genreMovieList.at(i).getRating() << endl;
-        cout << "genre: " ;
-        for (auto gen : genreMovieList.at(i).getGenreList()){cout<<gen<<" ";}cout<<endl;
-        cout << "--------------------------------------------------" << endl;
-    }
-}
+// TEST(SortByGenres, searchByGenre_int){
+//     movieList MovieDatabase;
+//     MovieDatabase.readMovieListFiles();
+//     cout << "database has been set" << endl;
+//     int input = 1; 
+//     vector<movie> genreMovieList = MovieDatabase.searchByGenre(input);
+//     cout << genreMovieList.size()<< " movies from Adventure."<<endl;
+//     for (unsigned i = 0; i < 10; i ++) {
+//         cout << "--------------------------------------------------" << endl;
+//         cout << "title: " << genreMovieList.at(i).getTitle() << endl;
+//         cout << "rating: " << genreMovieList.at(i).getRating() << endl;
+//         cout << "genre: " ;
+//         for (auto gen : genreMovieList.at(i).getGenreList()){cout<<gen<<" ";}cout<<endl;
+//         cout << "--------------------------------------------------" << endl;
+//     }
+// }
 
 TEST(UserMenu, RandomMovies) {
     User user1;

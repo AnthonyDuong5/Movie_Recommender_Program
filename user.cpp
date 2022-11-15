@@ -18,9 +18,9 @@ User::User(){
 	MovieDatabase.readMovieListFiles();
 	ViewingList = DefaultList = MovieDatabase.returnList();
 	UserName = "user1";		//we could ask the username later, doesn't matter much.
-    printMenu();
-    int choice = getPrompt();
-    processPrompt(choice);
+    //printMenu();
+    //int choice = getPrompt();
+    //processPrompt(choice);
 }
 
 void User::printMenu(){
