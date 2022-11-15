@@ -51,11 +51,9 @@ void User::processPrompt(const int& prompt){
 
 void User::printTenRandomMovies() {
 	unsigned randIndex;
-	vector<movie>::iterator itr;
 
 	for (unsigned i = 0; i < 10; ++i) {
 		randIndex = rand() % ViewingList.size();
-		itr = ViewingList.begin();
 
 		cout << i + 1 << "." << endl;
 		cout << "title: " << ViewingList.at(randIndex).getTitle() << endl;
@@ -70,7 +68,6 @@ void User::printTenRandomMovies() {
 		cout << endl;
 		cout << "--------------------------------------------------" << endl;
 
-		advance(itr, randIndex);
-		ViewingList.erase(itr);
+		ViewingList.erase(ViewingList.begin() + randIndex);
 	}
 }
