@@ -21,6 +21,14 @@ class Menu {
 		void processPrompt(const int& prompt);
 		void getCriteria();
 		void printTenRandomMovies();
+		void addToFavorites();
+		void quit();
+		void repeat() {
+			printMenu();
+			processPrompt(getPrompt());
+		}
+		int optionTracker = 0;
+		vector<movie> PrintedList;
 };
 
 #endif

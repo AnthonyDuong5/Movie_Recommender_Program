@@ -16,12 +16,17 @@ using namespace std;
 User::User(){
 	movieList MovieDatabase;
 	MovieDatabase.readMovieListFiles();
+	userFavList = MovieDatabase;
 	ViewingList = DefaultList = MovieDatabase.returnList();
 	UserName = "user1";		//we could ask the username later, doesn't matter much.
 }
 
 void User::removeFromViewingList(unsigned idx) {
 	ViewingList.erase(ViewingList.begin() + idx);
+}
+
+void User::AddToFavoriteList(const movie& m1){
+	Favorites.push_back(m1);
 }
 
 // void User::printMenu(){

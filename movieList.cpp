@@ -129,7 +129,7 @@ void movieList::printMovies(){
 	vector<movie> movieListPrint = returnSortedList();
 	for (int i =0; i < movieListPrint.size(); ++i){
 		cout << "------------------" << endl;
-
+		cout << i + 1 << endl;
 		cout<<"title: "<< movieListPrint.at(i).getTitle()<<endl;
 		cout<<"year: "<< movieListPrint.at(i).getYear()<<endl;
 		cout<<"director: "<<movieListPrint.at(i).getDirector()<<endl;
