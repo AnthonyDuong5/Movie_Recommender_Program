@@ -7,6 +7,7 @@
 #include <vector>
 #include <stdio.h>  
 #include <stdlib.h> 
+#include <algorithm> 
 
 #include "json/json.hpp"
 #include "movie.hpp"
@@ -39,8 +40,28 @@ class User {
 
 };
 
+template<typename K, typename V>
+std::pair<K,V> getMaximumValue(const std::map<K,V> &map) {
+    return *std::max_element(map.begin(), map.end(), [](std::pair<K,V> const &x, std::pair<K,V> const &y) {
+        return x.second < y.second;
+    });
+}
 
 
+template<typename K >
+map<K,int> help_getFreq(vector<K> list){
+	map<K,int> freqMap;
 
+	for(auto x : list){
+		if(freqMap.find(x) == freqMap.end()){
+			freqMap[x] = 1;
+		}
+		else{
+			freqMap[x] ++;
+		}
+	}
+	return freqMap;
+	
+}
 
 #endif
