@@ -303,7 +303,7 @@ TEST(getRec, yearFrequence_template){
     }
     //using a map to store year:frequency
     map<int, int> freqMap = help_getFreq(yearlist);
-    cout << getMaximumValue(freqMap).first<<endl;
+    cout << "#1 year: "<<help_getMaximumValue(freqMap).first<<" "<<help_getMaximumValue(freqMap).second<<endl;
 }
 
 TEST(getRec, directorFrequence_template){
@@ -317,11 +317,11 @@ TEST(getRec, directorFrequence_template){
     }
     //using a map to store year:frequency
     map<string, int> freqMap = help_getFreq(dir);
-    	for (auto& it : freqMap) {
-         cout << it.first << ' '
-              << it.second << endl;
-     }
-    cout << "director: "<<getMaximumValue(freqMap).first<<" "<<getMaximumValue(freqMap).second<<endl;
+    // 	for (auto& it : freqMap) {
+    //      cout << it.first << ' '
+    //           << it.second << endl;
+    //  }
+    cout << "#1 director: "<<help_getMaximumValue(freqMap).first<<" "<<help_getMaximumValue(freqMap).second<<endl;
 }
 
 // TEST(UserMenu, RandomMovies) {

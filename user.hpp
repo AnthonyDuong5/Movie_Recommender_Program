@@ -23,7 +23,7 @@ class User {
 		vector<movie> ViewingList;
 		int prompt = 0;
 
-		//adding a movieList,can use funcions from the movieList
+		//adding a movieList,can use funcions from the movieList if needed.
 		movieList userFavList;
 
 	public:
@@ -35,20 +35,16 @@ class User {
 		vector<movie> getViewingList(){return ViewingList;}
 		void removeFromViewingList(unsigned idx);
 
-		//this function will use something from  movieList userFavList
 		vector<movie> getRec();
 
 };
 
-template<typename K, typename V>
-std::pair<K,V> getMaximumValue(const std::map<K,V> &map) {
-    return *std::max_element(map.begin(), map.end(), [](std::pair<K,V> const &x, std::pair<K,V> const &y) {
-        return x.second < y.second;
-    });
-}
 
 
-template<typename K >
+//help_getFreq takes a vector of K type and returns 
+//a map with the frequency of each element in the vector
+//(key : value) = (element : frequency)
+template<typename K>
 map<K,int> help_getFreq(vector<K> list){
 	map<K,int> freqMap;
 
@@ -63,5 +59,11 @@ map<K,int> help_getFreq(vector<K> list){
 	return freqMap;
 	
 }
-
+//help_getMaximumValue returns the highest value(frequenct) pair from a map
+template<typename K, typename V>
+pair<K,V> help_getMaximumValue(const map<K,V> &map) {
+    return *std::max_element(map.begin(), map.end(), [](pair<K,V> const &x, pair<K,V> const &y) {
+        return x.second < y.second;
+    });
+}
 #endif
