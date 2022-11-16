@@ -7,6 +7,7 @@
 #include <vector>
 #include <stdio.h>  
 #include <stdlib.h> 
+#include <algorithm> 
 
 #include "json/json.hpp"
 #include "movie.hpp"
@@ -22,7 +23,7 @@ class User {
 		vector<movie> ViewingList;
 		int prompt = 0;
 
-		//adding a movieList,can use funcions from the movieList
+		//adding a movieList,can use funcions from the movieList if needed.
 		movieList userFavList;
 
 	public:
@@ -34,20 +35,35 @@ class User {
 		vector<movie> getViewingList(){return ViewingList;}
 		void removeFromViewingList(unsigned idx);
 
-		//this function will use something from  movieList userFavList
 		vector<movie> getRec();
-
-		//void printMenu();
-		//int getPrompt();	//this gets user's choice from menu
-		//void processPrompt(const int& prompt);
-		//void getCriteria();
-		//void printTenRandomMovies();
-		
 
 };
 
 
 
+//help_getFreq takes a vector of K type and returns 
+//a map with the frequency of each element in the vector
+//(key : value) = (element : frequency)
+template<typename K>
+map<K,int> help_getFreq(vector<K> list){
+	map<K,int> freqMap;
 
-
+	for(auto x : list){
+		if(freqMap.find(x) == freqMap.end()){
+			freqMap[x] = 1;
+		}
+		else{
+			freqMap[x] ++;
+		}
+	}
+	return freqMap;
+	
+}
+//help_getMaximumValue returns the highest value(frequenct) pair from a map
+template<typename K, typename V>
+pair<K,V> help_getMaximumValue(const map<K,V> &map) {
+    return *std::max_element(map.begin(), map.end(), [](pair<K,V> const &x, pair<K,V> const &y) {
+        return x.second < y.second;
+    });
+}
 #endif
