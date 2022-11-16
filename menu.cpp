@@ -5,16 +5,14 @@
 #include <iterator>
 #include <stdio.h>  
 #include <stdlib.h> 
-#include <ctype.h>
-#include "menu.hpp"
-#include "user.hpp"
 
-using namespace std;
+#include "menu.hpp"
 
 Menu::Menu() {
 	printMenu();
     int choice = getPrompt();
     processPrompt(choice);
+	// repeat();
 }
 
 void Menu::printMenu(){
@@ -41,12 +39,9 @@ int Menu::getPrompt(){
 
 void Menu::processPrompt(const int& prompt){
 	if (prompt == 1) printTenRandomMovies();
-	// if (prompt == 2) getCriteria();	//2) is the option for searching movies
 	if (prompt == 3) addToFavorites();
-	// if (prompt == 4) user.getRec();
 	if (prompt == 5) return;
 	printMenu();
-	// getPrompt();
 	processPrompt(getPrompt());
 }
 
@@ -69,16 +64,18 @@ void Menu::printTenRandomMovies() {
 		cout << endl;
 		cout << "--------------------------------------------------" << endl;
 		PrintedList.push_back(user.getViewingList().at(randIndex));
-		user.removeFromViewingList(randIndex);
 		optionTracker = 1;
+		user.removeFromViewingList(randIndex);
 	}
 }
+
+
 
 void Menu::addToFavorites(){
 	cout << "Select a movie you want to add to favorites." << endl;
 	if (optionTracker == 1){
 		cout << "To add movies from the random list displayed above, please enter a number for the movies (1-10)." << endl;
-		cout << "To add a different movie, please search by Name. To proceed, please type: Search" << endl;
+		cout << "To add a different movie, please return to main menu. To return, please type: Return" << endl;
 		string mChoice = "";
 		int mNum = 0;
 		cin >> mChoice;
@@ -86,7 +83,7 @@ void Menu::addToFavorites(){
 		// using transform() function and ::tolower in STL
     	transform(mChoice.begin(), mChoice.end(), mChoice.begin(), ::tolower);
 		//if user chooses to select a movie from random generator and add to fav, we run this.
-		if (mChoice != "search"){
+		if (mChoice != "return"){
 			mNum = stoi(mChoice);
 			while (mNum < 1 || mNum > 10){
 				cout << "Invalid Choice. Please enter a number between 1 to 10." << endl;
@@ -107,39 +104,53 @@ void Menu::addToFavorites(){
 			}
 			PrintedList.clear();						//clears printedList.
 		}
-		else if (mChoice == "search"){
-			//getCriteria() ?
-			cout << "Search for a movie by Name. Enter name: " ;
-			string mnameInput;
-			getline (cin, mnameInput);
-			cout << "This seems to not take string" << endl;
-			user.getUserFavList().searchMovieTitle(mnameInput);
-			PrintedList = user.getUserFavList().returnSortedList();
-			user.getUserFavList().printMovies();
-			
-			return;
-			//if there are more than 1 search results, we will ask user to enter number of movie they want to add.
-			if (user.getUserFavList().returnSortedList().size() > 1){
-				cout << "Please enter a number for the movie you want to add." << endl;
-				int searchSize = user.getUserFavList().returnSortedList().size();
-				int userSearchChoice = 0;
-				cin >> userSearchChoice;
-				while (userSearchChoice < 1 || userSearchChoice > searchSize){
-					cout << "Invalid Choice. Please enter a number between 1 and " << searchSize << "." << endl;
-					cin >> userSearchChoice;
-				}
-				user.AddToFavoriteList(PrintedList.at(userSearchChoice-1));
-			}
-			
+		///////////////////
+		//error here......
+		else if (mChoice == "return"){
+			repeat();
 		}
-		
-	}
-	cout << "Added to Favorites." << endl;
-	cout << "You have " << user.getFavoritesList().size() << " movies in your Favorites List." << endl;
-	for (int i = 0; i < user.getFavoritesList().size(); ++i){
-		cout << user.getFavoritesList().at(i).getTitle() << endl;
-	}
-	optionTracker = 3;	
 
+		cout << "Added to Favorites." << endl;
+		cout << "You have " << user.getFavoritesList().size() << " movies in your Favorites List." << endl;
+		for (int i = 0; i < user.getFavoritesList().size(); ++i){
+			cout << user.getFavoritesList().at(i).getTitle() << endl;
+		}	
+	}
+	else {
+		searchForMovie();
+	}	
+	
+	// optionTracker = 3;	
+}
+
+//need help here
+void Menu::searchForMovie(){
+	
+	string searchName;
+	cout << "Enter a name to search. " << endl;
+	cin >> searchName;
+	getline(cin, searchName);			//when i ran ./test, it doesn't seem to take in anything.
+	cout << "Searching for movies with \"" << searchName << "\"" << " in their name" << endl;
+	exit;
+	user.getUserFavList().searchMovieTitle(searchName);
+	PrintedList = user.getUserFavList().returnSortedList();
+	user.getUserFavList().printMovies();
+	
+	return;
+	//if there are more than 1 search results, we will ask user to enter number of movie they want to add.
+	if (user.getUserFavList().returnSortedList().size() > 1){
+		cout << "Please enter a number for the movie you want to add." << endl;
+		int searchSize = user.getUserFavList().returnSortedList().size();
+		int userSearchChoice = 0;
+		cin >> userSearchChoice;
+		while (userSearchChoice < 1 || userSearchChoice > searchSize){
+			cout << "Invalid Choice. Please enter a number between 1 and " << searchSize << "." << endl;
+			cin >> userSearchChoice;
+		}
+		user.AddToFavoriteList(PrintedList.at(userSearchChoice-1));
+	}
+}
+
+void Menu::getCriteria(){
 
 }

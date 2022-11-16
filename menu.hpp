@@ -22,11 +22,13 @@ class Menu {
 		void getCriteria();
 		void printTenRandomMovies();
 		void addToFavorites();
+		void searchForMovie();
 		void quit();
 		void repeat() {
 			printMenu();
 			processPrompt(getPrompt());
 		}
+
 		int optionTracker = 0;
 		vector<movie> PrintedList;
 };
