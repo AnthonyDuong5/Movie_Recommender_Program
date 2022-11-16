@@ -68,7 +68,7 @@ void movieList::readMovieListFiles(){
 	}
 	//read Genres.txt from local and stores 19 genres into genres in movieList's member vector<string> genres. 
 	setGenres();
-	
+	sortedlist = list;
 }
 
 

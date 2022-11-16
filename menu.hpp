@@ -22,7 +22,7 @@ class Menu {
 		void getCriteria();
 		void printTenRandomMovies();
 		void addToFavorites();
-		void searchForMovie();
+		void searchForMovieByTitle();
 		void quit();
 		void repeat() {
 			printMenu();
