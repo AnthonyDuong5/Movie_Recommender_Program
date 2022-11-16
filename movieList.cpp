@@ -140,6 +140,9 @@ void movieList::printMovies(){
 		cout<<"Genre: "; for (auto gen : movieListPrint.at(i).getGenreList()){ cout<<gen<<" ";} cout<<endl;
 
 	}
+	// for(movie x: movieListPrint){
+	// 	x.printMovie();
+	// }
 }
 
 void movieList::sortByYearAscending() {

@@ -38,3 +38,17 @@ vector<string> movie::getGenreList() const{
 	return genreList;
 }
 
+void movie::printMovie(){
+
+		cout << "--------------------------------------------------" << endl;
+		cout << "title: " << title << endl;
+		cout << "year: " << year<< endl;
+		cout << "director: " << director << endl;
+		cout << "casting: " << cast << endl;
+		cout << "rating: " << rating << endl;
+		cout << "imbdid: " << imdbId<< endl;
+		cout << "genre: ";
+		for (string x : genreList) {cout << x << " ";} 
+		cout << endl;
+	
+}

@@ -37,13 +37,6 @@ class User {
 		//this function will use something from  movieList userFavList
 		vector<movie> getRec();
 
-		//void printMenu();
-		//int getPrompt();	//this gets user's choice from menu
-		//void processPrompt(const int& prompt);
-		//void getCriteria();
-		//void printTenRandomMovies();
-		
-
 };
 
 

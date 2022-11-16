@@ -256,10 +256,19 @@
 //         cout << "--------------------------------------------------" << endl;
 //     }
 // }
-
-TEST(UserMenu, RandomMovies) {
-    Menu menu1;
+TEST(movie, printmovie){
+    movieList MovieDatabase;
+    MovieDatabase.readMovieListFiles();
+    vector<movie> MovieList = MovieDatabase.returnList();
+    for (movie x: MovieList){
+        x.printMovie();
+    }
+    cout<<MovieList.size()<<" movies"<<endl;
 }
+
+// TEST(UserMenu, RandomMovies) {
+//     Menu menu1;
+// }
 
 
 int main(int argc, char **argv) {
