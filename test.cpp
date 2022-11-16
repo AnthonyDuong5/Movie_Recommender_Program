@@ -261,7 +261,6 @@ TEST(UserMenu, RandomMovies) {
     Menu menu1;
 }
 
-
 int main(int argc, char **argv) {
     srand(time(0));
     ::testing::InitGoogleTest(&argc, argv);

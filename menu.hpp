@@ -8,7 +8,6 @@
 #include <stdio.h>  
 #include <stdlib.h> 
 
-
 #include "user.hpp"
 
 class Menu {
@@ -21,6 +20,7 @@ class Menu {
 		void processPrompt(const int& prompt);
 		void getCriteria();
 		void printTenRandomMovies();
+		void searchMovies();
 };
 
 #endif

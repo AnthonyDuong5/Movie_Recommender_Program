@@ -24,6 +24,7 @@ void User::removeFromViewingList(unsigned idx) {
 	ViewingList.erase(ViewingList.begin() + idx);
 }
 
+
 // void User::printMenu(){
 // 	//first output some prompt
 // 	cout << "Please Select An Option Below (1-5)" << endl;
