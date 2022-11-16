@@ -126,12 +126,8 @@ void Menu::addToFavorites(){
 
 //need help here
 void Menu::searchForMovieByTitle(){
-	
-	// string searchName = "";
-	// cout << "Enter a name to search. " << endl;
-	// cin >> searchName;
-	// getline(cin, searchName);			//when i ran ./test, it doesn't seem to take in anything.
-	// cout << "Searching for movies with \"" << searchName << "\"" << " in their name" << endl;
+	movieList movList1;
+	movList1.readMovieListFiles();
 	cin.ignore();
 	string line;
 	cout << "Enter a name to search. " << endl;
@@ -139,15 +135,10 @@ void Menu::searchForMovieByTitle(){
 	cout << endl;
 	cout << "Searching for movies with \"" << line << "\"" << " in their name" << endl;
 	
-	cout << user.getUserFavList().returnList().size() << endl;
-	cout << user.getUserFavList().returnSortedList().size() << endl;
-	user.getUserFavList().searchMovieTitle(line);
-	// user.getUserFavList().printMovies();
-	cout << user.getUserFavList().returnSortedList().size() << endl;
-	
-	// user.getUserFavList().searchMovieTitle(line);
-	// PrintedList = user.getUserFavList().returnSortedList();
-	// user.getUserFavList().printMovies();
+	user.userFavList.searchMovieTitle(line);
+	cout << user.userFavList.returnSortedList().size() << " size after sort." << endl;
+
+	user.userFavList.printMovies();
 	
 	// //if there are more than 1 search results, we will ask user to enter number of movie they want to add.
 	// if (user.getUserFavList().returnSortedList().size() > 1){
