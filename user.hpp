@@ -24,14 +24,9 @@ class User {
 		
 		int prompt = 0;
 
-<<<<<<< HEAD
-		//adding a movieList,can use functions from the movieList
-		
-=======
 		//adding a movieList,can use funcions from the movieList if needed.
 		movieList userFavList;
 
->>>>>>> dda0b924223346fa7fc2bcf788c317a8f1d99eaa
 	public:
 		User();
 
@@ -44,17 +39,6 @@ class User {
 		void removeFromViewingList(unsigned idx);
 
 		vector<movie> getRec();
-<<<<<<< HEAD
-		movieList getUserFavList(){return userFavList;}
-		movieList userFavList;			//this is moved to public because I couldn't get searchForMovieByTitle() to work while it was private.
-		//void printMenu();
-		//int getPrompt();	//this gets user's choice from menu
-		//void processPrompt(const int& prompt);
-		//void getCriteria();
-		//void printTenRandomMovies();
-		
-=======
->>>>>>> dda0b924223346fa7fc2bcf788c317a8f1d99eaa
 
 };
 

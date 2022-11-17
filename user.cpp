@@ -23,13 +23,9 @@ void User::removeFromViewingList(unsigned idx) {
 	ViewingList.erase(ViewingList.begin() + idx);
 }
 
-<<<<<<< HEAD
 void User::AddToFavoriteList(const movie& m1){
 	Favorites.push_back(m1);
 }
-=======
-
->>>>>>> dda0b924223346fa7fc2bcf788c317a8f1d99eaa
 
 // void User::printMenu(){
 // 	//first output some prompt

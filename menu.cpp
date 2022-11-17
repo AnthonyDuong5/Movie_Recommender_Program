@@ -27,9 +27,20 @@ void Menu::printMenu(){
 }
 
 int Menu::getPrompt(){
+	
 	int userPrompt;
 	cin >> userPrompt;
-	//this also validates input
+	//this validates chars/strings as invalid input
+	while (cin.fail()) {
+		//Not an int.
+		cout << "Please enter a number from 1 to 5." << endl;
+		printMenu();
+		cin.clear();
+		cin.ignore(256, '\n');
+		cin >> userPrompt;
+	}
+
+	//this also validates input (integers)
 	while (userPrompt < 1 || userPrompt > 5){
 		cout << "Invalid Choice. Please enter a number between 1 to 5." << endl;
 		printMenu();
@@ -41,6 +52,8 @@ int Menu::getPrompt(){
 void Menu::processPrompt(const int& prompt){
 	if (prompt == 1) printTenRandomMovies();
 	if (prompt == 2) searchMovies();
+
+	if (prompt == 5) return;
 }
 
 void Menu::printTenRandomMovies() {
@@ -64,6 +77,7 @@ void Menu::printTenRandomMovies() {
 
 	// 	user.removeFromViewingList(randIndex);
 	// }
+	optionTracker = 1;
 }
 
 void Menu::searchMovies() {
@@ -229,4 +243,61 @@ void Menu::searchMovies() {
 
 	}while (choice != '4');
 	
+	optionTracker = 2;
 }
+
+
+// void Menu::addToFavorites(){
+// 	cout << "Select a movie you want to add to favorites." << endl;
+// 	if (optionTracker == 1){
+// 		cout << "To add movies from the random list displayed above, please enter the itemid number for the movies (1-10)." << endl;
+// 		cout << "To add a different movie, please return to main menu. To return, please type: Return" << endl;
+// 		string mChoice = "";
+// 		int mNum = 0;
+// 		cin >> mChoice;
+
+// 		// using transform() function and ::tolower in STL
+//     	transform(mChoice.begin(), mChoice.end(), mChoice.begin(), ::tolower);
+// 		//if user chooses to select a movie from random generator and add to fav, we run this.
+// 		if (mChoice != "return"){
+// 			mNum = stoi(mChoice);
+// 			// while (mNum < 1 || mNum > 10){
+// 			// 	cout << "Invalid Choice. Please enter a number between 1 to 10." << endl;
+// 			// 	cin >> mNum;
+// 			// }
+			
+
+// 			user.AddToFavoriteList(PrintedList.at(mNum-1));
+// 			cout << "Add another movie? (Y/N)" << endl;
+// 			char u1Choice ;
+// 			cin >> u1Choice;
+// 			if (u1Choice == 'Y' || u1Choice == 'y'){
+// 				addToFavorites();
+// 			}
+// 			else if (u1Choice == 'N' || u1Choice == 'n'){
+// 				return;
+// 			}
+// 			else {
+// 				cout << "Invalid Choice. Please enter either Y/y or N/n" << endl;
+// 			}
+// 			PrintedList.clear();						//clears printedList.
+// 		}
+// 		///////////////////
+// 		//error here......
+// 		else if (mChoice == "return"){
+// 			repeat();
+// 		}
+
+// 		cout << "Added to Favorites." << endl;
+// 		cout << "You have " << user.getFavoritesList().size() << " movies in your Favorites List." << endl;
+// 		for (int i = 0; i < user.getFavoritesList().size(); ++i){
+// 			cout << user.getFavoritesList().at(i).getTitle() << endl;
+// 		}	
+// 	}
+// 	else {
+// 		searchForMovieByTitle();
+// 	}	
+	
+// 	// optionTracker = 3;	
+// }
+
