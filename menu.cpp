@@ -104,8 +104,6 @@ void Menu::searchMovies() {
 				if(filteredList.size() == 0)
 					filteredList = MovieDatabase.searchMovieTitle(movieTitle, filteredList);
 			} 
-			else
-				cout << "Invalid input, please try again." << endl;
 
 			//RATING
 			cout << "Enter a Rating Range (1-5)? (Y/N): ";
@@ -180,9 +178,11 @@ void Menu::searchMovies() {
 					cout << "N/A" << endl;
 				else
 					cout << movieGenre << endl;
+
+				if (filteredList.size() < 0) {
 				cout << '\n';
 				cout << filteredList.size() << " movies found that meet your criteria! Enter '2' to view movies." << endl;
-				cout << '\n';
+				}
 			}
 			else
 				cout << "You need to clear out the filter criteria before refiltering movies." << endl;
@@ -211,9 +211,10 @@ void Menu::searchMovies() {
 		case '3':
 				if(filteredList.size() == 0)
 					cout << "Filter has already been cleared." << endl;
-				else
+				else {
 					filteredList.clear();
 					cout << "Filter is clear." << endl;
+				}
 			break;
 
 		case '4':
