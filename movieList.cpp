@@ -71,10 +71,6 @@ void movieList::readMovieListFiles(){
 	// sortedlist = list;
 }
 
-
-
-
-
 //sorts movies by rating in descending order
 void movieList::sortByRatingDescending() {
 	sortedlist = list;
@@ -125,6 +121,28 @@ void movieList::searchByRatings(double lowRating, double highRating) {
 	sortedlist = searchList;
 }
 
+vector<movie> movieList::searchByRatings(double lowRating, double highRating, vector<movie>& filterList) {
+	if(filterList.size() == 0)
+	{
+		sortedlist = list;
+		for (unsigned i = 0; i < sortedlist.size(); ++i)
+			if (sortedlist.at(i).getRating() >= lowRating && sortedlist.at(i).getRating() <= highRating) {
+				filterList.push_back(sortedlist.at(i));
+			}
+	}
+	else
+	{
+		vector <movie> newList = filterList;
+		filterList.clear();		//clears out list in order to update filtered list
+		for (unsigned i = 0; i < newList.size(); ++i) {
+			if (newList.at(i).getRating() >= lowRating && newList.at(i).getRating() <= highRating) {
+				filterList.push_back(newList.at(i));
+			}
+		}
+	}
+	return filterList;
+}
+
 void movieList::printMovies(){
 	vector<movie> movieListPrint = returnSortedList();
 	for (int i =0; i < movieListPrint.size(); ++i){
@@ -140,6 +158,12 @@ void movieList::printMovies(){
 		cout<<"Genre: "; for (auto gen : movieListPrint.at(i).getGenreList()){ cout<<gen<<" ";} cout<<endl;
 
 	}
+	// another version, but I'm not sure if we are just priting sorted list.
+	// void printMovies(vector<movie>& movies) //this way we can print any movieList
+	//   for(movie x: movies){
+	// 	 x.printMovie();
+	// } 
+
 }
 
 void movieList::sortByYearAscending() {
@@ -184,6 +208,30 @@ void movieList::searchYearRange(int minYear, int maxYear) {
 		}
 	}
 	sortedlist = newList;
+}
+
+vector<movie> movieList::searchYearRange(int minYear, int maxYear, vector<movie>& filterList) {
+	if(filterList.size() == 0)
+	{
+		sortedlist = list;
+		for(unsigned i = 0; i < sortedlist.size(); ++i) {
+			if (sortedlist.at(i).getYear() >= minYear && sortedlist.at(i).getYear() <= maxYear) {
+				filterList.push_back(sortedlist.at(i));
+			}
+		}
+
+	}
+	else
+	{
+		vector<movie> newList = filterList;
+		filterList.clear();		//clears out list in order to update filtered list
+		for(unsigned i = 0; i < newList.size(); ++i) {
+			if (newList.at(i).getYear() >= minYear && newList.at(i).getYear() <= maxYear) {
+				filterList.push_back(newList.at(i));
+			}
+		}
+	}
+	return filterList;
 }
 
 void movieList::sortAscendingTitles(vector <movie>& l){
@@ -238,6 +286,26 @@ void movieList::searchMovieTitle(string m1){
 	cout << sortedlist.size() << endl;
 	//this is not sorted by alphabetical order, so we run sort ascending
 	sortAscendingTitles(sortedlist);
+}
+
+
+vector<movie> movieList::searchMovieTitle(string m1, vector<movie>& filterList){
+	sortedlist = list;
+	string lowercasem1 = m1;
+	string lowercasemsorted;
+	
+    transform(lowercasem1.begin(), lowercasem1.end(), lowercasem1.begin(), ::tolower);
+
+	for (unsigned i = 0; i < sortedlist.size(); ++i){
+		lowercasemsorted = sortedlist.at(i).getTitle();
+		transform(lowercasemsorted.begin(), lowercasemsorted.end(), lowercasemsorted.begin(), ::tolower);
+		if (lowercasemsorted.find(lowercasem1) != std::string::npos) {
+			filterList.push_back(returnSortedList().at(i));
+		}
+		
+	}
+	sortAscendingTitles(filterList);		//organizational purposes
+	return filterList;
 }
 
  vector<movie>& movieList::returnList(){
@@ -306,6 +374,40 @@ vector<movie> movieList::searchByGenre(int userInput ){
 	}
 
 	return newlist;
+}
+
+vector<movie> movieList::searchByGenre(int userInput, vector<movie>& filterList){
+	string gType = genres.at(userInput-1);
+	Genre g = HashIt(gType);
+	
+	if(filterList.size() == 0)
+	{
+		sortedlist = list;
+		for(unsigned i = 0; sortedlist.size(); ++i) {
+			vector <Genre> gen_list = sortedlist.at(i).genre_list;
+			for(auto x : gen_list) {
+				if (x==g) {
+				filterList.push_back(sortedlist.at(i));
+				break;
+			}
+			}
+		}
+	}
+	else
+	{
+		vector<movie>newList = filterList;
+		filterList.clear();
+		for (unsigned i = 0; i< newList.size();i++){
+		vector <Genre> gen_list = newList.at(i).genre_list;
+		for (auto x : gen_list){
+			if(x==g){
+				filterList.push_back(newList.at(i));
+				break;
+			}
+		}
+	}
+	}
+	return filterList;
 }
 	
 

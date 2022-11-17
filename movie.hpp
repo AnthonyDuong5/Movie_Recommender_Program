@@ -53,6 +53,7 @@ class movie{
         int getImdbId() const;
         int getItemId() const;
         vector<string> getGenreList() const;
+        void printMovie();
         
         
 };

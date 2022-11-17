@@ -40,121 +40,193 @@ int Menu::getPrompt(){
 
 void Menu::processPrompt(const int& prompt){
 	if (prompt == 1) printTenRandomMovies();
-	if (prompt == 3) addToFavorites();
-	if (prompt == 5) return;
-	printMenu();
-	processPrompt(getPrompt());
+	if (prompt == 2) searchMovies();
 }
 
 void Menu::printTenRandomMovies() {
-	unsigned randIndex;
+	//unsigned randIndex;
 
-	for (unsigned i = 0; i < 10; ++i) {
-		randIndex = rand() % user.getViewingList().size();
+	// for (unsigned i = 0; i < 10; ++i) {
+	// 	randIndex = rand() % user.getViewingList().size();
 
-		cout << i + 1 << "." << endl;
-		cout << "title: " << user.getViewingList().at(randIndex).getTitle() << endl;
-		cout << "year: " << user.getViewingList().at(randIndex).getYear() << endl;
-		cout << "director: " << user.getViewingList().at(randIndex).getDirector() << endl;
-		cout << "casting: " << user.getViewingList().at(randIndex).getCast() << endl;
-		cout << "rating: " << user.getViewingList().at(randIndex).getRating() << endl;
-		cout << "imbdid: " << user.getViewingList().at(randIndex).getImdbId() << endl;
-		cout << "itemid: " << user.getViewingList().at(randIndex).getItemId() << endl;
-		cout << "genre: ";
-		for (auto genre : user.getViewingList().at(randIndex).getGenreList()) {cout << genre << " ";} 
-		cout << endl;
-		cout << "--------------------------------------------------" << endl;
-		PrintedList.push_back(user.getViewingList().at(randIndex));
-		optionTracker = 1;
-		user.removeFromViewingList(randIndex);
-	}
-}
+	// 	cout << i + 1 << "." << endl;
+	// 	cout << "title: " << user.getViewingList().at(randIndex).getTitle() << endl;
+	// 	cout << "year: " << user.getViewingList().at(randIndex).getYear() << endl;
+	// 	cout << "director: " << user.getViewingList().at(randIndex).getDirector() << endl;
+	// 	cout << "casting: " << user.getViewingList().at(randIndex).getCast() << endl;
+	// 	cout << "rating: " << user.getViewingList().at(randIndex).getRating() << endl;
+	// 	cout << "imbdid: " << user.getViewingList().at(randIndex).getImdbId() << endl;
+	// 	cout << "itemid: " << user.getViewingList().at(randIndex).getItemId() << endl;
+	// 	cout << "genre: ";
+	// 	for (auto genre : user.getViewingList().at(randIndex).getGenreList()) {cout << genre << " ";} 
+	// 	cout << endl;
+	// 	cout << "--------------------------------------------------" << endl;
 
-
-
-void Menu::addToFavorites(){
-	cout << "Select a movie you want to add to favorites." << endl;
-	if (optionTracker == 1){
-		cout << "To add movies from the random list displayed above, please enter a number for the movies (1-10)." << endl;
-		cout << "To add a different movie, please return to main menu. To return, please type: Return" << endl;
-		string mChoice = "";
-		int mNum = 0;
-		cin >> mChoice;
-
-		// using transform() function and ::tolower in STL
-    	transform(mChoice.begin(), mChoice.end(), mChoice.begin(), ::tolower);
-		//if user chooses to select a movie from random generator and add to fav, we run this.
-		if (mChoice != "return"){
-			mNum = stoi(mChoice);
-			while (mNum < 1 || mNum > 10){
-				cout << "Invalid Choice. Please enter a number between 1 to 10." << endl;
-				cin >> mNum;
-			}
-			user.AddToFavoriteList(PrintedList.at(mNum-1));
-			cout << "Add another movie? (Y/N)" << endl;
-			char u1Choice ;
-			cin >> u1Choice;
-			if (u1Choice == 'Y' || u1Choice == 'y'){
-				addToFavorites();
-			}
-			else if (u1Choice == 'N' || u1Choice == 'n'){
-				return;
-			}
-			else {
-				cout << "Invalid Choice. Please enter either Y/y or N/n" << endl;
-			}
-			PrintedList.clear();						//clears printedList.
-		}
-		///////////////////
-		//error here......
-		else if (mChoice == "return"){
-			repeat();
-		}
-
-		cout << "Added to Favorites." << endl;
-		cout << "You have " << user.getFavoritesList().size() << " movies in your Favorites List." << endl;
-		for (int i = 0; i < user.getFavoritesList().size(); ++i){
-			cout << user.getFavoritesList().at(i).getTitle() << endl;
-		}	
-	}
-	else {
-		searchForMovieByTitle();
-	}	
-	
-	// optionTracker = 3;	
-}
-
-//need help here
-void Menu::searchForMovieByTitle(){
-	movieList movList1;
-	movList1.readMovieListFiles();
-	cin.ignore();
-	string line;
-	cout << "Enter a name to search. " << endl;
-	getline(cin, line);
-	cout << endl;
-	cout << "Searching for movies with \"" << line << "\"" << " in their name" << endl;
-	
-	user.userFavList.searchMovieTitle(line);
-	cout << user.userFavList.returnSortedList().size() << " size after sort." << endl;
-
-	user.userFavList.printMovies();
-	
-	// //if there are more than 1 search results, we will ask user to enter number of movie they want to add.
-	// if (user.getUserFavList().returnSortedList().size() > 1){
-	// 	cout << "Please enter a number for the movie you want to add." << endl;
-	// 	int searchSize = user.getUserFavList().returnSortedList().size();
-	// 	int userSearchChoice = 0;
-	// 	cin >> userSearchChoice;
-	// 	while (userSearchChoice < 1 || userSearchChoice > searchSize){
-	// 		cout << "Invalid Choice. Please enter a number between 1 and " << searchSize << "." << endl;
-	// 		cin >> userSearchChoice;
-	// 	}
-	// 	user.AddToFavoriteList(PrintedList.at(userSearchChoice-1));
+	// 	user.removeFromViewingList(randIndex);
 	// }
-	cout << "End of List" << endl;
 }
 
-void Menu::getCriteria(){
+void Menu::searchMovies() {
 
+	movieList MovieDatabase;
+	string movieTitle;
+	double movieRatingOne = 0.0;
+	double movieRatingTwo = 0.0;
+	int movieYearOne = 0;
+	int movieYearTwo = 0;
+	int movieGenre = 0;
+
+	vector <movie> filteredList;
+	MovieDatabase.readMovieListFiles();
+
+	char choice; 
+	char selection;
+
+	do
+	{
+		cout << "-------------------" << endl;
+		cout << "Movie Filter Selection: \n";
+		cout << "1) Begin Filtering \n"
+			 << "2) Print Out Movies \n"
+			 << "3) Clear Filter \n"
+			 << "4) Return to Menu \n";
+		cin >> choice;
+		cout << "------------------" << endl;
+		switch (choice) {
+		case '1':
+			if(filteredList.size() == 0) {		//if list is empty, able to (re)filter movies
+	
+			//TITLE
+			cout << "Enter a Movie Title? (Y/N): ";
+			cin >> selection;
+			if(selection == 'Y'){
+				cout << "Enter Movie Title: ";
+				cin.ignore(255,'\n');
+				getline(cin, movieTitle);
+				if(filteredList.size() == 0)
+					filteredList = MovieDatabase.searchMovieTitle(movieTitle, filteredList);
+			} 
+
+			//RATING
+			cout << "Enter a Rating Range (1-5)? (Y/N): ";
+			cin >> selection;
+			if(selection == 'Y') {
+				do
+				{
+					cout << "Enter First Rating (Lowest): ";
+					cin >> movieRatingOne;
+					cout << "Enter Second Rating (Highest): ";
+					cin >> movieRatingTwo;
+					if(movieRatingOne > movieRatingTwo)
+						cout << "First rating input is larger than the second. Please try again." << endl;
+				}while (movieRatingOne > movieRatingTwo);
+					filteredList = MovieDatabase.searchByRatings(movieRatingOne, movieRatingTwo, filteredList);
+			}
+
+			//YEAR
+			cout << "Enter a Year Range? (Y/N): ";
+			cin >> selection;
+			if(selection == 'Y') {
+				do
+				{
+					cout << "Enter First Year (Oldest): ";
+					cin >> movieYearOne;
+					cout << "Enter Second Year (Latest): ";
+					cin >> movieYearTwo;
+					if(movieYearOne > movieYearTwo)
+						cout << "First year input is larger than the second. Please try again." << endl;
+				}while (movieYearOne > movieYearTwo);
+					MovieDatabase.searchYearRange(movieYearOne, movieYearTwo, filteredList);
+				}
+
+			//GENRE
+			cout << "Enter a Genre? (Y/N): ";
+			cin >> selection;
+			if(selection == 'Y') {
+				do{
+				cout << "----------------------------------------------------" << endl;
+				cout << "Enter the number that corresponds to desired Genre: " << endl;
+				cout << "1) Adventure || 2) Action     || 3) Animation      || 4) Children \n"
+					 << "5) Comedy    || 6) Crime      || 7) Documentaries  || 8) Drama \n"
+					 << "9) Fantasy   || 10) FilmNoir  || 11) Horror        || 12) IMAX \n"
+					 << "13) Musical  || 14) Mystery   || 15) Romance       || 16) SciFi \n"
+					 << "17) Thriller || 18) War       || 19) Western \n";
+				cout << "Choice: ";
+				cin >> movieGenre;
+					if(movieGenre < 1 || movieGenre > 19)
+						cout << "Invalid input. Please try again." << endl;
+				}while(movieGenre < 1 || movieGenre > 19);
+				MovieDatabase.searchByGenre(movieGenre, filteredList);
+			}
+				cout << "-----------------------" << endl;
+				cout << "User's Filter Criteria:" << endl;
+				cout << "Movie Title: ";
+				if (movieTitle.empty())
+					cout << "N/A" << endl;
+				else
+					cout << movieTitle << endl;
+				cout << "Movie Rating Range: ";
+				if (movieRatingOne == 0.0)
+					cout << "N/A" << endl;
+				else
+					cout << movieRatingOne << " - " << movieRatingTwo << endl;
+				cout << "Movie Year Range: ";
+				if(movieYearOne == 0)
+					cout << "N/A" << endl;
+				else
+					cout << movieYearOne << " - " << movieYearTwo << endl;
+				cout << "Movie Genre: ";
+				if(movieGenre == 0)
+					cout << "N/A" << endl;
+				else
+					cout << movieGenre << endl;
+
+				if (filteredList.size() < 0) {
+				cout << '\n';
+				cout << filteredList.size() << " movies found that meet your criteria! Enter '2' to view movies." << endl;
+				}
+			}
+			else
+				cout << "You need to clear out the filter criteria before refiltering movies." << endl;
+			break;
+
+		case '2':
+			 if(filteredList.size()==0)
+			 	cout << "No movies found under the criteria given or filter is empty. \n";
+			 else{
+				for (unsigned i = 0; i < filteredList.size(); ++i) {
+				cout << "--------------------------------------------------" << endl;
+				cout << "title: " << filteredList.at(i).getTitle() << endl;
+				cout << "year: " << filteredList.at(i).getYear() << endl;
+				cout << "director: " << filteredList.at(i).getDirector() << endl;
+				cout << "casting: " << filteredList.at(i).getCast() << endl;
+				cout << "rating: " << filteredList.at(i).getRating() << endl;
+				cout << "imbdid: " << filteredList.at(i).getImdbId() << endl;
+				cout << "itemid: " << filteredList.at(i).getItemId() << endl;
+				cout << "genre: ";
+				for (auto genre : filteredList.at(i).getGenreList()) {cout << genre << " ";} 
+				cout << endl;
+				cout << "--------------------------------------------------" << endl;
+				}
+			 }
+			break;
+		case '3':
+				if(filteredList.size() == 0)
+					cout << "Filter has already been cleared." << endl;
+				else {
+					filteredList.clear();
+					cout << "Filter is clear." << endl;
+				}
+			break;
+
+		case '4':
+			cout << "Returning to Main Menu" << endl;
+			break;
+		default:
+			cout << "Invalid Choice. Please enter a number between 1 and 4" << endl;
+		}
+
+
+	}while (choice != '4');
+	
 }
