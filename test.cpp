@@ -293,6 +293,7 @@
 //     cout << getMaximumValue(freqMap).first<<endl;
 // }
 // TEST(getRec, yearFrequence_template){
+
 //    movieList MovieDatabase;
 //    MovieDatabase.readMovieListFiles();
 //    vector<movie> MovieList = MovieDatabase.returnList();
@@ -305,6 +306,69 @@
 //    map<int, int> freqMap = help_getFreq(yearlist);
 //    cout << "#1 year: "<<help_getMaximumValue(freqMap).first<<" "<<help_getMaximumValue(freqMap).second<<endl;
 //}
+
+//     movieList MovieDatabase;
+//     MovieDatabase.readMovieListFiles();
+//     vector<movie> MovieList = MovieDatabase.returnList();
+//     //get all the years of Database and calculate its frequency
+//     vector<int>yearlist;
+//     for(auto x: MovieList){
+//         yearlist.push_back(x.getYear());
+//     }
+//     //using a map to store year:frequency
+//     map<int, int> freqMap = help_getFreq(yearlist);
+//     cout << "#1 year: "<<help_getMaximumValue(freqMap).first<<" "<<help_getMaximumValue(freqMap).second<<endl;
+// }
+
+// TEST(getRec, directorFrequence_template){
+//     movieList MovieDatabase;
+//     MovieDatabase.readMovieListFiles();
+//     vector<movie> MovieList = MovieDatabase.returnList();
+//     vector<string>dir;
+//     for(auto x: MovieList){
+//         dir.push_back(x.getDirector());
+//     }
+    
+//     map<string, int> freqMap = help_getFreq(dir);
+//     // 	for (auto& it : freqMap) {
+//     //      cout << it.first << ' '
+//     //           << it.second << endl;
+//     //  }
+//     cout << "#1 director: "<<help_getMaximumValue(freqMap).first<<" "<<help_getMaximumValue(freqMap).second<<endl;
+// }
+
+TEST(getRec, genreFrequence_template){
+    movieList MovieDatabase;
+    MovieDatabase.readMovieListFiles();
+    vector<movie> MovieList = MovieDatabase.returnList();
+    //get all the years of Database and calculate its frequency
+    vector<Genre> genres;
+	for (auto x: MovieList){
+		for(auto y: x.genre_list){
+			genres.push_back(y);
+		}
+	}
+    map<Genre, int> freqMap3 = help_getFreq(genres);	
+	Genre MostSeenGenres1 = help_getMaximumValue(freqMap3).first;
+    string g1 = MovieDatabase.getGenres().at(MostSeenGenres1-1);
+    freqMap3.erase(MostSeenGenres1);
+    cout << "#1 Genre: "<<g1<<" "<<help_getMaximumValue(freqMap3).second<<" movies"<<endl;
+	
+    Genre MostSeenGenres2 = help_getMaximumValue(freqMap3).first;
+    string g2 = MovieDatabase.getGenres().at(MostSeenGenres2-1);
+	freqMap3.erase(MostSeenGenres2);
+    cout << "#2 Genre: "<<g2<<" "<<help_getMaximumValue(freqMap3).second<<" movies"<<endl;
+	
+    Genre MostSeenGenres3 = help_getMaximumValue(freqMap3).first;
+	string g3 = MovieDatabase.getGenres().at(MostSeenGenres3-1);
+    freqMap3.erase(MostSeenGenres3);
+    cout << "#3 Genre: "<<g3<<" "<<help_getMaximumValue(freqMap3).second<<" movies"<<endl;
+	
+	
+
+    
+}
+
 
 // TEST(getRec, directorFrequence_template){
 //    movieList MovieDatabase;
