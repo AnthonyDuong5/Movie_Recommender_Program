@@ -158,6 +158,12 @@ void movieList::printMovies(){
 		cout<<"Genre: "; for (auto gen : movieListPrint.at(i).getGenreList()){ cout<<gen<<" ";} cout<<endl;
 
 	}
+	// another version, but I'm not sure if we are just priting sorted list.
+	// void printMovies(vector<movie>& movies) //this way we can print any movieList
+	//   for(movie x: movies){
+	// 	 x.printMovie();
+	// } 
+
 }
 
 void movieList::sortByYearAscending() {
