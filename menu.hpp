@@ -20,6 +20,8 @@ class Menu {
 		void getCriteria();
 		void printTenRandomMovies();
 		void searchMovies();
+
+		int optionTracker = 0;
 };
 
 #endif

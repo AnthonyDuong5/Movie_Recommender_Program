@@ -21,6 +21,7 @@ class User {
 		vector<movie> Favorites;
 		vector<movie> DefaultList;
 		vector<movie> ViewingList;
+		
 		int prompt = 0;
 
 		//adding a movieList,can use funcions from the movieList if needed.
@@ -29,10 +30,12 @@ class User {
 	public:
 		User();
 
-		void AddToFavorite(const movie& m1);
+		void AddToFavoriteList(const movie& m1);
 		vector <movie>& getFavoritesList(){ return Favorites;}
 		vector<movie> getDefaultList(){return DefaultList;}
 		vector<movie> getViewingList(){return ViewingList;}
+		
+		// vector<movie> getPrintedList(){return PrintedList;}
 		void removeFromViewingList(unsigned idx);
 
 		vector<movie> getRec();
