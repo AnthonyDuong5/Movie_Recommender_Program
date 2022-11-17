@@ -29,23 +29,33 @@ vector<movie> User::getRec(){
 
 	//step 1: find year/director/gennres frequency from Favorites
 	vector<int> yearlist;
-	vector<string>director;
-	vector<Genre> genres;
+	vector<string>directorlist;
+	vector<Genre> genreslist;
+
+	//storing each critera into its vector
 	for(auto x: Favorites){
         yearlist.push_back(x.getYear());
-		director.push_back(x.getDirector());
+		directorlist.push_back(x.getDirector());
 		for(auto y: x.genre_list){
-			genres.push_back(y);
+			genreslist.push_back(y);
 		}
     }
+	//find #1 year
 	map<int, int> freqMap = help_getFreq(yearlist);	
 	int MostSeenYear = help_getMaximumValue(freqMap).first;
 
-	map<string, int> freqMap2 = help_getFreq(director);	
+	//find #1 director
+	map<string, int> freqMap2 = help_getFreq(directorlist);	
 	string MostSeenDirector = help_getMaximumValue(freqMap2).first;
 
-	map<Genre, int> freqMap3 = help_getFreq(genres);	
-	Genre MostSeenGenres = help_getMaximumValue(freqMap3).first;
+	//find #3 genres
+	map<Genre, int> freqMap3 = help_getFreq(genreslist);	
+	Genre MostSeenGenres1 = help_getMaximumValue(freqMap3).first;
+	freqMap3.erase(MostSeenGenres1);
+	Genre MostSeenGenres2 = help_getMaximumValue(freqMap3).first;
+	freqMap3.erase(MostSeenGenres2);
+	Genre MostSeenGenres3 = help_getMaximumValue(freqMap3).first;
+	freqMap3.erase(MostSeenGenres3);
 
 
 	//step 4: use these criteria (year, director, director) to generate a rec list.

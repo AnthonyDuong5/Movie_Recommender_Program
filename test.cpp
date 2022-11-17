@@ -335,10 +335,24 @@ TEST(getRec, genreFrequence_template){
 		}
 	}
     map<Genre, int> freqMap3 = help_getFreq(genres);	
-    int option = help_getMaximumValue(freqMap3).first;
-    string g = MovieDatabase.getGenres().at(option-1);
+	Genre MostSeenGenres1 = help_getMaximumValue(freqMap3).first;
+    string g1 = MovieDatabase.getGenres().at(MostSeenGenres1-1);
+    freqMap3.erase(MostSeenGenres1);
+    cout << "#1 Genre: "<<g1<<" "<<help_getMaximumValue(freqMap3).second<<" movies"<<endl;
+	
+    Genre MostSeenGenres2 = help_getMaximumValue(freqMap3).first;
+    string g2 = MovieDatabase.getGenres().at(MostSeenGenres2-1);
+	freqMap3.erase(MostSeenGenres2);
+    cout << "#2 Genre: "<<g2<<" "<<help_getMaximumValue(freqMap3).second<<" movies"<<endl;
+	
+    Genre MostSeenGenres3 = help_getMaximumValue(freqMap3).first;
+	string g3 = MovieDatabase.getGenres().at(MostSeenGenres3-1);
+    freqMap3.erase(MostSeenGenres3);
+    cout << "#3 Genre: "<<g3<<" "<<help_getMaximumValue(freqMap3).second<<" movies"<<endl;
+	
+	
 
-    cout << "#1 Genre: "<<g<<" "<<help_getMaximumValue(freqMap3).second<<endl;
+    
 }
 
 // TEST(UserMenu, RandomMovies) {
