@@ -24,17 +24,20 @@ class movieList{
 		//TITLE
 		void sortAscendingTitles(vector <movie>&);
 		void sortDescendingTitles(vector <movie>&);
-		void searchMovieTitle(string );
+		void searchMovieTitle(string);
+		vector<movie> searchMovieTitle(string, vector<movie>&);		//test
 
 		//RATING
 		void sortByRatingDescending();
 		void sortByRatingAscending();
 		void searchByRatings(double lowRating, double highRating);
+		vector<movie> searchByRatings(double, double, vector<movie>&);		//test
 
 		//YEAR
 		void sortByYearAscending();
 		void sortByYearDescending();
-		void searchYearRange(int, int);		// <- just modfied on 11-12-22
+		void searchYearRange(int, int);
+		vector<movie> searchYearRange(int, int, vector<movie>&);		//test
 
 		//GENRE
 		void setGenres();
@@ -42,6 +45,7 @@ class movieList{
 		void printGenres();
 		vector<movie> searchByGenre(Genre);
 		vector<movie> searchByGenre(int);
+		vector<movie> searchByGenre(int, vector<movie>&);		//test
 
 		//RETURN LIST/SORTEDLIST, PRINT MOVIE LIST
 		vector<movie>& returnList();
