@@ -27,24 +27,26 @@ void User::removeFromViewingList(unsigned idx) {
 vector<movie> User::getRec(){
 	vector<movie> rec;
 
-	//step 1: find year frequency from from Favorites
+	//step 1: find year/director/gennres frequency from Favorites
 	vector<int> yearlist;
+	vector<string>director;
+	vector<Genre> genres;
 	for(auto x: Favorites){
         yearlist.push_back(x.getYear());
+		director.push_back(x.getDirector());
+		for(auto y: x.genre_list){
+			genres.push_back(y);
+		}
     }
 	map<int, int> freqMap = help_getFreq(yearlist);	
 	int MostSeenYear = help_getMaximumValue(freqMap).first;
 
-	//step 2: find director frequency from Favorites
-	vector<string>director;
-	for(auto x: Favorites){
-        director.push_back(x.getDirector());
-    }
 	map<string, int> freqMap2 = help_getFreq(director);	
 	string MostSeenDirector = help_getMaximumValue(freqMap2).first;
 
+	map<Genre, int> freqMap3 = help_getFreq(genres);	
+	Genre MostSeenGenres = help_getMaximumValue(freqMap3).first;
 
-	//step 3: find up to three favorite genres from Favorites
 
 	//step 4: use these criteria (year, director, director) to generate a rec list.
 	//may be using different combination of criteria based on the condition of Favorites list

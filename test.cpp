@@ -292,36 +292,53 @@
 //     }
 //     cout << getMaximumValue(freqMap).first<<endl;
 // }
-TEST(getRec, yearFrequence_template){
-    movieList MovieDatabase;
-    MovieDatabase.readMovieListFiles();
-    vector<movie> MovieList = MovieDatabase.returnList();
-    //get all the years of Database and calculate its frequency
-    vector<int>yearlist;
-    for(auto x: MovieList){
-        yearlist.push_back(x.getYear());
-    }
-    //using a map to store year:frequency
-    map<int, int> freqMap = help_getFreq(yearlist);
-    cout << "#1 year: "<<help_getMaximumValue(freqMap).first<<" "<<help_getMaximumValue(freqMap).second<<endl;
-}
+// TEST(getRec, yearFrequence_template){
+//     movieList MovieDatabase;
+//     MovieDatabase.readMovieListFiles();
+//     vector<movie> MovieList = MovieDatabase.returnList();
+//     //get all the years of Database and calculate its frequency
+//     vector<int>yearlist;
+//     for(auto x: MovieList){
+//         yearlist.push_back(x.getYear());
+//     }
+//     //using a map to store year:frequency
+//     map<int, int> freqMap = help_getFreq(yearlist);
+//     cout << "#1 year: "<<help_getMaximumValue(freqMap).first<<" "<<help_getMaximumValue(freqMap).second<<endl;
+// }
 
-TEST(getRec, directorFrequence_template){
+// TEST(getRec, directorFrequence_template){
+//     movieList MovieDatabase;
+//     MovieDatabase.readMovieListFiles();
+//     vector<movie> MovieList = MovieDatabase.returnList();
+//     vector<string>dir;
+//     for(auto x: MovieList){
+//         dir.push_back(x.getDirector());
+//     }
+    
+//     map<string, int> freqMap = help_getFreq(dir);
+//     // 	for (auto& it : freqMap) {
+//     //      cout << it.first << ' '
+//     //           << it.second << endl;
+//     //  }
+//     cout << "#1 director: "<<help_getMaximumValue(freqMap).first<<" "<<help_getMaximumValue(freqMap).second<<endl;
+// }
+
+TEST(getRec, genreFrequence_template){
     movieList MovieDatabase;
     MovieDatabase.readMovieListFiles();
     vector<movie> MovieList = MovieDatabase.returnList();
     //get all the years of Database and calculate its frequency
-    vector<string>dir;
-    for(auto x: MovieList){
-        dir.push_back(x.getDirector());
-    }
-    //using a map to store year:frequency
-    map<string, int> freqMap = help_getFreq(dir);
-    // 	for (auto& it : freqMap) {
-    //      cout << it.first << ' '
-    //           << it.second << endl;
-    //  }
-    cout << "#1 director: "<<help_getMaximumValue(freqMap).first<<" "<<help_getMaximumValue(freqMap).second<<endl;
+    vector<Genre> genres;
+	for (auto x: MovieList){
+		for(auto y: x.genre_list){
+			genres.push_back(y);
+		}
+	}
+    map<Genre, int> freqMap3 = help_getFreq(genres);	
+    int option = help_getMaximumValue(freqMap3).first;
+    string g = MovieDatabase.getGenres().at(option-1);
+
+    cout << "#1 Genre: "<<g<<" "<<help_getMaximumValue(freqMap3).second<<endl;
 }
 
 // TEST(UserMenu, RandomMovies) {
