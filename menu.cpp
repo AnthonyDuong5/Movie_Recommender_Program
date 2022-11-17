@@ -45,6 +45,14 @@ int Menu::getPrompt(){
 		cout << "Invalid Choice. Please enter a number between 1 to 5." << endl;
 		printMenu();
 		cin >> userPrompt;
+		while (cin.fail()) {
+			//Not an int.
+			cout << "Please enter a number from 1 to 5." << endl;
+			printMenu();
+			cin.clear();
+			cin.ignore(256, '\n');
+			cin >> userPrompt;
+		}
 	}
 	return userPrompt;
 }
