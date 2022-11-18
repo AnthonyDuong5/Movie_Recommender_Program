@@ -65,12 +65,12 @@ void Menu::processPrompt(const int& prompt){
 }
 
 void Menu::printTenRandomMovies() {
-	//unsigned randIndex;
+	unsigned randIndex;
 
-	// for (unsigned i = 0; i < 10; ++i) {
-	// 	randIndex = rand() % user.getViewingList().size();
+	for (unsigned i = 0; i < 10; ++i) {
+		randIndex = rand() % user.getViewingList().size();
 
-	// 	cout << i + 1 << "." << endl;
+		cout << i + 1 << "." << endl;
 	// 	cout << "title: " << user.getViewingList().at(randIndex).getTitle() << endl;
 	// 	cout << "year: " << user.getViewingList().at(randIndex).getYear() << endl;
 	// 	cout << "director: " << user.getViewingList().at(randIndex).getDirector() << endl;
@@ -82,10 +82,16 @@ void Menu::printTenRandomMovies() {
 	// 	for (auto genre : user.getViewingList().at(randIndex).getGenreList()) {cout << genre << " ";} 
 	// 	cout << endl;
 	// 	cout << "--------------------------------------------------" << endl;
+		user.getViewingList().at(randIndex).printMovie();
 
-	// 	user.removeFromViewingList(randIndex);
-	// }
+		//added this line to track results
+		user.ReturnTrackList().push_back(user.getViewingList().at(randIndex));
+		
+		user.removeFromViewingList(randIndex);
+	}
 	optionTracker = 1;
+	printMenu();
+	processPrompt(getPrompt());
 }
 
 void Menu::searchMovies() {
@@ -229,6 +235,8 @@ void Menu::searchMovies() {
 				for (auto genre : filteredList.at(i).getGenreList()) {cout << genre << " ";} 
 				cout << endl;
 				cout << "--------------------------------------------------" << endl;
+				//added this line to track results
+				user.ReturnTrackList().push_back(filteredList.at(i));
 				}
 			 }
 			break;
@@ -255,57 +263,25 @@ void Menu::searchMovies() {
 }
 
 
-// void Menu::addToFavorites(){
-// 	cout << "Select a movie you want to add to favorites." << endl;
-// 	if (optionTracker == 1){
-// 		cout << "To add movies from the random list displayed above, please enter the itemid number for the movies (1-10)." << endl;
-// 		cout << "To add a different movie, please return to main menu. To return, please type: Return" << endl;
-// 		string mChoice = "";
-// 		int mNum = 0;
-// 		cin >> mChoice;
+void Menu::addToFavorites(){
+	cout << "Enter the itemId of the movie you want to add. \n" << endl;
+	int inputID;
+	cin >> inputID;
+	while (cin.fail()) {
+		//Not an int.
+		cout << "Please enter a valid itemId." << endl;
+		cin.clear();
+		cin.ignore(256, '\n');
+		cin >> inputID;
+	}
+	for (int i = 0; i < user.ReturnTrackList().size(); ++i){
+		if (inputID == user.ReturnTrackList().at(i).getItemId()){
+			user.getFavoritesList().push_back(user.ReturnTrackList().at(i));
+		}
+	}
+	for (int j =0 ; j < user.getFavoritesList().size(); ++j){
 
-// 		// using transform() function and ::tolower in STL
-//     	transform(mChoice.begin(), mChoice.end(), mChoice.begin(), ::tolower);
-// 		//if user chooses to select a movie from random generator and add to fav, we run this.
-// 		if (mChoice != "return"){
-// 			mNum = stoi(mChoice);
-// 			// while (mNum < 1 || mNum > 10){
-// 			// 	cout << "Invalid Choice. Please enter a number between 1 to 10." << endl;
-// 			// 	cin >> mNum;
-// 			// }
-			
-
-// 			user.AddToFavoriteList(PrintedList.at(mNum-1));
-// 			cout << "Add another movie? (Y/N)" << endl;
-// 			char u1Choice ;
-// 			cin >> u1Choice;
-// 			if (u1Choice == 'Y' || u1Choice == 'y'){
-// 				addToFavorites();
-// 			}
-// 			else if (u1Choice == 'N' || u1Choice == 'n'){
-// 				return;
-// 			}
-// 			else {
-// 				cout << "Invalid Choice. Please enter either Y/y or N/n" << endl;
-// 			}
-// 			PrintedList.clear();						//clears printedList.
-// 		}
-// 		///////////////////
-// 		//error here......
-// 		else if (mChoice == "return"){
-// 			repeat();
-// 		}
-
-// 		cout << "Added to Favorites." << endl;
-// 		cout << "You have " << user.getFavoritesList().size() << " movies in your Favorites List." << endl;
-// 		for (int i = 0; i < user.getFavoritesList().size(); ++i){
-// 			cout << user.getFavoritesList().at(i).getTitle() << endl;
-// 		}	
-// 	}
-// 	else {
-// 		searchForMovieByTitle();
-// 	}	
-	
-// 	// optionTracker = 3;	
-// }
+	}
+	// optionTracker = 3;	
+}
 

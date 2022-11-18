@@ -21,6 +21,8 @@ class User {
 		vector<movie> Favorites;
 		vector<movie> DefaultList;
 		vector<movie> ViewingList;
+
+		vector<movie> TrackViewList;
 		
 		int prompt = 0;
 
@@ -29,7 +31,7 @@ class User {
 
 	public:
 		User();
-
+		vector<movie> ReturnTrackList (){return TrackViewList;}
 		void AddToFavoriteList(const movie& m1);
 		vector <movie>& getFavoritesList(){ return Favorites;}
 		vector<movie> getDefaultList(){return DefaultList;}
@@ -39,7 +41,7 @@ class User {
 		void removeFromViewingList(unsigned idx);
 
 		vector<movie> getRec();
-
+		
 };
 
 

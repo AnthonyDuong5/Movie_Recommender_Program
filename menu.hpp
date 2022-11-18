@@ -21,6 +21,7 @@ class Menu {
 		void printTenRandomMovies();
 		void searchMovies();
 
+		void addToFavorites();
 		int optionTracker = 0;
 };
 
