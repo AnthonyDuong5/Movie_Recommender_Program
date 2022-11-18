@@ -5,6 +5,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <cctype>
 #include <stdio.h>  
 #include <stdlib.h> 
 #include "user.hpp"
@@ -17,9 +18,11 @@ class Menu {
 		void printMenu();
 		int getPrompt();	//this gets user's choice from menu
 		void processPrompt(const int& prompt);
-		void getCriteria();
 		void printTenRandomMovies();
-		void searchMovies();
+		void advancedMovieFilter();
+		
+		void getCriteria(string, double, double, int, int, int);
+		bool promptYesOrNo(string);
 
 		int optionTracker = 0;
 };
