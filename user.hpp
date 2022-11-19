@@ -32,6 +32,7 @@ class User {
 	public:
 		User();
 		vector<movie> ReturnTrackList (){return TrackViewList;}
+		void AddToTrackList(const movie& );
 		void AddToFavoriteList(const movie& m1);
 		vector <movie>& getFavoritesList(){ return Favorites;}
 		vector<movie> getDefaultList(){return DefaultList;}

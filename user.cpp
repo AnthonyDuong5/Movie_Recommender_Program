@@ -27,6 +27,10 @@ void User::AddToFavoriteList(const movie& m1){
 	Favorites.push_back(m1);
 }
 
+void User::AddToTrackList(const movie& m){
+	TrackViewList.push_back(m);
+}
+
 // void User::printMenu(){
 // 	//first output some prompt
 // 	cout << "Please Select An Option Below (1-5)" << endl;
