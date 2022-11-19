@@ -28,7 +28,7 @@ Genre HashIt (std::string const& inString) {
 	else if (inString == "Children") return Children;
 	else if (inString == "Comedy") return Comedy;	
 	else if (inString == "Crime") return Crime;
-	else if (inString == "Documentarys") return Documentarys;
+	else if (inString == "Documentaries") return Documentarys;
 	else if (inString == "Drama") return Drama;
 	else if (inString == "Fantasy") return Fantasy;
 	else if (inString == "Film-Noir") return FilmNoir;

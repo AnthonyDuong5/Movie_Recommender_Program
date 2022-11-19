@@ -154,38 +154,71 @@ void Menu::printFiveByCategories(){
 	cout << "works up to here" << endl;
 	unsigned randNum;
 	while (genreCounter <5){
+		if (genreCounter == 0){
+			cout << "=============================================" << endl;
+			cout << "ACTION MOVIES" << endl;
+			cout << "=============================================" << endl;
+		}
+		else if (genreCounter == 1){
+			cout << "=============================================" << endl;
+			cout << "COMEDY MOVIES" << endl;
+			cout << "=============================================" << endl;
+		}
+		else if (genreCounter == 2){
+				cout << "=============================================" << endl;
+				cout << "DRAMA MOVIES" << endl;
+				cout << "=============================================" << endl;
+		}
+		else if (genreCounter == 3){
+				cout << "=============================================" << endl;
+				cout << "HORROR MOVIES" << endl;
+				cout << "=============================================" << endl;		
+		}
+
+		else if (genreCounter == 4){
+				cout << "=============================================" << endl;
+				cout << "ROMANCE MOVIES" << endl;
+				cout << "=============================================" << endl;
+		}
 		for (unsigned i = 0; i < 5; ++i){
 			if (genreCounter == 0){
+				
 				randNum = rand() % actionGenre.size();
 				movie rMovie = actionGenre.at(randNum);
+				rMovie.printMovie();
 				newList.push_back(rMovie);
 			}
 			else if (genreCounter == 1){
+				
 				randNum = rand() % comedyGenre.size();
 				movie rMovie = comedyGenre.at(randNum);
+				rMovie.printMovie();
 				newList.push_back(rMovie);
+				
 			}
 			else if (genreCounter == 2){
+				
 				randNum = rand() % dramaGenre.size();
 				movie rMovie = dramaGenre.at(randNum);
+				rMovie.printMovie();
 				newList.push_back(rMovie);
 			}
 			else if (genreCounter == 3){
+				
 				randNum = rand() % horrorGenre.size();
 				movie rMovie = horrorGenre.at(randNum);
+				rMovie.printMovie();
 				newList.push_back(rMovie);
 			}
 			else if (genreCounter == 4){
+				
 				randNum = rand() % romanceGenre.size();
 				movie rMovie = romanceGenre.at(randNum);
+				rMovie.printMovie();
 				newList.push_back(rMovie);
 			}
 		}
 		++genreCounter;
-	}
-	cout << "newList size: " << newList.size() << endl;
-	for (unsigned i = 0; i < newList.size(); ++i){
-		newList.at(i).printMovie();
 	}
 	// unsigned randIndex;
 	// for (unsigned i = 0; i < 10; ++i) {
