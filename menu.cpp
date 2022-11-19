@@ -114,7 +114,8 @@ void Menu::printTenRandomMovies() {
 }
 
 void Menu::printFiveByCategories(){
-	cout << "Here's a list of some movies you might be interested in." << endl;
+	optionTracker = 2;
+	cout << "Here's a list of some movies you might be interested in.\n" << endl;
 	movieList defaultDatabase;
 	defaultDatabase.readMovieListFiles();
 	
@@ -211,7 +212,13 @@ void Menu::printFiveByCategories(){
 		}
 		++genreCounter;
 	}
+	cout << "Add any of the movies to favorites?" << endl;
+	string u5Prompt;
 	
+	bool toAdd = promptYesOrNo(u5Prompt);
+	if (toAdd) {
+		addToFavorites();
+	}
 }
 
 
@@ -501,14 +508,18 @@ bool Menu::checkInFavorites(const int mID){
 }
 
 void Menu::printFavorites(){
-	cout << "Favorites List" << endl;
-	cout << "--------------------------------------------------" << endl;
+	cout << "==================================================" << endl;
+	cout << "------------------Favorites List------------------" << endl;
+	cout << "==================================================" << endl;
 	vector<movie> fav = user.getFavoritesList();
 	for (unsigned i = 0; i < fav.size(); ++i){
 		fav.at(i).printMovie();
 	}
+	cout << "==================================================" << endl;
+	cout << "-------------------End Of List--------------------" << endl;
+	cout << "==================================================" << endl;
 	cout << "Total of " << fav.size() << " movies in Favorites." << endl;
-	cout << "--------------------------------------------------" << endl;
+	cout << "==================================================" << endl;
 }
 
 void Menu::getCriteria(string title, double ratingOne, double ratingTwo, int yearOne, int yearTwo, int genre) {
