@@ -10,22 +10,32 @@
 using namespace std;
 
 Menu::Menu() {
-	printMenu();
-    int choice = getPrompt();
-    processPrompt(choice);
-	user.ClearTrackList();
+	// printMenu();
+    // int choice = getPrompt();
+    // processPrompt(choice);
+	// user.ClearTrackList();
 	// repeat();
+	runMenu();
 }
-
+void Menu::runMenu(){
+	while (optionTracker != 7){
+		printMenu();
+		int choice = getPrompt();
+		processPrompt(choice);
+		user.ClearTrackList();
+	}
+	
+}
 void Menu::printMenu(){
 	//first output some prompt
-	cout << "Please Select An Option Below (1-6)" << endl;
+	cout << "Please Select An Option Below (1-7)" << endl;
 	cout << "1) View Random Movies.\n"
 	     << "2) Browse Category\n" 
 		 << "3) Search By Title\n" 
-		 << "4) Advanced Movie Filter\n"
+		 << "4) Advanced Movie Search\n"
 		 << "5) Get Movie Recommendations\n"
-		 << "6) Quit.\n";
+		 << "6) Show Favorites List\n"
+		 << "7) Quit.\n";
 }
 
 int Menu::getPrompt(){
@@ -35,7 +45,7 @@ int Menu::getPrompt(){
 	//this validates chars/strings as invalid input
 	while (cin.fail()) {
 		//Not an int.
-		cout << "Please enter a number from 1 to 5." << endl;
+		cout << "Please enter a number from 1 to 7." << endl;
 		printMenu();
 		cin.clear();
 		cin.ignore(256, '\n');
@@ -43,7 +53,7 @@ int Menu::getPrompt(){
 	}
 
 	//this also validates input (integers)
-	while (userPrompt < 1 || userPrompt > 6){
+	while (userPrompt < 1 || userPrompt > 7){
 		cout << "Invalid Choice. Please enter a number between 1 to 5." << endl;
 		printMenu();
 		cin >> userPrompt;
@@ -64,7 +74,11 @@ void Menu::processPrompt(const int& prompt){
 	
 	if (prompt == 4) advancedMovieFilter();
 
-	if (prompt == 6) return;
+	if (prompt == 6) printFavorites();
+	if (prompt == 7) {
+		optionTracker = 7;
+		return;
+	}
 }
 
 void Menu::printTenRandomMovies() {
@@ -95,7 +109,7 @@ void Menu::printTenRandomMovies() {
 
 	// printMenu();
 	// processPrompt(getPrompt());
-	Menu();
+	return;
 }
 
 void Menu::advancedMovieFilter() {
@@ -254,7 +268,7 @@ void Menu::advancedMovieFilter() {
 				//this will be used to validate in AddToFav
 				cout << "Add any of the movies to favorites?" << endl;
 				string uPrompt;
-				cin >> uPrompt;
+				// cin >> uPrompt;
 				bool toAdd = promptYesOrNo(uPrompt);
 				if (toAdd) {
 					addToFavorites();
@@ -271,8 +285,7 @@ void Menu::advancedMovieFilter() {
 			break;
 		
 		case '4':
-			Menu();
-			break;	
+			return;	
 		default:
 			cout << "Invalid Choice. Please enter a number between 1 and 4" << endl;
 		}
@@ -381,6 +394,17 @@ bool Menu::checkInFavorites(const int mID){
 		}
 	}
 	return false;
+}
+
+void Menu::printFavorites(){
+	cout << "Favorites List" << endl;
+	cout << "--------------------------------------------------" << endl;
+	vector<movie> fav = user.getFavoritesList();
+	for (unsigned i = 0; i < fav.size(); ++i){
+		fav.at(i).printMovie();
+	}
+	cout << "Total of " << fav.size() << " movies in Favorites." << endl;
+	cout << "--------------------------------------------------" << endl;
 }
 
 void Menu::getCriteria(string title, double ratingOne, double ratingTwo, int yearOne, int yearTwo, int genre) {
