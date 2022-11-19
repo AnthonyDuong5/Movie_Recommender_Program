@@ -124,11 +124,8 @@ void Menu::printFiveByCategories(){
 	vector<movie>dramaGenre = defaultDatabase.returnList();
 	vector<movie>horrorGenre = defaultDatabase.returnList();
 	vector<movie>romanceGenre = defaultDatabase.returnList();
-	vector<movie> newList;
 	int genreCounter = 0;
-	int printcounter = 0;
-	string mGenre;
-
+	
 	//for action
 	actionGenre = defaultDatabase.searchByGenre(2, actionGenre);
 	
@@ -174,7 +171,7 @@ void Menu::printFiveByCategories(){
 				randNum = rand() % actionGenre.size();
 				movie rMovie = actionGenre.at(randNum);
 				rMovie.printMovie();
-				newList.push_back(rMovie);
+				
 				user.AddToTrackList(rMovie);
 			}
 			else if (genreCounter == 1){
@@ -182,7 +179,7 @@ void Menu::printFiveByCategories(){
 				randNum = rand() % comedyGenre.size();
 				movie rMovie = comedyGenre.at(randNum);
 				rMovie.printMovie();
-				newList.push_back(rMovie);
+				
 				user.AddToTrackList(rMovie);
 			}
 			else if (genreCounter == 2){
@@ -190,7 +187,7 @@ void Menu::printFiveByCategories(){
 				randNum = rand() % dramaGenre.size();
 				movie rMovie = dramaGenre.at(randNum);
 				rMovie.printMovie();
-				newList.push_back(rMovie);
+				
 				user.AddToTrackList(rMovie);
 			}
 			else if (genreCounter == 3){
@@ -198,7 +195,7 @@ void Menu::printFiveByCategories(){
 				randNum = rand() % horrorGenre.size();
 				movie rMovie = horrorGenre.at(randNum);
 				rMovie.printMovie();
-				newList.push_back(rMovie);
+				
 				user.AddToTrackList(rMovie);
 			}
 			else if (genreCounter == 4){
@@ -206,7 +203,7 @@ void Menu::printFiveByCategories(){
 				randNum = rand() % romanceGenre.size();
 				movie rMovie = romanceGenre.at(randNum);
 				rMovie.printMovie();
-				newList.push_back(rMovie);
+				
 				user.AddToTrackList(rMovie);
 			}
 		}
