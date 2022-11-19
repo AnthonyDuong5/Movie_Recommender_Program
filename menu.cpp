@@ -115,11 +115,6 @@ void Menu::printTenRandomMovies() {
 
 void Menu::printFiveByCategories(){
 	cout << "Here's a list of some movies you might be interested in." << endl;
-	// cout << "1) Adventure || 2) Action     || 3) Animation      || 4) Children \n"
-	// 					<< "5) Comedy    || 6) Crime      || 7) Documentaries  || 8) Drama \n"
-	// 					<< "9) Fantasy   || 10) FilmNoir  || 11) Horror        || 12) IMAX \n"
-	// 					<< "13) Musical  || 14) Mystery   || 15) Romance       || 16) SciFi \n"
-	// 					<< "17) Thriller || 18) War       || 19) Western \n";
 	movieList defaultDatabase;
 	defaultDatabase.readMovieListFiles();
 	
@@ -220,22 +215,6 @@ void Menu::printFiveByCategories(){
 		}
 		++genreCounter;
 	}
-	// unsigned randIndex;
-	// for (unsigned i = 0; i < 10; ++i) {
-	// 	randIndex = rand() % user.getViewingList().size();
-	// 	movie curMovie = user.getViewingList().at(randIndex);
-	// 	cout << i + 1 << "." << endl;
-	// 	curMovie.printMovie();
-
-	// 	//added this line to track results
-	// 	user.AddToTrackList(curMovie);
-		
-	// 	user.removeFromViewingList(randIndex);
-	// }
-
-
-
-
 }
 
 
