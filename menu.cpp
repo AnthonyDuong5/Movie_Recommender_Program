@@ -71,7 +71,8 @@ int Menu::getPrompt(){
 
 void Menu::processPrompt(const int& prompt){
 	if (prompt == 1) printTenRandomMovies();
-	
+	if (prompt == 2) printFiveByCategories();
+
 	if (prompt == 4) advancedMovieFilter();
 
 	if (prompt == 6) printFavorites();
@@ -111,6 +112,31 @@ void Menu::printTenRandomMovies() {
 	// processPrompt(getPrompt());
 	return;
 }
+
+void Menu::printFiveByCategories(){
+	cout << "Here's a list of some movies you might be interested in." << endl;
+	cout << "1) Adventure || 2) Action     || 3) Animation      || 4) Children \n"
+						<< "5) Comedy    || 6) Crime      || 7) Documentaries  || 8) Drama \n"
+						<< "9) Fantasy   || 10) FilmNoir  || 11) Horror        || 12) IMAX \n"
+						<< "13) Musical  || 14) Mystery   || 15) Romance       || 16) SciFi \n"
+						<< "17) Thriller || 18) War       || 19) Western \n";
+	movieList defaultDatabase;
+	defaultDatabase.readMovieListFiles();
+	vector<movie>actionGenre;
+	vector<movie>comedyGenre;
+	vector<movie>dramaGenre;
+	vector<movie>horrorGenre;
+	vector<movie>romanceGenre;
+	int printcounter = 0;
+	string mGenre;
+	while (printcounter < 5){
+		for (unsigned i = 0; i < defaultDatabase.returnList().size(); ++i){
+			
+		}
+	}
+}
+
+
 
 void Menu::advancedMovieFilter() {
 	optionTracker = 4;
