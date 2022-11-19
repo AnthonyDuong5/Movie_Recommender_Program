@@ -127,26 +127,18 @@ void Menu::printFiveByCategories(){
 	int genreCounter = 0;
 	int printcounter = 0;
 	string mGenre;
-	cout << "works up to here." << endl;
 
 	//for action
 	actionGenre = defaultDatabase.searchByGenre(2, actionGenre);
-	cout << actionGenre.size() << endl;
-
-	comedyGenre = defaultDatabase.searchByGenre(5, comedyGenre);
-	cout << comedyGenre.size() << endl;
-
-	dramaGenre = defaultDatabase.searchByGenre(8, dramaGenre);
-	cout << dramaGenre.size() << endl;
-
-	horrorGenre = defaultDatabase.searchByGenre(11, horrorGenre);
-	cout << horrorGenre.size() << endl;
-
-	romanceGenre = defaultDatabase.searchByGenre(15, romanceGenre);
-	cout << romanceGenre.size() << endl;
 	
-
-	cout << "works up to here" << endl;
+	comedyGenre = defaultDatabase.searchByGenre(5, comedyGenre);
+	
+	dramaGenre = defaultDatabase.searchByGenre(8, dramaGenre);
+	
+	horrorGenre = defaultDatabase.searchByGenre(11, horrorGenre);
+	
+	romanceGenre = defaultDatabase.searchByGenre(15, romanceGenre);
+	
 	unsigned randNum;
 	while (genreCounter <5){
 		if (genreCounter == 0){

@@ -41,7 +41,7 @@ Genre HashIt (std::string const& inString) {
 	else if (inString == "Thriller") return Thriller;
 	else if (inString == "War") return War;
 	else if(inString == "Western") return Western;
-	return Comedy;
+	// return Comedy;
 }
 
 void movieList::readMovieListFiles(){
