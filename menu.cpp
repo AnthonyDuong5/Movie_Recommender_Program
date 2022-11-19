@@ -293,11 +293,8 @@ void Menu::advancedMovieFilter() {
 
 
 void Menu::addToFavorites(){
-	cout << "Size of Track List: " << user.ReturnTrackList().size() << endl;
-	// for (unsigned i = 0; i < user.ReturnTrackList().size(); ++i){
-	// 	cout << user.ReturnTrackList().at(i).getTitle();
-	// }
-	//this means user used filter but did not print them. so we will have to output the movies for them.
+
+	//this checks if user used adv filter but did not print the movies. so we will have to output the movies for them
 	if (AdvSearch == true && printed == false){
 		cout << "Your most recent filter list has " << user.ReturnTrackList().size() << " movies." << endl;
 		for (unsigned i = 0; i < user.ReturnTrackList().size(); ++i){
@@ -372,14 +369,6 @@ void Menu::addToFavorites(){
 		cout << "Now returning to Previous Menu..." << endl;
 		return;
 	}
-	// cout << "Add another movie to Favorites? ";
-	// string u3Choice;
-	// bool u3ChoiceYorN;
-	// u3ChoiceYorN = promptYesOrNo(u3Choice);
-	// if (u3ChoiceYorN){
-	// 	addToFavorites();
-	// }
-	// optionTracker = 3;	
 }
 
 bool Menu::checkInFavorites(const int mID){
