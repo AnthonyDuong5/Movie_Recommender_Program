@@ -13,7 +13,6 @@ class movieList{
 		vector <movie> list;
 		vector <movie> sortedlist;
 		vector <string> genres;  //stores 19 genres 
-		
 	public:
 
 		//DEFAULT CONSTRUCTOR, CREATION OF MOVIE FILE, PARSING
