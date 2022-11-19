@@ -68,6 +68,7 @@ void Menu::processPrompt(const int& prompt){
 }
 
 void Menu::printTenRandomMovies() {
+	optionTracker = 1;
 	unsigned randIndex;
 	for (unsigned i = 0; i < 10; ++i) {
 		randIndex = rand() % user.getViewingList().size();
@@ -80,7 +81,7 @@ void Menu::printTenRandomMovies() {
 		
 		user.removeFromViewingList(randIndex);
 	}
-	optionTracker = 1;
+	
 	string addChoice;
 
 	cout << "Add any of the Movies to Favorites? ";
@@ -98,7 +99,7 @@ void Menu::printTenRandomMovies() {
 }
 
 void Menu::advancedMovieFilter() {
-	AdvSearch = true;
+	optionTracker = 4;
 	movieList MovieDatabase;
 	string movieTitle;
 	double movieRatingOne = 0.0;
@@ -251,7 +252,6 @@ void Menu::advancedMovieFilter() {
 					filteredList.at(i).printMovie();
 				}
 				//this will be used to validate in AddToFav
-				printed = true;
 				cout << "Add any of the movies to favorites?" << endl;
 				string uPrompt;
 				cin >> uPrompt;
@@ -287,22 +287,30 @@ void Menu::advancedMovieFilter() {
 void Menu::addToFavorites(){
 
 	//this checks if user used adv filter but did not print the movies. so we will have to output the movies for them
-	if (AdvSearch == true && printed == false){
-		cout << "Your most recent filter list has " << user.ReturnTrackList().size() << " movies." << endl;
-		for (unsigned i = 0; i < user.ReturnTrackList().size(); ++i){
-			user.ReturnTrackList().at(i).printMovie();
-		}
+	if (optionTracker == 1){
+		cout << "Adding to Favorites from a list of random movies. " << endl;
 	}
-	cout << "Enter the itemId of the movie you want to add from the list above:";
+	else if (optionTracker == 2){
+		cout << "Adding to Favorites from Browsed Categories. " << endl;
+	}
+	else if (optionTracker == 3){
+		cout << "Adding to Favorites from Searched List. " << endl;
+	}
+	else if (optionTracker == 4){
+		cout << "Adding to Favorites from Advanced Search." << endl;
+	}
+
+	cout << "Enter the itemId of the movie you want to add from the list displayed above:";
 	int inputID;
 	cin >> inputID;
 	while (cin.fail()) {
-		//Not an int.
+		//input is not an int.
 		cout << "Please enter a valid itemId." << endl;
 		cin.clear();
 		cin.ignore(256, '\n');
 		cin >> inputID;
 	}
+	//found is a bool that will be set to true if movie to add is already in favorites
 	bool found = false;
 	for (int i = 0; i < user.ReturnTrackList().size(); ++i){
 		//if the movie has been found inside the track list

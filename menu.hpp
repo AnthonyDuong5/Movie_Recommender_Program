@@ -19,6 +19,8 @@ class Menu {
 		int getPrompt();	//this gets user's choice from menu
 		void processPrompt(const int& prompt);
 		void printTenRandomMovies();
+		void printFiveByCategories();
+		void searchByTitle();
 		void advancedMovieFilter();
 		
 		void getCriteria(string, double, double, int, int, int);
@@ -27,7 +29,6 @@ class Menu {
 		void addToFavorites();
 		bool checkInFavorites(const int);
 		int optionTracker = 0;
-		bool printed = false;
 		bool AdvSearch = false;
 };
 
