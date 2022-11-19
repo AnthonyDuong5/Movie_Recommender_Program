@@ -27,6 +27,8 @@ class Menu {
 		void addToFavorites();
 		bool checkInFavorites(const int);
 		int optionTracker = 0;
+		bool printed = false;
+		bool AdvSearch = false;
 };
 
 #endif

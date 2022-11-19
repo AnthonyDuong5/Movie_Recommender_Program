@@ -13,6 +13,7 @@ Menu::Menu() {
 	printMenu();
     int choice = getPrompt();
     processPrompt(choice);
+	user.ClearTrackList();
 	// repeat();
 }
 
@@ -66,7 +67,6 @@ void Menu::processPrompt(const int& prompt){
 
 void Menu::printTenRandomMovies() {
 	unsigned randIndex;
-
 	for (unsigned i = 0; i < 10; ++i) {
 		randIndex = rand() % user.getViewingList().size();
 		movie curMovie = user.getViewingList().at(randIndex);
@@ -78,7 +78,6 @@ void Menu::printTenRandomMovies() {
 		
 		user.removeFromViewingList(randIndex);
 	}
-	cout << "Return Track List has " << user.ReturnTrackList().size() << " movies." << endl;
 	optionTracker = 1;
 	string addChoice;
 
@@ -91,12 +90,13 @@ void Menu::printTenRandomMovies() {
 		addToFavorites();
 	}
 
-	printMenu();
-	processPrompt(getPrompt());
+	// printMenu();
+	// processPrompt(getPrompt());
+	Menu();
 }
 
 void Menu::advancedMovieFilter() {
-
+	AdvSearch = true;
 	movieList MovieDatabase;
 	string movieTitle;
 	double movieRatingOne = 0.0;
@@ -119,7 +119,8 @@ void Menu::advancedMovieFilter() {
 		cout << "1) Begin Filtering \n"
 			 << "2) Print Out Movies \n"
 			 << "3) Clear Filter \n"
-			 << "4) Return to Menu \n";
+			 << "4) Add To Favorites \n"
+			 << "5) Return to Menu \n";
 		cin >> choice;
 		cout << "------------------" << endl;
 		switch (choice) {
@@ -226,7 +227,12 @@ void Menu::advancedMovieFilter() {
 			getCriteria(movieTitle, movieRatingOne, movieRatingTwo, movieYearOne, movieYearTwo, movieGenre);
 
 			if (filteredList.size() > 0) {
-			cout << filteredList.size() << " movies found that meet your criteria! Enter '2' to view movies." << endl;
+				cout << filteredList.size() << " movies found that meet your criteria! Enter '2' to view movies." << endl;
+				//updated tracking list to equal to filtered list
+				for (unsigned i = 0; i < filteredList.size(); ++i){
+					movie curMovie = filteredList.at(i);
+					user.AddToTrackList(curMovie);
+				}
 			}
 			else
 				cout << "No movies found under the criteria given." << endl;
@@ -240,22 +246,25 @@ void Menu::advancedMovieFilter() {
 			 if(filteredList.size()==0)
 			 	cout << "No movies found under the criteria given or filter is empty. \n";
 			 else{
+				
+
 				for (unsigned i = 0; i < filteredList.size(); ++i) {
-				cout << "--------------------------------------------------" << endl;
-				cout << "title: " << filteredList.at(i).getTitle() << endl;
-				cout << "year: " << filteredList.at(i).getYear() << endl;
-				cout << "director: " << filteredList.at(i).getDirector() << endl;
-				cout << "casting: " << filteredList.at(i).getCast() << endl;
-				cout << "rating: " << filteredList.at(i).getRating() << endl;
-				cout << "imbdid: " << filteredList.at(i).getImdbId() << endl;
-				cout << "itemid: " << filteredList.at(i).getItemId() << endl;
-				cout << "genre: ";
-				for (auto genre : filteredList.at(i).getGenreList()) {cout << genre << " ";} 
-				cout << endl;
-				cout << "--------------------------------------------------" << endl;
-				//added this line to track results
-				user.ReturnTrackList().push_back(filteredList.at(i));
+				// cout << "--------------------------------------------------" << endl;
+				// cout << "title: " << filteredList.at(i).getTitle() << endl;
+				// cout << "year: " << filteredList.at(i).getYear() << endl;
+				// cout << "director: " << filteredList.at(i).getDirector() << endl;
+				// cout << "casting: " << filteredList.at(i).getCast() << endl;
+				// cout << "rating: " << filteredList.at(i).getRating() << endl;
+				// cout << "imbdid: " << filteredList.at(i).getImdbId() << endl;
+				// cout << "itemid: " << filteredList.at(i).getItemId() << endl;
+				// cout << "genre: ";
+				// for (auto genre : filteredList.at(i).getGenreList()) {cout << genre << " ";} 
+				// cout << endl;
+				// cout << "--------------------------------------------------" << endl;
+					filteredList.at(i).printMovie();
 				}
+				//this will be used to validate in AddToFav
+				printed = true;
 			 }
 			break;
 		case '3':
@@ -266,8 +275,10 @@ void Menu::advancedMovieFilter() {
 					cout << "Filter is clear." << endl;
 				}
 			break;
-
+		
 		case '4':
+				addToFavorites();
+		case '5':
 			Menu();
 			break;
 		default:
@@ -275,14 +286,25 @@ void Menu::advancedMovieFilter() {
 		}
 
 
-	}while (choice != '4');
+	}while (choice != '5');
 	
 	optionTracker = 2;
 }
 
 
 void Menu::addToFavorites(){
-	cout << "Enter the itemId of the movie you want to add." << endl;
+	cout << "Size of Track List: " << user.ReturnTrackList().size() << endl;
+	// for (unsigned i = 0; i < user.ReturnTrackList().size(); ++i){
+	// 	cout << user.ReturnTrackList().at(i).getTitle();
+	// }
+	//this means user used filter but did not print them. so we will have to output the movies for them.
+	if (AdvSearch == true && printed == false){
+		cout << "Your most recent filter list has " << user.ReturnTrackList().size() << " movies." << endl;
+		for (unsigned i = 0; i < user.ReturnTrackList().size(); ++i){
+			user.ReturnTrackList().at(i).printMovie();
+		}
+	}
+	cout << "Enter the itemId of the movie you want to add from the list above:";
 	int inputID;
 	cin >> inputID;
 	while (cin.fail()) {
@@ -292,11 +314,12 @@ void Menu::addToFavorites(){
 		cin.ignore(256, '\n');
 		cin >> inputID;
 	}
-	cout << "Return Track List has " << user.ReturnTrackList().size() << "movies." << endl;
+	bool found = false;
 	for (int i = 0; i < user.ReturnTrackList().size(); ++i){
-		//if the movie has been found inside the track lis
+		//if the movie has been found inside the track list
 		if (inputID == user.ReturnTrackList().at(i).getItemId()){
-			cout << user.ReturnTrackList().at(i).getTitle() << "has been selected.";
+			found = true;
+			cout << user.ReturnTrackList().at(i).getTitle() << " has been selected. ";
 			//this if statement means the movie has not been in favorites
 			if (checkInFavorites(inputID) == false){
 				cout << "Would you like to add this movie?";
@@ -305,7 +328,7 @@ void Menu::addToFavorites(){
 				//reconfirm if they want to add, if yes, we add
 				if (YorN){
 					user.getFavoritesList().push_back(user.ReturnTrackList().at(i));
-					cout << user.ReturnTrackList().at(i).getTitle() << "has been added to Favorites." << endl;
+					cout << user.ReturnTrackList().at(i).getTitle() << " has been added to Favorites." << endl;
 				}
 				//else, we as if they want to add a different movie.
 				
@@ -328,31 +351,34 @@ void Menu::addToFavorites(){
 			//we see the movie in favorites, so we say this and do not add it to the fav list again.
 			else{
 				cout << user.ReturnTrackList().at(i).getTitle() << "is already in Favorites." << endl;
-				
-				cout << "Add a different movie? ";
-					string u2Choice;
-					bool u2ChoiceYorN = promptYesOrNo(u2Choice);
-					//if so, we will rerun the addToFavorites() func.
-					if (u2ChoiceYorN){
-						addToFavorites();
-					}
-					//otherwise, we will return to menu
-					else {
-						cout << "Now returning to Main Menu..." << endl;
-						Menu();
-						break;
-					}
 			}
 		}
 	}
-	cout << "There are currently " << user.getFavoritesList().size() << " movies in your Favorites List. " << endl;
-	cout << "Add another movie to Favorites? ";
-	string u3Choice;
-	bool u3ChoiceYorN;
-	u3ChoiceYorN = promptYesOrNo(u3Choice);
-	if (u3ChoiceYorN){
-		addToFavorites();
+	//if the movie was not found(itemid is wrong), we output an error message and 
+	if (found == false) {
+		cout << "Movie not found. Please enter a valid ItemId." << endl;
 	}
+
+	cout << "There are currently " << user.getFavoritesList().size() << " movies in your Favorites List. " << endl;
+	cout << "Add a different movie? ";
+	string u2Choice;
+	bool u2ChoiceYorN = promptYesOrNo(u2Choice);
+	//if so, we will rerun the addToFavorites() func.
+	if (u2ChoiceYorN){
+		addToFavorites();	
+	}	
+	//otherwise, we will return to menu
+	else {
+		cout << "Now returning to Previous Menu..." << endl;
+		return;
+	}
+	// cout << "Add another movie to Favorites? ";
+	// string u3Choice;
+	// bool u3ChoiceYorN;
+	// u3ChoiceYorN = promptYesOrNo(u3Choice);
+	// if (u3ChoiceYorN){
+	// 	addToFavorites();
+	// }
 	// optionTracker = 3;	
 }
 

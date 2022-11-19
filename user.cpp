@@ -31,6 +31,9 @@ void User::AddToTrackList(const movie& m){
 	TrackViewList.push_back(m);
 }
 
+void User::ClearTrackList(){
+	TrackViewList.clear();
+}
 // void User::printMenu(){
 // 	//first output some prompt
 // 	cout << "Please Select An Option Below (1-5)" << endl;

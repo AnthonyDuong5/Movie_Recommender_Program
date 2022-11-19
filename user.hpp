@@ -33,6 +33,8 @@ class User {
 		User();
 		vector<movie> ReturnTrackList (){return TrackViewList;}
 		void AddToTrackList(const movie& );
+		void ClearTrackList();
+
 		void AddToFavoriteList(const movie& m1);
 		vector <movie>& getFavoritesList(){ return Favorites;}
 		vector<movie> getDefaultList(){return DefaultList;}
@@ -40,7 +42,6 @@ class User {
 		
 		// vector<movie> getPrintedList(){return PrintedList;}
 		void removeFromViewingList(unsigned idx);
-
 		vector<movie> getRec();
 		
 };
