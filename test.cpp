@@ -133,25 +133,25 @@
 //     }
 // }
 
-TEST (SortTest, testSearchMovieTitle){
-    movieList MovieDatabase;
-    MovieDatabase.readMovieListFiles();
-    MovieDatabase.searchMovieTitle("Hotel");
-    //MovieDatabase.printMovies();
-    for (unsigned i = 0; i < 4; ++i) {
-        cout << "--------------------------------------------------" << endl;
-		cout << "title: " << MovieDatabase.returnSortedList().at(i).getTitle() << endl;
-		cout << "year: " << MovieDatabase.returnSortedList().at(i).getYear() << endl;
-		cout << "director: " << MovieDatabase.returnSortedList().at(i).getDirector() << endl;
-		cout << "casting: " << MovieDatabase.returnSortedList().at(i).getCast() << endl;
-		cout << "rating: " << MovieDatabase.returnSortedList().at(i).getRating() << endl;
-		cout << "imbdid: " << MovieDatabase.returnSortedList().at(i).getImdbId() << endl;
-		cout << "itemid: " << MovieDatabase.returnSortedList().at(i).getItemId() << endl;
-		cout << "genre: " ;
-		for (auto gen : MovieDatabase.returnSortedList().at(i).getGenreList()){cout<<gen<<" ";}cout<<endl;
-        cout << "--------------------------------------------------" << endl;
-    }   
-}
+// TEST (SortTest, testSearchMovieTitle){
+//     movieList MovieDatabase;
+//     MovieDatabase.readMovieListFiles();
+//     MovieDatabase.searchMovieTitle("Hotel");
+//     //MovieDatabase.printMovies();
+//     for (unsigned i = 0; i < 4; ++i) {
+//         cout << "--------------------------------------------------" << endl;
+// 		cout << "title: " << MovieDatabase.returnSortedList().at(i).getTitle() << endl;
+// 		cout << "year: " << MovieDatabase.returnSortedList().at(i).getYear() << endl;
+// 		cout << "director: " << MovieDatabase.returnSortedList().at(i).getDirector() << endl;
+// 		cout << "casting: " << MovieDatabase.returnSortedList().at(i).getCast() << endl;
+// 		cout << "rating: " << MovieDatabase.returnSortedList().at(i).getRating() << endl;
+// 		cout << "imbdid: " << MovieDatabase.returnSortedList().at(i).getImdbId() << endl;
+// 		cout << "itemid: " << MovieDatabase.returnSortedList().at(i).getItemId() << endl;
+// 		cout << "genre: " ;
+// 		for (auto gen : MovieDatabase.returnSortedList().at(i).getGenreList()){cout<<gen<<" ";}cout<<endl;
+//         cout << "--------------------------------------------------" << endl;
+//     }   
+// }
 
 // TEST(SortByYearTest, SortAscending) {
 //     movieList MovieDatabase;
@@ -337,37 +337,33 @@ TEST (SortTest, testSearchMovieTitle){
 //     cout << "#1 director: "<<help_getMaximumValue(freqMap).first<<" "<<help_getMaximumValue(freqMap).second<<endl;
 // }
 
-TEST(getRec, genreFrequence_template){
-    movieList MovieDatabase;
-    MovieDatabase.readMovieListFiles();
-    vector<movie> MovieList = MovieDatabase.returnList();
-    //get all the years of Database and calculate its frequency
-    vector<Genre> genres;
-	for (auto x: MovieList){
-		for(auto y: x.genre_list){
-			genres.push_back(y);
-		}
-	}
-    map<Genre, int> freqMap3 = help_getFreq(genres);	
-	Genre MostSeenGenres1 = help_getMaximumValue(freqMap3).first;
-    string g1 = MovieDatabase.getGenres().at(MostSeenGenres1-1);
-    freqMap3.erase(MostSeenGenres1);
-    cout << "#1 Genre: "<<g1<<" "<<help_getMaximumValue(freqMap3).second<<" movies"<<endl;
+// TEST(getRec, genreFrequence_template){
+//     movieList MovieDatabase;
+//     MovieDatabase.readMovieListFiles();
+//     vector<movie> MovieList = MovieDatabase.returnList();
+//     //get all the years of Database and calculate its frequency
+//     vector<Genre> genres;
+// 	for (auto x: MovieList){
+// 		for(auto y: x.genre_list){
+// 			genres.push_back(y);
+// 		}
+// 	}
+//     map<Genre, int> freqMap3 = help_getFreq(genres);	
+// 	Genre MostSeenGenres1 = help_getMaximumValue(freqMap3).first;
+//     string g1 = MovieDatabase.getGenres().at(MostSeenGenres1-1);
+//     freqMap3.erase(MostSeenGenres1);
+//     cout << "#1 Genre: "<<g1<<" "<<help_getMaximumValue(freqMap3).second<<" movies"<<endl;
 	
-    Genre MostSeenGenres2 = help_getMaximumValue(freqMap3).first;
-    string g2 = MovieDatabase.getGenres().at(MostSeenGenres2-1);
-	freqMap3.erase(MostSeenGenres2);
-    cout << "#2 Genre: "<<g2<<" "<<help_getMaximumValue(freqMap3).second<<" movies"<<endl;
+//     Genre MostSeenGenres2 = help_getMaximumValue(freqMap3).first;
+//     string g2 = MovieDatabase.getGenres().at(MostSeenGenres2-1);
+// 	freqMap3.erase(MostSeenGenres2);
+//     cout << "#2 Genre: "<<g2<<" "<<help_getMaximumValue(freqMap3).second<<" movies"<<endl;
 	
-    Genre MostSeenGenres3 = help_getMaximumValue(freqMap3).first;
-	string g3 = MovieDatabase.getGenres().at(MostSeenGenres3-1);
-    freqMap3.erase(MostSeenGenres3);
-    cout << "#3 Genre: "<<g3<<" "<<help_getMaximumValue(freqMap3).second<<" movies"<<endl;
-	
-	
-
-    
-}
+//     Genre MostSeenGenres3 = help_getMaximumValue(freqMap3).first;
+// 	string g3 = MovieDatabase.getGenres().at(MostSeenGenres3-1);
+//     freqMap3.erase(MostSeenGenres3);
+//     cout << "#3 Genre: "<<g3<<" "<<help_getMaximumValue(freqMap3).second<<" movies"<<endl;
+// }
 
 
 // TEST(getRec, directorFrequence_template){
