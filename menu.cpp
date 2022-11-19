@@ -174,6 +174,7 @@ void Menu::printFiveByCategories(){
 				movie rMovie = actionGenre.at(randNum);
 				rMovie.printMovie();
 				newList.push_back(rMovie);
+				user.AddToTrackList(rMovie);
 			}
 			else if (genreCounter == 1){
 				
@@ -181,7 +182,7 @@ void Menu::printFiveByCategories(){
 				movie rMovie = comedyGenre.at(randNum);
 				rMovie.printMovie();
 				newList.push_back(rMovie);
-				
+				user.AddToTrackList(rMovie);
 			}
 			else if (genreCounter == 2){
 				
@@ -189,6 +190,7 @@ void Menu::printFiveByCategories(){
 				movie rMovie = dramaGenre.at(randNum);
 				rMovie.printMovie();
 				newList.push_back(rMovie);
+				user.AddToTrackList(rMovie);
 			}
 			else if (genreCounter == 3){
 				
@@ -196,6 +198,7 @@ void Menu::printFiveByCategories(){
 				movie rMovie = horrorGenre.at(randNum);
 				rMovie.printMovie();
 				newList.push_back(rMovie);
+				user.AddToTrackList(rMovie);
 			}
 			else if (genreCounter == 4){
 				
@@ -203,10 +206,12 @@ void Menu::printFiveByCategories(){
 				movie rMovie = romanceGenre.at(randNum);
 				rMovie.printMovie();
 				newList.push_back(rMovie);
+				user.AddToTrackList(rMovie);
 			}
 		}
 		++genreCounter;
 	}
+	
 }
 
 

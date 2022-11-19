@@ -14,7 +14,7 @@ enum Genre{
     Children=4,
     Comedy=5,
     Crime=6,
-    Documentarys=7,
+    Documentary=7,
     Drama=8,
     Fantasy=9,
     FilmNoir=10,
