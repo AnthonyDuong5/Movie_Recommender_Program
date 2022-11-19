@@ -16,40 +16,15 @@ TEST(SortTest, testSortByRatingDescending) {
     movieList MovieDatabase;
     MovieDatabase.readMovieListFiles();
     MovieDatabase.sortByRatingDescending();
-    for (unsigned i = 0; i < 10000; i += 1000) {
-        cout << "--------------------------------------------------" << endl;
-		cout << "title: " << MovieDatabase.returnSortedList().at(i).getTitle() << endl;
-		cout << "year: " << MovieDatabase.returnSortedList().at(i).getYear() << endl;
-		cout << "director: " << MovieDatabase.returnSortedList().at(i).getDirector() << endl;
-		cout << "casting: " << MovieDatabase.returnSortedList().at(i).getCast() << endl;
-		cout << "rating: " << MovieDatabase.returnSortedList().at(i).getRating() << endl;
-		cout << "imbdid: " << MovieDatabase.returnSortedList().at(i).getImdbId() << endl;
-		cout << "itemid: " << MovieDatabase.returnSortedList().at(i).getItemId() << endl;
-		cout << "genre: ";
-        for (auto genre : MovieDatabase.returnSortedList().at(i).getGenreList()) {cout << genre << " ";} 
-        cout << endl;
-        cout << "--------------------------------------------------" << endl;
-	}
+    MovieDatabase.printMovies();
 }
 
 TEST(SortTest, testSortByRatingAscending) {
     movieList MovieDatabase;
     MovieDatabase.readMovieListFiles();
     MovieDatabase.sortByRatingAscending();
-    for (unsigned i = 0; i < 10000; i += 1000) {
-        cout << "--------------------------------------------------" << endl;
-		cout << "title: " << MovieDatabase.returnSortedList().at(i).getTitle() << endl;
-		cout << "year: " << MovieDatabase.returnSortedList().at(i).getYear() << endl;
-		cout << "director: " << MovieDatabase.returnSortedList().at(i).getDirector() << endl;
-		cout << "casting: " << MovieDatabase.returnSortedList().at(i).getCast() << endl;
-		cout << "rating: " << MovieDatabase.returnSortedList().at(i).getRating() << endl;
-		cout << "imbdid: " << MovieDatabase.returnSortedList().at(i).getImdbId() << endl;
-		cout << "itemid: " << MovieDatabase.returnSortedList().at(i).getItemId() << endl;
-		cout << "genre: ";
-        for (auto genre : MovieDatabase.returnSortedList().at(i).getGenreList()) {cout << genre << " ";} 
-        cout << endl;
-        cout << "--------------------------------------------------" << endl;
-	}
+    MovieDatabase.printMovies();
+    
 }
 
 TEST(SortTest, testSearchByRatings) {
@@ -99,83 +74,37 @@ TEST(SortTest, testSearchByRatings) {
 TEST(SortTest, testSortAscendingTitles) {
     movieList MovieDatabase;
     MovieDatabase.readMovieListFiles();
-    MovieDatabase.sortAscendingTitles();
-    // for (unsigned i = 0; i < 100; i += 4) {
-    //     cout << "--------------------------------------------------" << endl;
-	// 	cout << "title: " << MovieDatabase.returnSortedList().at(i).getTitle() << endl;
-	// 	cout << "year: " << MovieDatabase.returnSortedList().at(i).getYear() << endl;
-	// 	cout << "director: " << MovieDatabase.returnSortedList().at(i).getDirector() << endl;
-	// 	cout << "casting: " << MovieDatabase.returnSortedList().at(i).getCast() << endl;
-	// 	cout << "rating: " << MovieDatabase.returnSortedList().at(i).getRating() << endl;
-	// 	cout << "imbdid: " << MovieDatabase.returnSortedList().at(i).getImdbId() << endl;
-	// 	cout << "itemid: " << MovieDatabase.returnSortedList().at(i).getItemId() << endl;
-	// 	cout << "genre: " << MovieDatabase.returnSortedList().at(i).getGenre() << endl;
-    //     cout << "--------------------------------------------------" << endl;
-    // }
+    MovieDatabase.sortAscendingTitles(MovieDatabase.returnList());
 	MovieDatabase.printMovies();
 }
 
 TEST(SortTest, testSortDescendingTitles) {
     movieList MovieDatabase;
     MovieDatabase.readMovieListFiles();
-    MovieDatabase.sortDescendingTitles();
-    for (unsigned i = 0; i < 100; i += 4) {
-        cout << "--------------------------------------------------" << endl;
-		cout << "title: " << MovieDatabase.returnSortedList().at(i).getTitle() << endl;
-		cout << "year: " << MovieDatabase.returnSortedList().at(i).getYear() << endl;
-		cout << "director: " << MovieDatabase.returnSortedList().at(i).getDirector() << endl;
-		cout << "casting: " << MovieDatabase.returnSortedList().at(i).getCast() << endl;
-		cout << "rating: " << MovieDatabase.returnSortedList().at(i).getRating() << endl;
-		cout << "imbdid: " << MovieDatabase.returnSortedList().at(i).getImdbId() << endl;
-		cout << "itemid: " << MovieDatabase.returnSortedList().at(i).getItemId() << endl;
-		cout << "genre: " << MovieDatabase.returnSortedList().at(i).getGenre() << endl;
-        cout << "--------------------------------------------------" << endl;
-    }
+    MovieDatabase.sortDescendingTitles(MovieDatabase.returnList());
+    MovieDatabase.printMovies();
 }
 
 TEST (SortTest, testSearchMovieTitle){
     movieList MovieDatabase;
     MovieDatabase.readMovieListFiles();
     MovieDatabase.searchMovieTitle("Hotel");
-    //MovieDatabase.printMovies();
-    for (unsigned i = 0; i < 4; ++i) {
-        cout << "--------------------------------------------------" << endl;
-		cout << "title: " << MovieDatabase.returnSortedList().at(i).getTitle() << endl;
-		cout << "year: " << MovieDatabase.returnSortedList().at(i).getYear() << endl;
-		cout << "director: " << MovieDatabase.returnSortedList().at(i).getDirector() << endl;
-		cout << "casting: " << MovieDatabase.returnSortedList().at(i).getCast() << endl;
-		cout << "rating: " << MovieDatabase.returnSortedList().at(i).getRating() << endl;
-		cout << "imbdid: " << MovieDatabase.returnSortedList().at(i).getImdbId() << endl;
-		cout << "itemid: " << MovieDatabase.returnSortedList().at(i).getItemId() << endl;
-		cout << "genre: " ;
-		for (auto gen : MovieDatabase.returnSortedList().at(i).getGenreList()){cout<<gen<<" ";}cout<<endl;
-        cout << "--------------------------------------------------" << endl;
-    }   
+    MovieDatabase.printMovies();
+    
 }
 
 TEST(SortByYearTest, SortAscending) {
     movieList MovieDatabase;
     MovieDatabase.readMovieListFiles();
     MovieDatabase.sortByYearAscending();
-    for (unsigned i = 0; i < 400; i+=40) {
-        cout << "--------------------------------------------------" << endl;
-		cout << "title: " << MovieDatabase.returnSortedList().at(i).getTitle() << endl;
-		cout << "year: " << MovieDatabase.returnSortedList().at(i).getYear() << endl;
-		cout << "director: " << MovieDatabase.returnSortedList().at(i).getDirector() << endl;
-		cout << "casting: " << MovieDatabase.returnSortedList().at(i).getCast() << endl;
-		cout << "rating: " << MovieDatabase.returnSortedList().at(i).getRating() << endl;
-		cout << "imbdid: " << MovieDatabase.returnSortedList().at(i).getImdbId() << endl;
-		cout << "itemid: " << MovieDatabase.returnSortedList().at(i).getItemId() << endl;
-		cout << "genre: ";
-        for (auto genre : MovieDatabase.returnSortedList().at(i).getGenreList()) {cout << genre << " ";} 
-        cout << endl;
-        cout << "--------------------------------------------------" << endl;
-	}
+    MovieDatabase.printMovies();
+    
 }
 
 TEST(SortByYearTest, SortDescending) {
     movieList MovieDatabase;
     MovieDatabase.readMovieListFiles();
+    MovieDatabase.sortByYearDescending();
     MovieDatabase.sortByYearDescending();
     for (unsigned i = 0; i < 5000; i+=500) {
         cout << "--------------------------------------------------" << endl;
@@ -266,6 +195,7 @@ TEST(movie, printmovie){
     }
     cout<<MovieList.size()<<" movies"<<endl;
 }
+
 TEST(getRec, yearFrequence){
     movieList MovieDatabase;
     MovieDatabase.readMovieListFiles();
@@ -290,22 +220,11 @@ TEST(getRec, yearFrequence){
         cout << it.first << ' '
              << it.second << endl;
     }
-    cout << getMaximumValue(freqMap).first<<endl;
+    cout << help_getMaximumValue(freqMap).first<<endl;
 }
-TEST(getRec, yearFrequence_template){
 
-   movieList MovieDatabase;
-   MovieDatabase.readMovieListFiles();
-   vector<movie> MovieList = MovieDatabase.returnList();
-   //get all the years of Database and calculate its frequency
-   vector<int>yearlist;
-   for(auto x: MovieList){
-       yearlist.push_back(x.getYear());
-   }
-   //using a map to store year:frequency
-   map<int, int> freqMap = help_getFreq(yearlist);
-   cout << "#1 year: "<<help_getMaximumValue(freqMap).first<<" "<<help_getMaximumValue(freqMap).second<<endl;
-}
+
+TEST(getRec, yearFrequence_template){
 
     movieList MovieDatabase;
     MovieDatabase.readMovieListFiles();
@@ -319,6 +238,7 @@ TEST(getRec, yearFrequence_template){
     map<int, int> freqMap = help_getFreq(yearlist);
     cout << "#1 year: "<<help_getMaximumValue(freqMap).first<<" "<<help_getMaximumValue(freqMap).second<<endl;
 }
+
 
 TEST(getRec, directorFrequence_template){
     movieList MovieDatabase;
@@ -366,7 +286,7 @@ TEST(getRec, genreFrequence_template){
 }
 
 
-TEST(getRec, directorFrequence_template){
+TEST(getRec, directorFrequence_template2){
    movieList MovieDatabase;
    MovieDatabase.readMovieListFiles();
    vector<movie> MovieList = MovieDatabase.returnList();
