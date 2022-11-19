@@ -19,12 +19,13 @@ Menu::Menu() {
 
 void Menu::printMenu(){
 	//first output some prompt
-	cout << "Please Select An Option Below (1-5)" << endl;
+	cout << "Please Select An Option Below (1-6)" << endl;
 	cout << "1) View Random Movies.\n"
-	     << "2) Advanced Movie Filter.\n" 
-		 << "3) Add Movie to Favorites.\n" 
-		 << "4) Get Recommendations.\n"
-		 << "5) Quit.\n";
+	     << "2) Browse Category\n" 
+		 << "3) Search By Title\n" 
+		 << "4) Advanced Movie Filter\n"
+		 << "5) Get Movie Recommendations\n"
+		 << "6) Quit.\n";
 }
 
 int Menu::getPrompt(){
@@ -42,13 +43,13 @@ int Menu::getPrompt(){
 	}
 
 	//this also validates input (integers)
-	while (userPrompt < 1 || userPrompt > 5){
+	while (userPrompt < 1 || userPrompt > 6){
 		cout << "Invalid Choice. Please enter a number between 1 to 5." << endl;
 		printMenu();
 		cin >> userPrompt;
 		while (cin.fail()) {
 			//Not an int.
-			cout << "Please enter a number from 1 to 5." << endl;
+			cout << "Please enter a number from 1 to 6." << endl;
 			printMenu();
 			cin.clear();
 			cin.ignore(256, '\n');
@@ -60,9 +61,10 @@ int Menu::getPrompt(){
 
 void Menu::processPrompt(const int& prompt){
 	if (prompt == 1) printTenRandomMovies();
-	if (prompt == 2) advancedMovieFilter();
+	
+	if (prompt == 4) advancedMovieFilter();
 
-	if (prompt == 5) return;
+	if (prompt == 6) return;
 }
 
 void Menu::printTenRandomMovies() {
@@ -119,8 +121,7 @@ void Menu::advancedMovieFilter() {
 		cout << "1) Begin Filtering \n"
 			 << "2) Print Out Movies \n"
 			 << "3) Clear Filter \n"
-			 << "4) Add To Favorites \n"
-			 << "5) Return to Menu \n";
+			 << "4) Return to Menu \n";
 		cin >> choice;
 		cout << "------------------" << endl;
 		switch (choice) {
@@ -246,25 +247,18 @@ void Menu::advancedMovieFilter() {
 			 if(filteredList.size()==0)
 			 	cout << "No movies found under the criteria given or filter is empty. \n";
 			 else{
-				
-
 				for (unsigned i = 0; i < filteredList.size(); ++i) {
-				// cout << "--------------------------------------------------" << endl;
-				// cout << "title: " << filteredList.at(i).getTitle() << endl;
-				// cout << "year: " << filteredList.at(i).getYear() << endl;
-				// cout << "director: " << filteredList.at(i).getDirector() << endl;
-				// cout << "casting: " << filteredList.at(i).getCast() << endl;
-				// cout << "rating: " << filteredList.at(i).getRating() << endl;
-				// cout << "imbdid: " << filteredList.at(i).getImdbId() << endl;
-				// cout << "itemid: " << filteredList.at(i).getItemId() << endl;
-				// cout << "genre: ";
-				// for (auto genre : filteredList.at(i).getGenreList()) {cout << genre << " ";} 
-				// cout << endl;
-				// cout << "--------------------------------------------------" << endl;
 					filteredList.at(i).printMovie();
 				}
 				//this will be used to validate in AddToFav
 				printed = true;
+				cout << "Add any of the movies to favorites?" << endl;
+				string uPrompt;
+				cin >> uPrompt;
+				bool toAdd = promptYesOrNo(uPrompt);
+				if (toAdd) {
+					addToFavorites();
+				}
 			 }
 			break;
 		case '3':
@@ -277,16 +271,14 @@ void Menu::advancedMovieFilter() {
 			break;
 		
 		case '4':
-				addToFavorites();
-		case '5':
 			Menu();
-			break;
+			break;	
 		default:
 			cout << "Invalid Choice. Please enter a number between 1 and 4" << endl;
 		}
 
 
-	}while (choice != '5');
+	}while (choice != '4');
 	
 	optionTracker = 2;
 }
@@ -324,7 +316,10 @@ void Menu::addToFavorites(){
 				bool YorN = promptYesOrNo(confirmAdd);
 				//reconfirm if they want to add, if yes, we add
 				if (YorN){
-					user.getFavoritesList().push_back(user.ReturnTrackList().at(i));
+					movie fMovie = user.ReturnTrackList().at(i);
+					user.AddToFavoriteList(fMovie);
+					//user.getFavoritesList().push_back(user.ReturnTrackList().at(i));
+					
 					cout << user.ReturnTrackList().at(i).getTitle() << " has been added to Favorites." << endl;
 				}
 				//else, we as if they want to add a different movie.
