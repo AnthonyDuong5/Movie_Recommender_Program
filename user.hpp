@@ -18,6 +18,7 @@ using namespace std;
 class User {
 	private:
 		string UserName;
+		movieList MovieDatabase;
 		vector<movie> Favorites;
 		vector<movie> DefaultList;
 		vector<movie> ViewingList;
@@ -26,9 +27,8 @@ class User {
 		
 		int prompt = 0;
 
-		//adding a movieList,can use funcions from the movieList if needed.
-		movieList userFavList;
-
+		//for getRec
+		vector <movie> filteredList;
 	public:
 		User();
 		vector<movie> ReturnTrackList (){return TrackViewList;}
@@ -73,4 +73,25 @@ pair<K,V> help_getMaximumValue(const map<K,V> &map) {
         return x.second < y.second;
     });
 }
+
+//FIXME
+// void help_getFavoriteInfo(const vector<movie> &Favorites,vector<int> &yearlist, vector<string> &directorlist, vector<Genre> &genreslist){
+// 		for(movie x: Favorites){ 
+//         yearlist.push_back(x.getYear());
+// 		directorlist.push_back(x.getDirector());
+// 		for(Genre y: x.genre_list){
+// 			genreslist.push_back(y);
+// 		}
+//     }
+//}
+
+template<typename T>
+T help_getTopFreq(vector<T> &list){
+	map<T, int> freqMap = help_getFreq(list);	
+	T MostSeenT = help_getMaximumValue(freqMap).first;
+	freqMap.erase(MostSeenT);
+	return MostSeenT;
+}
+
+
 #endif

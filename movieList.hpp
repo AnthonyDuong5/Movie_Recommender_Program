@@ -13,6 +13,7 @@ class movieList{
 		vector <movie> list;
 		vector <movie> sortedlist;
 		vector <string> genres;  //stores 19 genres 
+		vector <movie> latestTop30;
 	public:
 
 		//DEFAULT CONSTRUCTOR, CREATION OF MOVIE FILE, PARSING
@@ -30,26 +31,36 @@ class movieList{
 		void sortByRatingDescending();
 		void sortByRatingAscending();
 		void searchByRatings(double lowRating, double highRating);
-		vector<movie> searchByRatings(double, double, vector<movie>&);		//test
+		vector<movie> searchByRatings(double, double, vector<movie>&);
+		void sortByRatingDescending_2( vector<movie>&);		//test
 
 		//YEAR
 		void sortByYearAscending();
 		void sortByYearDescending();
 		void searchYearRange(int, int);
-		vector<movie> searchYearRange(int, int, vector<movie>&);		//test
+		vector<movie> searchYearRange(int, int, vector<movie>&);
+		vector<movie> searchYearRange_2(int, int, const vector<movie>&);		
 
 		//GENRE
 		void setGenres();
 		vector <string> getGenres(); 
 		void printGenres();
 		vector<movie> searchByGenre(Genre);
+		vector<movie> searchByGenre_2(Genre g, vector<movie>& filter);
 		vector<movie> searchByGenre(int);
-		vector<movie> searchByGenre(int, vector<movie>&);		//test
+		vector<movie> searchByGenre(int, vector<movie>&);
+
+		vector<movie> searchByDirector(string, const vector<movie> & filter);		//test
 
 		//RETURN LIST/SORTEDLIST, PRINT MOVIE LIST
 		vector<movie>& returnList();
 		vector<movie>& returnSortedList();
 		void printMovies();
+
+		//FOR RECOMMENDATION
+		vector <movie> returnLatestTop30(){return latestTop30;}
+		void makeLatestTop30 (int);
+
 
 // ------------------------- Incomplete/Pending Function Progress------------------- //
 

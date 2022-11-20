@@ -12,10 +12,10 @@
 
 
 User::User(){
+	
 	movieList MovieDatabase;
 	MovieDatabase.readMovieListFiles();
-	userFavList = MovieDatabase;
-	ViewingList = DefaultList = MovieDatabase.returnList();
+	ViewingList = DefaultList = filteredList = MovieDatabase.returnList();
 	UserName = "user1";		//we could ask the username later, doesn't matter much.
 }
 
@@ -34,96 +34,83 @@ void User::AddToTrackList(const movie& m){
 void User::ClearTrackList(){
 	TrackViewList.clear();
 }
-// void User::printMenu(){
-// 	//first output some prompt
-// 	cout << "Please Select An Option Below (1-5)" << endl;
-// 	cout << "1) View Random Movies.\n"
-// 	     << "2) Search Movie(s).\n" 
-// 		 << "3) Add Movie to Favorites.\n" 
-// 		 << "4) Get Recommendations.\n"
-// 		 << "5) Quit.\n";
-// }
-
-// int User::getPrompt(){
-// 	int userPrompt;
-// 	cin >> userPrompt;
-// 	//this also validates input
-// 	while (userPrompt < 1 || userPrompt > 5){
-// 		cout << "Invalid Choice. Please enter a number between 1 to 5." << endl;
-// 		printMenu();
-// 		cin >> userPrompt;
-// 	}
-// 	return userPrompt;
-// }
-
-// void User::processPrompt(const int& prompt){
-// 	if (prompt == 1) printTenRandomMovies();
-// }
-
-// void User::printTenRandomMovies() {
-// 	unsigned randIndex;
-
-// 	for (unsigned i = 0; i < 10; ++i) {
-// 		randIndex = rand() % ViewingList.size();
-
-// 		cout << i + 1 << "." << endl;
-// 		cout << "title: " << ViewingList.at(randIndex).getTitle() << endl;
-// 		cout << "year: " << ViewingList.at(randIndex).getYear() << endl;
-// 		cout << "director: " << ViewingList.at(randIndex).getDirector() << endl;
-// 		cout << "casting: " << ViewingList.at(randIndex).getCast() << endl;
-// 		cout << "rating: " << ViewingList.at(randIndex).getRating() << endl;
-// 		cout << "imbdid: " << ViewingList.at(randIndex).getImdbId() << endl;
-// 		cout << "itemid: " << ViewingList.at(randIndex).getItemId() << endl;
-// 		cout << "genre: ";
-// 		for (auto genre : ViewingList.at(randIndex).getGenreList()) {cout << genre << " ";} 
-// 		cout << endl;
-// 		cout << "--------------------------------------------------" << endl;
-
-// 		ViewingList.erase(ViewingList.begin() + randIndex);
-// 	}
-// }
-
 
 vector<movie> User::getRec(){
 	vector<movie> rec;
-
-	//step 1: find year/director/gennres frequency from Favorites
 	vector<int> yearlist;
 	vector<string>directorlist;
 	vector<Genre> genreslist;
+	int favoriteCount = Favorites.size();
 
-	//storing each critera into its vector
-	for(auto x: Favorites){
+
+
+	//use criteria (year, director, director) to generate a rec list.
+	//may be using different combination of criteria based on the condition
+	int year1, year2, year3 =0;
+	Genre gen1, gen2, gen3;
+	string director1, director2, director3;
+	vector <movie> filteredList1,filteredList2,filteredList3; //filter year, genre, string
+   	int A, B, C; //size of filteredList1, filteredList2, filteredList3
+
+	//making a top 30 list
+	MovieDatabase.makeLatestTop30(2018);
+	vector<movie> latest30 = MovieDatabase.returnLatestTop30();
+	//nothing in favorites, return top 30
+	if(favoriteCount == 0){
+
+		return rec = latest30;
+	}
+	
+	//storing each critera (year, director, director) into its vector
+	for(movie x: Favorites){ 
         yearlist.push_back(x.getYear());
 		directorlist.push_back(x.getDirector());
-		for(auto y: x.genre_list){
+		for(Genre y: x.genre_list){
 			genreslist.push_back(y);
 		}
-    }
-	//find #1 year
-	map<int, int> freqMap = help_getFreq(yearlist);	
-	int MostSeenYear = help_getMaximumValue(freqMap).first;
+	}
 
-	//find #1 director
-	map<string, int> freqMap2 = help_getFreq(directorlist);	
-	string MostSeenDirector = help_getMaximumValue(freqMap2).first;
+	//Check size of the favorites.
+	//only one movie in favorites
+	if(favoriteCount == 1){
+		year1 = help_getTopFreq(yearlist);	
+		gen1 = help_getTopFreq(genreslist);	
+		director1 = help_getTopFreq(directorlist);	
+	
+		//Begin filtering
+		filteredList1 = MovieDatabase.searchYearRange_2(year1, year1, filteredList);
+		A = filteredList1.size();
+		if (A!=0){
 
-	//find #3 genres
-	map<Genre, int> freqMap3 = help_getFreq(genreslist);	
-	Genre MostSeenGenres1 = help_getMaximumValue(freqMap3).first;
-	freqMap3.erase(MostSeenGenres1);
-	Genre MostSeenGenres2 = help_getMaximumValue(freqMap3).first;
-	freqMap3.erase(MostSeenGenres2);
-	Genre MostSeenGenres3 = help_getMaximumValue(freqMap3).first;
-	freqMap3.erase(MostSeenGenres3);
+			filteredList2 = MovieDatabase.searchByGenre_2(gen1,filteredList1);
+			B = filteredList2.size();
+			
+			if(B!=0){
+				
+				filteredList3 = MovieDatabase.searchByDirector(director1,filteredList);
+				C = filteredList3.size();
+			}
+		
+		}
+
+		if(A<30){rec = filteredList1;}
+   		else if(B<30){rec =filteredList2;}
+   		else {rec = filteredList3;}
 
 
-	//step 4: use these criteria (year, director, director) to generate a rec list.
-	//may be using different combination of criteria based on the condition of Favorites list
-	//open to discussion.. . 
+	}
+	
 
-
+	if(C<=30){
+		int j = 0;
+		for(int i = C; i<30; i++){
+			rec.push_back(latest30.at(j++));
+		}
+		
+	}
 
 	return rec;
 
 }
+
+
