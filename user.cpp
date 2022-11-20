@@ -50,7 +50,7 @@ vector<movie> User::getRec(){
 	Genre gen1, gen2, gen3;
 	string director1, director2, director3;
 	vector <movie> filteredList1,filteredList2,filteredList3; //filter year, genre, string
-   	int A, B, C; //size of filteredList1, filteredList2, filteredList3
+   	int A, B, C = 0; //size of filteredList1, filteredList2, filteredList3
 
 	//making a top 30 list
 	MovieDatabase.makeLatestTop30(2018);

@@ -382,89 +382,89 @@
 //    cout << "#1 director: "<<help_getMaximumValue(freqMap).first<<" "<<help_getMaximumValue(freqMap).second<<endl;
 // }
 
-// TEST(UserMenu, RandomMovies) {
-//      Menu menu1;
-// }
-
-TEST(User, getRec){
-    vector<movie> rec;
-	vector<int> yearlist;
-	vector<string>directorlist;
-	vector<Genre> genreslist;
-	
-    movieList MovieDatabase;
-    MovieDatabase.readMovieListFiles();
-    vector <movie> filteredList = MovieDatabase.returnList();
-    
-    //making a top 30 list 0f 2018
-    MovieDatabase.makeLatestTop30(2018);
-	vector<movie> latest30 = MovieDatabase.returnLatestTop30();
-
-    
-    vector<movie> tempFav;
-    for(int i = 0; i <= 100; i ++){
-	tempFav.push_back(MovieDatabase.returnList().at(i));
-    }
-    for(movie x: tempFav){ 
-        yearlist.push_back(x.getYear());
-		directorlist.push_back(x.getDirector());
-		for(Genre y: x.genre_list){
-			genreslist.push_back(y);
-		}
-	}
-
-	int year1 =0;
-	Genre gen1;
-	string director1;
-   
-    year1 = help_getTopFreq(yearlist);	
-    director1 = help_getTopFreq(directorlist);	
-    gen1 = help_getTopFreq(genreslist);	
-    
-    cout<<"top year: "<< year1<<endl;
-    cout<<"director: "<<director1<<endl;
-    cout<<"genra: "<<gen1<<endl;
-    vector <movie> filteredList1,filteredList2,filteredList3;
-    int A, B, C; //size of filteredList1, filteredList2, filteredList3
-
-    //Begin filtering
-    filteredList1 = MovieDatabase.searchYearRange_2(year1, year1, filteredList);
-    A = filteredList1.size();
-    if (A!=0){
-
-        filteredList2 = MovieDatabase.searchByGenre_2(gen1,filteredList1);
-        B = filteredList2.size();
-        
-        if(B!=0){
-
-            filteredList3 = MovieDatabase.searchByDirector(director1,filteredList);
-            C = filteredList3.size();
-        }
-      
-    }
-
-    if(A<30){rec = filteredList1;}
-    else if(B<30){rec =filteredList2;}
-    else {rec = filteredList3;}
-
-    if(C<=30){
-		int j = 0;
-		for(int i = C; i<30; i++){
-			rec.push_back(latest30.at(j++));
-		}
-	}
-
-    
-cout<<"filter1 size : "<<A<<endl;
-cout<<"filter2 size : "<<B<<endl;
-cout<<"filter3 size : "<<C<<endl;
-    cout<<"exit filter"<<endl;
-    cout<<"rec list size: "<<rec.size()<<endl;
-    // for (auto x : rec){
-    //     x.printMovie();
-    // }
-    
+TEST(UserMenu, RandomMovies) {
+     Menu menu1;
 }
+
+// TEST(User, getRec){
+//     vector<movie> rec;
+// 	vector<int> yearlist;
+// 	vector<string>directorlist;
+// 	vector<Genre> genreslist;
+	
+//     movieList MovieDatabase;
+//     MovieDatabase.readMovieListFiles();
+//     vector <movie> filteredList = MovieDatabase.returnList();
+    
+//     //making a top 30 list 0f 2018. 
+//     MovieDatabase.makeLatestTop30(2018);
+// 	vector<movie> latest30 = MovieDatabase.returnLatestTop30();
+
+    
+//     vector<movie> tempFav;
+//     for(int i = 0; i <= 100; i ++){
+// 	tempFav.push_back(MovieDatabase.returnList().at(i));
+//     }
+//     for(movie x: tempFav){ 
+//         yearlist.push_back(x.getYear());
+// 		directorlist.push_back(x.getDirector());
+// 		for(Genre y: x.genre_list){
+// 			genreslist.push_back(y);
+// 		}
+// 	}
+
+// 	int year1 =0;
+// 	Genre gen1;
+// 	string director1;
+   
+//     year1 = help_getTopFreq(yearlist);	
+//     director1 = help_getTopFreq(directorlist);	
+//     gen1 = help_getTopFreq(genreslist);	
+    
+//     cout<<"top year: "<< year1<<endl;
+//     cout<<"director: "<<director1<<endl;
+//     cout<<"genra: "<<gen1<<endl;
+//     vector <movie> filteredList1,filteredList2,filteredList3;
+//     int A, B, C; //size of filteredList1, filteredList2, filteredList3
+
+//     //Begin filtering
+//     filteredList1 = MovieDatabase.searchYearRange_2(year1, year1, filteredList);
+//     A = filteredList1.size();
+//     if (A!=0){
+
+//         filteredList2 = MovieDatabase.searchByGenre_2(gen1,filteredList1);
+//         B = filteredList2.size();
+        
+//         if(B!=0){
+
+//             filteredList3 = MovieDatabase.searchByDirector(director1,filteredList);
+//             C = filteredList3.size();
+//         }
+      
+//     }
+
+//     if(A<30){rec = filteredList1;}
+//     else if(B<30){rec =filteredList2;}
+//     else {rec = filteredList3;}
+
+//     if(C<=30){
+// 		int j = 0;
+// 		for(int i = C; i<30; i++){
+// 			rec.push_back(latest30.at(j++));
+// 		}
+// 	}
+
+    
+// cout<<"filter1 size : "<<A<<endl;
+// cout<<"filter2 size : "<<B<<endl;
+// cout<<"filter3 size : "<<C<<endl;
+//     cout<<"exit filter"<<endl;
+//     cout<<"rec list size: "<<rec.size()<<endl;
+//     // for (auto x : rec){
+//     //     x.printMovie();
+//     // }
+    
+// }
 
 int main(int argc, char **argv) {
     srand(time(0));
