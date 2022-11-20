@@ -115,107 +115,182 @@ void Menu::printTenRandomMovies() {
 
 void Menu::printFiveByCategories(){
 	optionTracker = 2;
-	cout << "Here's a list of some movies you might be interested in.\n" << endl;
 	movieList defaultDatabase;
 	defaultDatabase.readMovieListFiles();
-	
-	vector<movie>actionGenre = defaultDatabase.returnList();
-	vector<movie>comedyGenre = defaultDatabase.returnList();
-	vector<movie>dramaGenre = defaultDatabase.returnList();
-	vector<movie>horrorGenre = defaultDatabase.returnList();
-	vector<movie>romanceGenre = defaultDatabase.returnList();
-	int genreCounter = 0;
-	
-	//for action
-	actionGenre = defaultDatabase.searchByGenre(2, actionGenre);
-	
-	comedyGenre = defaultDatabase.searchByGenre(5, comedyGenre);
-	
-	dramaGenre = defaultDatabase.searchByGenre(8, dramaGenre);
-	
-	horrorGenre = defaultDatabase.searchByGenre(11, horrorGenre);
-	
-	romanceGenre = defaultDatabase.searchByGenre(15, romanceGenre);
-	
-	unsigned randNum;
-	while (genreCounter <5){
-		if (genreCounter == 0){
-			cout << "=============================================" << endl;
-			cout << "ACTION MOVIES" << endl;
-			cout << "=============================================" << endl;
-		}
-		else if (genreCounter == 1){
-			cout << "=============================================" << endl;
-			cout << "COMEDY MOVIES" << endl;
-			cout << "=============================================" << endl;
-		}
-		else if (genreCounter == 2){
-				cout << "=============================================" << endl;
-				cout << "DRAMA MOVIES" << endl;
-				cout << "=============================================" << endl;
-		}
-		else if (genreCounter == 3){
-				cout << "=============================================" << endl;
-				cout << "HORROR MOVIES" << endl;
-				cout << "=============================================" << endl;		
-		}
+	cout << "You can browse a category of movies." << endl;
 
-		else if (genreCounter == 4){
-				cout << "=============================================" << endl;
-				cout << "ROMANCE MOVIES" << endl;
-				cout << "=============================================" << endl;
+	cout << "You can: \n"
+		 << "1) Select Genres you like \n"
+		 << "2) Browse Directly \n"
+		 << "Choose an option(1-2):\n";
+	int gSelect;
+	cin >> gSelect;
+	/// DO STUFF HERE
+	while (cin.fail()) {
+			cout << "Please enter either 1 or 2." << endl;
+			cin.clear();
+			cin.ignore(256, '\n');
+			cin >> gSelect;
+	}
+	if(gSelect < 1 || gSelect > 2){
+		cout << "Please enter a number from 1 to 2." << endl;
+	}
+	//user decides to choose genre:
+	if (gSelect == 1){
+		cout << "Enter the number that corresponds to desired Genre: " << endl;
+		cout << "1) Adventure || 2) Action     || 3) Animation      || 4) Children \n"
+			<< "5) Comedy    || 6) Crime      || 7) Documentaries  || 8) Drama \n"
+			<< "9) Fantasy   || 10) FilmNoir  || 11) Horror        || 12) IMAX \n"
+			<< "13) Musical  || 14) Mystery   || 15) Romance       || 16) SciFi \n"
+			<< "17) Thriller || 18) War       || 19) Western \n";
+
+		vector<int>genreChoice;
+		int uIn;
+		do {
+			cin >> uIn;
+			while (cin.fail()) {
+				cout << "Please enter a number from 1 to 19." << endl;
+				cin.clear();
+				cin.ignore(256, '\n');
+				cin >> uIn;
+			}
+			if(uIn < 1 || uIn > 19){
+				cout << "Please enter a number from 1 to 19." << endl;
+			}
 		}
-		for (unsigned i = 0; i < 5; ++i){
+		while(uIn < 1 || uIn > 19);
+		
+		vector<movie>userGenre = defaultDatabase.returnList();
+		userGenre = defaultDatabase.searchByGenre(uIn, userGenre);
+		cout << "You have selected " << defaultDatabase.getGenres().at(uIn-1) << "." << endl;
+		cout << "Here are ten movies from the genre you have selected" << endl;
+		cout << "=============================================" << endl;
+		cout <<  defaultDatabase.getGenres().at(uIn-1) << " Movies " << endl;
+		cout << "=============================================" << endl;
+		unsigned randNum;
+		for (unsigned k = 0; k < 10; ++k){
+			randNum = rand() % userGenre.size();
+			movie rMovie = userGenre.at(randNum);
+			rMovie.printMovie();
+					
+			user.AddToTrackList(rMovie);
+		}
+		cout << "Add any of the movies to favorites?" << endl;
+		string addPrompt;
+		
+		bool addToF = promptYesOrNo(addPrompt);
+		if (addToF) {
+			addToFavorites();
+		}
+	}
+
+	if (gSelect == 2){
+		cout << "Here's a list of some movies you might be interested in.\n" << endl;
+		movieList defaultDatabase;
+		defaultDatabase.readMovieListFiles();
+		
+		
+
+
+		vector<movie>actionGenre = defaultDatabase.returnList();
+		vector<movie>comedyGenre = defaultDatabase.returnList();
+		vector<movie>dramaGenre = defaultDatabase.returnList();
+		vector<movie>horrorGenre = defaultDatabase.returnList();
+		vector<movie>romanceGenre = defaultDatabase.returnList();
+		int genreCounter = 0;
+		
+		//for action
+		actionGenre = defaultDatabase.searchByGenre(2, actionGenre);
+		
+		comedyGenre = defaultDatabase.searchByGenre(5, comedyGenre);
+		
+		dramaGenre = defaultDatabase.searchByGenre(8, dramaGenre);
+		
+		horrorGenre = defaultDatabase.searchByGenre(11, horrorGenre);
+		
+		romanceGenre = defaultDatabase.searchByGenre(15, romanceGenre);
+		
+		unsigned randNum;
+		while (genreCounter <5){
 			if (genreCounter == 0){
-				
-				randNum = rand() % actionGenre.size();
-				movie rMovie = actionGenre.at(randNum);
-				rMovie.printMovie();
-				
-				user.AddToTrackList(rMovie);
+				cout << "=============================================" << endl;
+				cout << "----------------ACTION MOVIES----------------" << endl;
+				cout << "=============================================" << endl;
 			}
 			else if (genreCounter == 1){
-				
-				randNum = rand() % comedyGenre.size();
-				movie rMovie = comedyGenre.at(randNum);
-				rMovie.printMovie();
-				
-				user.AddToTrackList(rMovie);
+				cout << "=============================================" << endl;
+				cout << "----------------COMEDY MOVIES----------------" << endl;
+				cout << "=============================================" << endl;
 			}
 			else if (genreCounter == 2){
-				
-				randNum = rand() % dramaGenre.size();
-				movie rMovie = dramaGenre.at(randNum);
-				rMovie.printMovie();
-				
-				user.AddToTrackList(rMovie);
+					cout << "=============================================" << endl;
+					cout << "----------------DRAMA MOVIES-----------------" << endl;
+					cout << "=============================================" << endl;
 			}
 			else if (genreCounter == 3){
-				
-				randNum = rand() % horrorGenre.size();
-				movie rMovie = horrorGenre.at(randNum);
-				rMovie.printMovie();
-				
-				user.AddToTrackList(rMovie);
+					cout << "=============================================" << endl;
+					cout << "----------------HORROR MOVIES----------------" << endl;
+					cout << "=============================================" << endl;		
 			}
+
 			else if (genreCounter == 4){
-				
-				randNum = rand() % romanceGenre.size();
-				movie rMovie = romanceGenre.at(randNum);
-				rMovie.printMovie();
-				
-				user.AddToTrackList(rMovie);
+					cout << "=============================================" << endl;
+					cout << "---------------ROMANCE MOVIES----------------" << endl;
+					cout << "=============================================" << endl;
 			}
+			for (unsigned i = 0; i < 5; ++i){
+				if (genreCounter == 0){
+					
+					randNum = rand() % actionGenre.size();
+					movie rMovie = actionGenre.at(randNum);
+					rMovie.printMovie();
+					
+					user.AddToTrackList(rMovie);
+				}
+				else if (genreCounter == 1){
+					
+					randNum = rand() % comedyGenre.size();
+					movie rMovie = comedyGenre.at(randNum);
+					rMovie.printMovie();
+					
+					user.AddToTrackList(rMovie);
+				}
+				else if (genreCounter == 2){
+					
+					randNum = rand() % dramaGenre.size();
+					movie rMovie = dramaGenre.at(randNum);
+					rMovie.printMovie();
+					
+					user.AddToTrackList(rMovie);
+				}
+				else if (genreCounter == 3){
+					
+					randNum = rand() % horrorGenre.size();
+					movie rMovie = horrorGenre.at(randNum);
+					rMovie.printMovie();
+					
+					user.AddToTrackList(rMovie);
+				}
+				else if (genreCounter == 4){
+					
+					randNum = rand() % romanceGenre.size();
+					movie rMovie = romanceGenre.at(randNum);
+					rMovie.printMovie();
+					
+					user.AddToTrackList(rMovie);
+				}
+			}
+			++genreCounter;
 		}
-		++genreCounter;
+		cout << "Add any of the movies to favorites?" << endl;
+		string u5Prompt;
+		
+		bool toAdd = promptYesOrNo(u5Prompt);
+		if (toAdd) {
+			addToFavorites();
+		}
 	}
-	cout << "Add any of the movies to favorites?" << endl;
-	string u5Prompt;
-	
-	bool toAdd = promptYesOrNo(u5Prompt);
-	if (toAdd) {
-		addToFavorites();
-	}
+
 }
 
 
