@@ -149,11 +149,11 @@ void movieList::printMovies(){
 		cout << "------------------" << endl;
 		cout << i + 1 << "." << endl;
 		cout<<"title: "<< movieListPrint.at(i).getTitle()<<endl;
-		cout<<"year: "<< movieListPrint.at(i).getYear()<<endl;
+		//cout<<"year: "<< movieListPrint.at(i).getYear()<<endl;
 		cout<<"director: "<<movieListPrint.at(i).getDirector()<<endl;
 		cout<<"casting: "<<movieListPrint.at(i).getCast()<<endl;
 		cout<<"rating: "<<movieListPrint.at(i).getRating()<<endl;
-		cout<<"IMDB ID: "<<movieListPrint.at(i).getImdbId()<<endl;
+		//cout<<"IMDB ID: "<<movieListPrint.at(i).getImdbId()<<endl;
 		cout<<"item: "<<movieListPrint.at(i).getItemId()<<endl;
 		cout<<"Genre: "; for (auto gen : movieListPrint.at(i).getGenreList()){ cout<<gen<<" ";} cout<<endl;
 
