@@ -17,18 +17,7 @@ TEST(SortTest, testSortByRatingDescending) {
     MovieDatabase.readMovieListFiles();
     MovieDatabase.sortByRatingDescending();
     for (unsigned i = 0; i < 5000; i+=500) {
-        cout << "--------------------------------------------------" << endl;
-		cout << "title: " << MovieDatabase.returnSortedList().at(i).getTitle() << endl;
-		cout << "year: " << MovieDatabase.returnSortedList().at(i).getYear() << endl;
-		cout << "director: " << MovieDatabase.returnSortedList().at(i).getDirector() << endl;
-		cout << "casting: " << MovieDatabase.returnSortedList().at(i).getCast() << endl;
-		cout << "rating: " << MovieDatabase.returnSortedList().at(i).getRating() << endl;
-		cout << "imbdid: " << MovieDatabase.returnSortedList().at(i).getImdbId() << endl;
-		cout << "itemid: " << MovieDatabase.returnSortedList().at(i).getItemId() << endl;
-		cout << "genre: ";
-        for (auto genre : MovieDatabase.returnSortedList().at(i).getGenreList()) {cout << genre << " ";} 
-        cout << endl;
-        cout << "--------------------------------------------------" << endl;
+        MovieDatabase.returnSortedList().at(i).printMovie();
 	}
 }
 
@@ -37,64 +26,17 @@ TEST(SortTest, testSortByRatingAscending) {
     MovieDatabase.readMovieListFiles();
     MovieDatabase.sortByRatingAscending();
     for (unsigned i = 0; i < 5000; i+=500) {
-        cout << "--------------------------------------------------" << endl;
-		cout << "title: " << MovieDatabase.returnSortedList().at(i).getTitle() << endl;
-		cout << "year: " << MovieDatabase.returnSortedList().at(i).getYear() << endl;
-		cout << "director: " << MovieDatabase.returnSortedList().at(i).getDirector() << endl;
-		cout << "casting: " << MovieDatabase.returnSortedList().at(i).getCast() << endl;
-		cout << "rating: " << MovieDatabase.returnSortedList().at(i).getRating() << endl;
-		cout << "imbdid: " << MovieDatabase.returnSortedList().at(i).getImdbId() << endl;
-		cout << "itemid: " << MovieDatabase.returnSortedList().at(i).getItemId() << endl;
-		cout << "genre: ";
-        for (auto genre : MovieDatabase.returnSortedList().at(i).getGenreList()) {cout << genre << " ";} 
-        cout << endl;
-        cout << "--------------------------------------------------" << endl;
+        MovieDatabase.returnSortedList().at(i).printMovie();
 	}
-    
 }
 
 TEST(SortTest, testSearchByRatings) {
     movieList MovieDatabase;
     MovieDatabase.readMovieListFiles();
     MovieDatabase.searchByRatings(4.0, 4.5);
-    cout << "--------------------------------------------------" << endl;
-    cout << "title: " << MovieDatabase.returnSortedList().front().getTitle() << endl;
-    cout << "year: " << MovieDatabase.returnSortedList().front().getYear() << endl;
-    cout << "director: " << MovieDatabase.returnSortedList().front().getDirector() << endl;
-    cout << "casting: " << MovieDatabase.returnSortedList().front().getCast() << endl;
-    cout << "rating: " << MovieDatabase.returnSortedList().front().getRating() << endl;
-    cout << "imbdid: " << MovieDatabase.returnSortedList().front().getImdbId() << endl;
-    cout << "itemid: " << MovieDatabase.returnSortedList().front().getItemId() << endl;
-    cout << "genre: ";
-    for (auto genre : MovieDatabase.returnSortedList().front().getGenreList()) {cout << genre << " ";} 
-    cout << endl;
-    cout << "--------------------------------------------------" << endl;
     for (unsigned i = 100; i < 1100; i += 100) {
-        cout << "--------------------------------------------------" << endl;
-		cout << "title: " << MovieDatabase.returnSortedList().at(i).getTitle() << endl;
-		cout << "year: " << MovieDatabase.returnSortedList().at(i).getYear() << endl;
-		cout << "director: " << MovieDatabase.returnSortedList().at(i).getDirector() << endl;
-		cout << "casting: " << MovieDatabase.returnSortedList().at(i).getCast() << endl;
-		cout << "rating: " << MovieDatabase.returnSortedList().at(i).getRating() << endl;
-		cout << "imbdid: " << MovieDatabase.returnSortedList().at(i).getImdbId() << endl;
-		cout << "itemid: " << MovieDatabase.returnSortedList().at(i).getItemId() << endl;
-		cout << "genre: ";
-        for (auto genre : MovieDatabase.returnSortedList().at(i).getGenreList()) {cout << genre << " ";} 
-        cout << endl;
-        cout << "--------------------------------------------------" << endl;
+        MovieDatabase.returnSortedList().at(i).printMovie();
 	}
-    cout << "--------------------------------------------------" << endl;
-    cout << "title: " << MovieDatabase.returnSortedList().back().getTitle() << endl;
-    cout << "year: " << MovieDatabase.returnSortedList().back().getYear() << endl;
-    cout << "director: " << MovieDatabase.returnSortedList().back().getDirector() << endl;
-    cout << "casting: " << MovieDatabase.returnSortedList().back().getCast() << endl;
-    cout << "rating: " << MovieDatabase.returnSortedList().back().getRating() << endl;
-    cout << "imbdid: " << MovieDatabase.returnSortedList().back().getImdbId() << endl;
-    cout << "itemid: " << MovieDatabase.returnSortedList().back().getItemId() << endl;
-    cout << "genre: ";
-    for (auto genre : MovieDatabase.returnSortedList().back().getGenreList()) {cout << genre << " ";} 
-    cout << endl;
-    cout << "--------------------------------------------------" << endl;
 }
 
 TEST(SortTest, testSortAscendingTitles) {
@@ -102,18 +44,7 @@ TEST(SortTest, testSortAscendingTitles) {
     MovieDatabase.readMovieListFiles();
     MovieDatabase.sortAscendingTitles(MovieDatabase.returnList());
 	for (unsigned i = 0; i < 5000; i+=500) {
-        cout << "--------------------------------------------------" << endl;
-		cout << "title: " << MovieDatabase.returnSortedList().at(i).getTitle() << endl;
-		cout << "year: " << MovieDatabase.returnSortedList().at(i).getYear() << endl;
-		cout << "director: " << MovieDatabase.returnSortedList().at(i).getDirector() << endl;
-		cout << "casting: " << MovieDatabase.returnSortedList().at(i).getCast() << endl;
-		cout << "rating: " << MovieDatabase.returnSortedList().at(i).getRating() << endl;
-		cout << "imbdid: " << MovieDatabase.returnSortedList().at(i).getImdbId() << endl;
-		cout << "itemid: " << MovieDatabase.returnSortedList().at(i).getItemId() << endl;
-		cout << "genre: ";
-        for (auto genre : MovieDatabase.returnSortedList().at(i).getGenreList()) {cout << genre << " ";} 
-        cout << endl;
-        cout << "--------------------------------------------------" << endl;
+        MovieDatabase.returnSortedList().at(i).printMovie();
 	}
 }
 
@@ -122,61 +53,26 @@ TEST(SortTest, testSortDescendingTitles) {
     MovieDatabase.readMovieListFiles();
     MovieDatabase.sortDescendingTitles(MovieDatabase.returnList());
     for (unsigned i = 0; i < 5000; i+=500) {
-        cout << "--------------------------------------------------" << endl;
-		cout << "title: " << MovieDatabase.returnSortedList().at(i).getTitle() << endl;
-		cout << "year: " << MovieDatabase.returnSortedList().at(i).getYear() << endl;
-		cout << "director: " << MovieDatabase.returnSortedList().at(i).getDirector() << endl;
-		cout << "casting: " << MovieDatabase.returnSortedList().at(i).getCast() << endl;
-		cout << "rating: " << MovieDatabase.returnSortedList().at(i).getRating() << endl;
-		cout << "imbdid: " << MovieDatabase.returnSortedList().at(i).getImdbId() << endl;
-		cout << "itemid: " << MovieDatabase.returnSortedList().at(i).getItemId() << endl;
-		cout << "genre: ";
-        for (auto genre : MovieDatabase.returnSortedList().at(i).getGenreList()) {cout << genre << " ";} 
-        cout << endl;
-        cout << "--------------------------------------------------" << endl;
+        MovieDatabase.returnSortedList().at(i).printMovie();
 	}
 }
 
-// TEST (SortTest, testSearchMovieTitle){
-//     movieList MovieDatabase;
-//     MovieDatabase.readMovieListFiles();
-//     MovieDatabase.searchMovieTitle("Hotel");
-//     for (unsigned i = 0; i < 5000; i+=500) {
-//         cout << "--------------------------------------------------" << endl;
-// 		cout << "title: " << MovieDatabase.returnSortedList().at(i).getTitle() << endl;
-// 		cout << "year: " << MovieDatabase.returnSortedList().at(i).getYear() << endl;
-// 		cout << "director: " << MovieDatabase.returnSortedList().at(i).getDirector() << endl;
-// 		cout << "casting: " << MovieDatabase.returnSortedList().at(i).getCast() << endl;
-// 		cout << "rating: " << MovieDatabase.returnSortedList().at(i).getRating() << endl;
-// 		cout << "imbdid: " << MovieDatabase.returnSortedList().at(i).getImdbId() << endl;
-// 		cout << "itemid: " << MovieDatabase.returnSortedList().at(i).getItemId() << endl;
-// 		cout << "genre: ";
-//         for (auto genre : MovieDatabase.returnSortedList().at(i).getGenreList()) {cout << genre << " ";} 
-//         cout << endl;
-//         cout << "--------------------------------------------------" << endl;
-// 	}
-    
-// }
+TEST (SortTest, testSearchMovieTitle){
+    movieList MovieDatabase;
+    MovieDatabase.readMovieListFiles();
+    MovieDatabase.searchMovieTitle("Hotel");
+    for (unsigned i = 0; i < MovieDatabase.returnSortedList().size(); ++i) {
+        MovieDatabase.returnSortedList().at(i).printMovie();
+	}
+}
 
 TEST(SortByYearTest, SortAscending) {
     movieList MovieDatabase;
     MovieDatabase.readMovieListFiles();
     MovieDatabase.sortByYearAscending();
     for (unsigned i = 0; i < 5000; i+=500) {
-        cout << "--------------------------------------------------" << endl;
-		cout << "title: " << MovieDatabase.returnSortedList().at(i).getTitle() << endl;
-		cout << "year: " << MovieDatabase.returnSortedList().at(i).getYear() << endl;
-		cout << "director: " << MovieDatabase.returnSortedList().at(i).getDirector() << endl;
-		cout << "casting: " << MovieDatabase.returnSortedList().at(i).getCast() << endl;
-		cout << "rating: " << MovieDatabase.returnSortedList().at(i).getRating() << endl;
-		cout << "imbdid: " << MovieDatabase.returnSortedList().at(i).getImdbId() << endl;
-		cout << "itemid: " << MovieDatabase.returnSortedList().at(i).getItemId() << endl;
-		cout << "genre: ";
-        for (auto genre : MovieDatabase.returnSortedList().at(i).getGenreList()) {cout << genre << " ";} 
-        cout << endl;
-        cout << "--------------------------------------------------" << endl;
+        MovieDatabase.returnSortedList().at(i).printMovie();
 	}
-    
 }
 
 TEST(SortByYearTest, SortDescending) {
@@ -185,18 +81,7 @@ TEST(SortByYearTest, SortDescending) {
     MovieDatabase.sortByYearDescending();
     MovieDatabase.sortByYearDescending();
     for (unsigned i = 0; i < 5000; i+=500) {
-        cout << "--------------------------------------------------" << endl;
-		cout << "title: " << MovieDatabase.returnSortedList().at(i).getTitle() << endl;
-		cout << "year: " << MovieDatabase.returnSortedList().at(i).getYear() << endl;
-		cout << "director: " << MovieDatabase.returnSortedList().at(i).getDirector() << endl;
-		cout << "casting: " << MovieDatabase.returnSortedList().at(i).getCast() << endl;
-		cout << "rating: " << MovieDatabase.returnSortedList().at(i).getRating() << endl;
-		cout << "imbdid: " << MovieDatabase.returnSortedList().at(i).getImdbId() << endl;
-		cout << "itemid: " << MovieDatabase.returnSortedList().at(i).getItemId() << endl;
-		cout << "genre: ";
-        for (auto genre : MovieDatabase.returnSortedList().at(i).getGenreList()) {cout << genre << " ";} 
-        cout << endl;
-        cout << "--------------------------------------------------" << endl;
+        MovieDatabase.returnSortedList().at(i).printMovie();
 	}
 }
 
@@ -205,18 +90,7 @@ TEST(SortByYearTest, SelectYearRange) {
     MovieDatabase.readMovieListFiles();
     MovieDatabase.searchYearRange(1990, 1995);
     for (unsigned i = 0; i < 750 ; i+=50) {
-        cout << "--------------------------------------------------" << endl;
-		cout << "title: " << MovieDatabase.returnSortedList().at(i).getTitle() << endl;
-		cout << "year: " << MovieDatabase.returnSortedList().at(i).getYear() << endl;
-		cout << "director: " << MovieDatabase.returnSortedList().at(i).getDirector() << endl;
-		cout << "casting: " << MovieDatabase.returnSortedList().at(i).getCast() << endl;
-		cout << "rating: " << MovieDatabase.returnSortedList().at(i).getRating() << endl;
-		cout << "imbdid: " << MovieDatabase.returnSortedList().at(i).getImdbId() << endl;
-		cout << "itemid: " << MovieDatabase.returnSortedList().at(i).getItemId() << endl;
-        		cout << "genre: ";
-        for (auto genre : MovieDatabase.returnSortedList().at(i).getGenreList()) {cout << genre << " ";} 
-        cout << endl;
-        cout << "--------------------------------------------------" << endl;
+        MovieDatabase.returnSortedList().at(i).printMovie();
 	}
 }
 
@@ -230,22 +104,17 @@ TEST(SortByGenres, testGenreList){
     EXPECT_EQ(MovieDatabase.getGenres().size(),19);
 }
 
-     TEST(SortByGenres, searchByGenre_Genre){
-        movieList MovieDatabase;
-        MovieDatabase.readMovieListFiles();
-        cout << "database has been set" << endl;
-        Genre gType = Mystery; 
-        vector<movie> genreMovieList = MovieDatabase.searchByGenre(gType);
-        cout << genreMovieList.size()<< " movies from Mystery."<<endl;
-        for (unsigned i = 0; i < 10; i ++) {
-            cout << "--------------------------------------------------" << endl;
-            cout << "title: " << genreMovieList.at(i).getTitle() << endl;
-            cout << "rating: " << genreMovieList.at(i).getRating() << endl;
-            cout << "genre: " ;
-            for (auto gen : genreMovieList.at(i).getGenreList()){cout<<gen<<" ";}cout<<endl;
-            cout << "--------------------------------------------------" << endl;
-        }
-     }
+TEST(SortByGenres, searchByGenre_Genre){
+    movieList MovieDatabase;
+    MovieDatabase.readMovieListFiles();
+    cout << "database has been set" << endl;
+    Genre gType = Mystery; 
+    vector<movie> genreMovieList = MovieDatabase.searchByGenre(gType);
+    cout << genreMovieList.size()<< " movies from Mystery."<<endl;
+    for (unsigned i = 0; i < 10; i ++) {
+        genreMovieList.at(i).printMovie();
+    }
+}
 
 TEST(SortByGenres, searchByGenre_int){
     movieList MovieDatabase;
@@ -255,12 +124,7 @@ TEST(SortByGenres, searchByGenre_int){
     vector<movie> genreMovieList = MovieDatabase.searchByGenre(input);
     cout << genreMovieList.size()<< " movies from Adventure."<<endl;
     for (unsigned i = 0; i < 10; i ++) {
-        cout << "--------------------------------------------------" << endl;
-        cout << "title: " << genreMovieList.at(i).getTitle() << endl;
-        cout << "rating: " << genreMovieList.at(i).getRating() << endl;
-        cout << "genre: " ;
-        for (auto gen : genreMovieList.at(i).getGenreList()){cout<<gen<<" ";}cout<<endl;
-        cout << "--------------------------------------------------" << endl;
+        genreMovieList.at(i).printMovie();
     }
 }
 
@@ -382,9 +246,9 @@ TEST(getRec, directorFrequence_template2){
    cout << "#1 director: "<<help_getMaximumValue(freqMap).first<<" "<<help_getMaximumValue(freqMap).second<<endl;
 }
 
-// TEST(UserMenu, RandomMovies) {
-//      Menu menu1;
-// }
+TEST(UserMenu, RandomMovies) {
+     Menu menu1;
+}
 
 int main(int argc, char **argv) {
     srand(time(0));

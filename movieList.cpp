@@ -283,7 +283,6 @@ void movieList::searchMovieTitle(string m1){
 		
 	}
 	sortedlist = newList;
-	cout << sortedlist.size() << endl;
 	//this is not sorted by alphabetical order, so we run sort ascending
 	sortAscendingTitles(sortedlist);
 }
