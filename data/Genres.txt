@@ -4,7 +4,7 @@ Animation
 Children
 Comedy
 Crime
-Documentarys
+Documentary 
 Drama
 Fantasy
 Film-Noir

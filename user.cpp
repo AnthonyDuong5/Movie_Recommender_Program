@@ -55,7 +55,8 @@ vector<movie> User::getRec(){
 	//making a top 30 list
 	MovieDatabase.makeLatestTop30(2018);
 	vector<movie> latest30 = MovieDatabase.returnLatestTop30();
-	//nothing in favorites, return top 30
+	//0: nothing in favorites
+		//return top30 (for now)
 	if(favoriteCount == 0){
 
 		return rec = latest30;
@@ -71,7 +72,7 @@ vector<movie> User::getRec(){
 	}
 
 	//Check size of the favorites.
-	//only one movie in favorites
+	//1: only one movie in favorites
 	if(favoriteCount == 1){
 		year1 = help_getTopFreq(yearlist);	
 		gen1 = help_getTopFreq(genreslist);	
@@ -99,6 +100,16 @@ vector<movie> User::getRec(){
 
 
 	}
+
+	//2. 2 movies in the favorites
+		// using year1, year2 and genre1, genre2
+
+	//3. 3+ movies in the favorites
+		// using year range and genre1, genre2, genre3
+
+	
+
+	
 	
 	int recSize = rec.size();
 	if(recSize<30){
