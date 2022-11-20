@@ -100,10 +100,10 @@ vector<movie> User::getRec(){
 
 	}
 	
-
-	if(C<=30){
+	int recSize = rec.size();
+	if(recSize<30){
 		int j = 0;
-		for(int i = C; i<30; i++){
+		for(int i = recSize; i<30; i++){
 			rec.push_back(latest30.at(j++));
 		}
 		
