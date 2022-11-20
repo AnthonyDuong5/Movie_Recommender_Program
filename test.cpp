@@ -246,9 +246,11 @@ TEST(getRec, directorFrequence_template2){
    cout << "#1 director: "<<help_getMaximumValue(freqMap).first<<" "<<help_getMaximumValue(freqMap).second<<endl;
 }
 
-TEST(UserMenu, RandomMovies) {
-     Menu menu1;
-}
+// CANNOT USE AS TEST FOR CI, IMPLEMENT IN MAIN
+
+// TEST(UserMenu, RandomMovies) {
+//      Menu menu1;
+// }
 
 int main(int argc, char **argv) {
     srand(time(0));
