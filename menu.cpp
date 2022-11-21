@@ -336,12 +336,6 @@ void Menu::searchByTitle() {
 void Menu::advancedMovieFilter() {
 	optionTracker = 4;
 	movieList defaultDatabase;
-	string movieTitle;
-	double movieRatingOne = 0.0;
-	double movieRatingTwo = 0.0;
-	int movieYearOne = 0;
-	int movieYearTwo = 0;
-	int movieGenre = 0;
 
 	vector <movie> filteredList;
 	defaultDatabase.readMovieListFiles();
@@ -355,14 +349,21 @@ void Menu::advancedMovieFilter() {
 		cout << "-------------------" << endl;
 		cout << "Advanced Movie Filter (1-4) \n";
 		cout << "1) Begin Filtering \n"
-			 << "2) Print Out Movies \n"
-			 << "3) Clear Filter \n"
-			 << "4) Return to Menu \n";
+			 << "2) View Filtered Movie List \n"
+			 << "3) Return to Menu \n";
 		cin >> choice;
 		cout << "------------------" << endl;
 		switch (choice) {
 		case '1':
+			filteredList.clear();
 			if(filteredList.size() == 0) {	
+			
+			string movieTitle;
+			double movieRatingOne = 0.0;
+			double movieRatingTwo = 0.0;
+			int movieYearOne = 0;
+			int movieYearTwo = 0;
+			int movieGenre = 0;
 	
 			//TITLE
 			cout << "Enter a Movie Title? ";
@@ -473,10 +474,8 @@ void Menu::advancedMovieFilter() {
 			}
 			else
 				cout << "No movies found under the criteria given." << endl;
-
 			}
-			else
-				cout << "You need to clear out the filter criteria before refiltering movies." << endl;
+
 			break;
 
 		case '2':
@@ -496,23 +495,15 @@ void Menu::advancedMovieFilter() {
 				}
 			 }
 			break;
-		case '3':
-				if(filteredList.size() == 0)
-					cout << "Filter has already been cleared." << endl;
-				else {
-					filteredList.clear();
-					cout << "Filter is clear." << endl;
-				}
-			break;
 		
-		case '4':
+		case '3':
 			return;	
 		default:
-			cout << "Invalid Choice. Please enter a number between 1 and 4" << endl;
+			cout << "Invalid Choice. Please enter a number between 1 and 3" << endl;
 		}
 
 
-	}while (choice != '4');
+	}while (choice != '3');
 	
 }
 
