@@ -222,9 +222,9 @@ TEST(SortByGenres, searchByGenre_int){
 
 // CANNOT USE AS TEST FOR CI, IMPLEMENT IN MAIN
 
-TEST(UserMenu, RandomMovies) {
-     Menu menu1;
-}
+// TEST(UserMenu, RandomMovies) {
+//      Menu menu1;
+// }
 
 TEST(User, getRec){
     vector<movie> rec;
