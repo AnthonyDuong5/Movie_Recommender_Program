@@ -18,6 +18,7 @@ using namespace std;
 class User {
 	private:
 		string UserName;
+		movieList MovieDatabase;
 		vector<movie> Favorites;
 		vector<movie> DefaultList;
 		vector<movie> ViewingList;
@@ -26,9 +27,8 @@ class User {
 		
 		int prompt = 0;
 
-		//adding a movieList,can use funcions from the movieList if needed.
-		movieList userFavList;
-
+		//for getRec
+		vector <movie> filteredList;
 	public:
 		User();
 		vector<movie> ReturnTrackList (){return TrackViewList;}
@@ -43,6 +43,7 @@ class User {
 		// vector<movie> getPrintedList(){return PrintedList;}
 		void removeFromViewingList(unsigned idx);
 		vector<movie> getRec();
+		vector<movie> filterlist(const vector<movie>& list); // pass in Favorites or ViewingList
 		
 };
 
@@ -51,6 +52,8 @@ class User {
 //help_getFreq takes a vector of K type and returns 
 //a map with the frequency of each element in the vector
 //(key : value) = (element : frequency)
+	//vector {C, C, B, A, C,A, D}
+	//map {C:3 , B:1, A:2, D:1}
 template<typename K>
 map<K,int> help_getFreq(vector<K> list){
 	map<K,int> freqMap;
@@ -67,10 +70,28 @@ map<K,int> help_getFreq(vector<K> list){
 	
 }
 //help_getMaximumValue returns the highest value(frequenct) pair from a map
+	//(C:3)
 template<typename K, typename V>
 pair<K,V> help_getMaximumValue(const map<K,V> &map) {
     return *std::max_element(map.begin(), map.end(), [](pair<K,V> const &x, pair<K,V> const &y) {
         return x.second < y.second;
     });
 }
+
+template<typename T>
+T help_getTopFreq(vector<T> &list){
+	map<T, int> freqMap = help_getFreq(list);	
+	T MostSeenT = help_getMaximumValue(freqMap).first;
+	freqMap.erase(MostSeenT);
+	return MostSeenT;
+}
+
+template<typename T>
+T help_getTopFreq(map<T, int> &freqMap){	
+	T MostSeenT = help_getMaximumValue(freqMap).first;
+	freqMap.erase(MostSeenT);
+	return MostSeenT;
+}
+
+
 #endif
