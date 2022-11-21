@@ -29,7 +29,8 @@ class Menu {
 
 		void addToFavorites();
 		void printFavorites();
-		bool checkInFavorites(const int);
+		bool checkInFavorites(const int); //passes in itemId
+		int countInFavorites();
 		int optionTracker = 0;
 		bool AdvSearch = false;
 };
