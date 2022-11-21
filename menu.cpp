@@ -540,7 +540,7 @@ void Menu::addToFavorites(){
 		}
 		//if it is already in fav, we output message.
 		else if (foundInFav){
-			cout << "Error. This movie has already been added to favorites." << endl;
+			cout << "Error. This movie has already been added to Favorites." << endl;
 		}
 		else if (!foundInTrack){
 			cout << "Movie not found. Please enter a valid ItemId." << endl;
@@ -579,7 +579,7 @@ bool Menu::checkInFavorites(const int mID){
 }
 
 void Menu::printFavorites(){
-	if (user.getFavoritesList().size != 0){
+	if (user.getFavoritesList().size() != 0){
 		cout << "==================================================" << endl;
 		cout << "------------------Favorites List------------------" << endl;
 		cout << "==================================================" << endl;
