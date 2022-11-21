@@ -72,7 +72,7 @@ int Menu::getPrompt(){
 void Menu::processPrompt(const int& prompt){
 	if (prompt == 1) printTenRandomMovies();
 	if (prompt == 2) printFiveByCategories();
-
+	if (prompt == 3) searchByTitle();
 	if (prompt == 4) advancedMovieFilter();
 
 	if (prompt == 6) printFavorites();
@@ -293,20 +293,52 @@ void Menu::printFiveByCategories(){
 
 }
 
+void Menu::searchByTitle() {
+	optionTracker = 3;
+	movieList defaultDatabase;
+	defaultDatabase.readMovieListFiles();
 
+	string titleSearched;
+	string response;
+	vector<movie> searchedTitleList;
+
+	cout << "Enter Movie Title: ";
+	cin.ignore(255,'\n');
+	getline(cin, titleSearched);
+	searchedTitleList = defaultDatabase.searchMovieTitle(titleSearched, searchedTitleList);
+
+	if(searchedTitleList.size() == 0)
+		cout << "No movies found with search: '" << titleSearched << "'" << endl;
+	else {
+		cout << "==================================================" << endl;
+		cout << "----------------Beginning Of List-----------------" << endl;
+		cout << "==================================================" << endl;
+		for (unsigned i = 0; i < searchedTitleList.size(); ++i) {
+			movie rMovie = searchedTitleList.at(i);	
+			user.AddToTrackList(rMovie);
+			searchedTitleList.at(i).printMovie();
+		}
+		cout << "==================================================" << endl;
+		cout << "-------------------End Of List--------------------" << endl;
+		cout << "==================================================" << endl;
+		cout << searchedTitleList.size() << " movies with search: '" << titleSearched << "'" << endl;
+		cout << "==================================================" << endl;
+		
+		cout << "Add any of the movies to favorites?" << endl;
+		bool yesOrNo = promptYesOrNo(response);
+		if (yesOrNo) {
+			addToFavorites();
+		}
+	}
+
+}
 
 void Menu::advancedMovieFilter() {
 	optionTracker = 4;
-	movieList MovieDatabase;
-	string movieTitle;
-	double movieRatingOne = 0.0;
-	double movieRatingTwo = 0.0;
-	int movieYearOne = 0;
-	int movieYearTwo = 0;
-	int movieGenre = 0;
+	movieList defaultDatabase;
 
 	vector <movie> filteredList;
-	MovieDatabase.readMovieListFiles();
+	defaultDatabase.readMovieListFiles();
 
 	char choice; 
 	string selection;
@@ -317,14 +349,21 @@ void Menu::advancedMovieFilter() {
 		cout << "-------------------" << endl;
 		cout << "Advanced Movie Filter (1-4) \n";
 		cout << "1) Begin Filtering \n"
-			 << "2) Print Out Movies \n"
-			 << "3) Clear Filter \n"
-			 << "4) Return to Menu \n";
+			 << "2) View Filtered Movie List \n"
+			 << "3) Return to Menu \n";
 		cin >> choice;
 		cout << "------------------" << endl;
 		switch (choice) {
 		case '1':
+			filteredList.clear();
 			if(filteredList.size() == 0) {	
+			
+			string movieTitle;
+			double movieRatingOne = 0.0;
+			double movieRatingTwo = 0.0;
+			int movieYearOne = 0;
+			int movieYearTwo = 0;
+			int movieGenre = 0;
 	
 			//TITLE
 			cout << "Enter a Movie Title? ";
@@ -334,7 +373,7 @@ void Menu::advancedMovieFilter() {
 				cin.ignore(255,'\n');
 				getline(cin, movieTitle);
 				if(filteredList.size() == 0)
-				filteredList = MovieDatabase.searchMovieTitle(movieTitle, filteredList);
+				filteredList = defaultDatabase.searchMovieTitle(movieTitle, filteredList);
 			}
 
 			//RATING
@@ -364,7 +403,7 @@ void Menu::advancedMovieFilter() {
 					if(movieRatingOne > movieRatingTwo)
 						cout << "First rating input is larger than the second. Please try again." << endl;
 				}while (movieRatingOne > movieRatingTwo);
-					filteredList = MovieDatabase.searchByRatings(movieRatingOne, movieRatingTwo, filteredList);
+					filteredList = defaultDatabase.searchByRatings(movieRatingOne, movieRatingTwo, filteredList);
 			}
 
 			//YEAR
@@ -394,7 +433,7 @@ void Menu::advancedMovieFilter() {
 					if(movieYearOne > movieYearTwo)
 						cout << "First year input is larger than the second. Please try again." << endl;
 				}while (movieYearOne > movieYearTwo);
-					MovieDatabase.searchYearRange(movieYearOne, movieYearTwo, filteredList);
+					defaultDatabase.searchYearRange(movieYearOne, movieYearTwo, filteredList);
 				}
 
 			//GENRE
@@ -420,7 +459,7 @@ void Menu::advancedMovieFilter() {
 						if(movieGenre < 1 || movieGenre > 19)
 							cout << "Please enter a number from 1 to 19." << endl;
 				}while(movieGenre < 1 || movieGenre > 19);
-				MovieDatabase.searchByGenre(movieGenre, filteredList);
+				defaultDatabase.searchByGenre(movieGenre, filteredList);
 			}
 
 			getCriteria(movieTitle, movieRatingOne, movieRatingTwo, movieYearOne, movieYearTwo, movieGenre);
@@ -435,10 +474,8 @@ void Menu::advancedMovieFilter() {
 			}
 			else
 				cout << "No movies found under the criteria given." << endl;
-
 			}
-			else
-				cout << "You need to clear out the filter criteria before refiltering movies." << endl;
+
 			break;
 
 		case '2':
@@ -458,25 +495,16 @@ void Menu::advancedMovieFilter() {
 				}
 			 }
 			break;
-		case '3':
-				if(filteredList.size() == 0)
-					cout << "Filter has already been cleared." << endl;
-				else {
-					filteredList.clear();
-					cout << "Filter is clear." << endl;
-				}
-			break;
 		
-		case '4':
+		case '3':
 			return;	
 		default:
-			cout << "Invalid Choice. Please enter a number between 1 and 4" << endl;
+			cout << "Invalid Choice. Please enter a number between 1 and 3" << endl;
 		}
 
 
-	}while (choice != '4');
+	}while (choice != '3');
 	
-	optionTracker = 2;
 }
 
 
@@ -484,17 +512,18 @@ void Menu::addToFavorites(){
 
 	//this checks if user used adv filter but did not print the movies. so we will have to output the movies for them
 	if (optionTracker == 1){
-		cout << "Adding to Favorites from a list of random movies. " << endl;
+		cout << "Adding to Favorites from a list of random movies." << endl;
 	}
 	else if (optionTracker == 2){
-		cout << "Adding to Favorites from Browsed Categories. " << endl;
+		cout << "Adding to Favorites from Browsed Categories." << endl;
 	}
 	else if (optionTracker == 3){
-		cout << "Adding to Favorites from Searched List. " << endl;
+		cout << "Adding to Favorites from Searched List." << endl;
 	}
 	else if (optionTracker == 4){
 		cout << "Adding to Favorites from Advanced Search." << endl;
 	}
+
 	int displaySize = user.ReturnTrackList().size();
 	int curSize = 0;
 	//first we need to check if the movies from track are already in track list.

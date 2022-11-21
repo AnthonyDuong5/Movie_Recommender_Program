@@ -202,7 +202,6 @@ TEST(SortByGenres, searchByGenre_int){
 //     cout << "#3 Genre: "<<g3<<" "<<help_getMaximumValue(freqMap3).second<<" movies"<<endl;
 // }
 
-
 // TEST(getRec, directorFrequence_template2){
 //    movieList MovieDatabase;
 //    MovieDatabase.readMovieListFiles();
