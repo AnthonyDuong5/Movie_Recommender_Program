@@ -68,7 +68,6 @@ void movieList::readMovieListFiles(){
 	}
 	//read Genres.txt from local and stores 19 genres into genres in movieList's member vector<string> genres. 
 	setGenres();
-	// sortedlist = list;
 }
 
 //sorts movies by rating in descending order
@@ -121,6 +120,7 @@ void movieList::searchByRatings(double lowRating, double highRating) {
 	sortedlist = searchList;
 }
 
+
 vector<movie> movieList::searchByRatings(double lowRating, double highRating, vector<movie>& filterList) {
 	if(filterList.size() == 0)
 	{
@@ -141,6 +141,24 @@ vector<movie> movieList::searchByRatings(double lowRating, double highRating, ve
 		}
 	}
 	return filterList;
+}
+void movieList::sortByRatingDescending_2(vector<movie>& filterList) {
+
+
+	unsigned maxIdx;
+
+	for (unsigned i = 0; i + 1 < filterList.size(); ++i) {
+		maxIdx = i;
+
+		for (unsigned j = i + 1; j < filterList.size(); ++j) {
+			if (filterList.at(j).getRating() > filterList.at(maxIdx).getRating()) {
+				maxIdx = j;
+			}
+		}
+
+		swap(filterList.at(i), filterList.at(maxIdx));
+	}
+
 }
 
 void movieList::printMovies(){
@@ -234,6 +252,18 @@ vector<movie> movieList::searchYearRange(int minYear, int maxYear, vector<movie>
 	return filterList;
 }
 
+vector<movie> movieList::searchYearRange_2(int minYear, int maxYear, const vector<movie>& filterList) {
+	vector<movie> newList;
+
+		for(unsigned i = 0; i < filterList.size(); ++i) {
+			if (filterList.at(i).getYear() >= minYear && filterList.at(i).getYear() <= maxYear) {
+				newList.push_back(filterList.at(i));
+			}
+		}
+
+	return newList;
+}
+
 void movieList::sortAscendingTitles(vector <movie>& l){
 	sortedlist = l;
 	int titleTop;
@@ -315,8 +345,6 @@ vector<movie>& movieList::returnSortedList() {
 	return sortedlist;
 }
 
-
-
 void movieList::setGenres(){
 
 	ifstream in( "data/Genres.txt" );
@@ -355,6 +383,22 @@ vector<movie> movieList::searchByGenre(Genre g){
 	
 	return newlist;
 }
+vector<movie> movieList::searchByGenre_2(Genre g, vector<movie> &filter){
+
+	vector<movie> newlist;
+	
+	for (int i = 0; i< filter.size();i++){
+		vector <Genre> gen_list = list.at(i).genre_list;
+		for (auto x : gen_list){
+			if(x==g){
+				newlist.push_back(list.at(i));
+				break;
+			}
+		}
+	}
+	
+	return newlist;
+}
 
 vector<movie> movieList::searchByGenre(int userInput ){
 
@@ -374,6 +418,7 @@ vector<movie> movieList::searchByGenre(int userInput ){
 
 	return newlist;
 }
+
 
 vector<movie> movieList::searchByGenre(int userInput, vector<movie>& filterList){
 	string gType = genres.at(userInput-1);
@@ -409,4 +454,23 @@ vector<movie> movieList::searchByGenre(int userInput, vector<movie>& filterList)
 	return filterList;
 }
 	
+vector<movie> movieList::searchByDirector(string dir,const vector<movie> &filter){
+	vector<movie> directorList;
+	for(auto x : filter){
+		if(x.getDirector()==dir){
+			directorList.push_back(x);
+		}
+	}
+	return directorList;
+}
 
+void movieList::makeLatestTop30(int latest){
+	
+	vector<movie> filter1 = searchYearRange_2(latest,latest,list);
+	cout<<"filter1 size = "<<filter1.size()<<endl;
+	sortByRatingDescending_2(filter1);
+	
+	for (int i = 0; i<30; i++){
+		latestTop30.push_back(filter1.at(i));
+	}
+}
