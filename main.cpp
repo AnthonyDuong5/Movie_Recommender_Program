@@ -32,6 +32,7 @@ int main(){
     // user1.printMenu();
     // int choice = user1.getPrompt();
     // user1.processPrompt(choice);
+    Menu defMenu;
     return 0;
 
 

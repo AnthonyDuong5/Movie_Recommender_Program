@@ -26,9 +26,9 @@ Genre HashIt (std::string const& inString) {
 	else if (inString == "Action") return Action;
 	else if (inString == "Animation") return Animation;
 	else if (inString == "Children") return Children;
-	else if (inString == "Comedy") return Comedy;	
+	// else if (inString == "Comedy") return Comedy;	
 	else if (inString == "Crime") return Crime;
-	else if (inString == "Documentarys") return Documentarys;
+	else if (inString == "Documentary") return Documentary;
 	else if (inString == "Drama") return Drama;
 	else if (inString == "Fantasy") return Fantasy;
 	else if (inString == "Film-Noir") return FilmNoir;
@@ -41,7 +41,7 @@ Genre HashIt (std::string const& inString) {
 	else if (inString == "Thriller") return Thriller;
 	else if (inString == "War") return War;
 	else if(inString == "Western") return Western;
-	return Comedy;
+	else { return Comedy;}
 }
 
 void movieList::readMovieListFiles(){
