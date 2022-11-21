@@ -495,79 +495,78 @@ void Menu::addToFavorites(){
 	else if (optionTracker == 4){
 		cout << "Adding to Favorites from Advanced Search." << endl;
 	}
-
-	cout << "Enter the itemId of the movie you want to add from the list displayed above:";
-	int inputID;
-	cin >> inputID;
-	while (cin.fail()) {
-		//input is not an int.
-		cout << "Please enter a valid itemId." << endl;
-		cin.clear();
-		cin.ignore(256, '\n');
-		cin >> inputID;
-	}
-	//found is a bool that will be set to true if movie to add is already in favorites
-	bool found = false;
-	for (int i = 0; i < user.ReturnTrackList().size(); ++i){
-		//if the movie has been found inside the track list
-		if (inputID == user.ReturnTrackList().at(i).getItemId()){
-			found = true;
-			cout << user.ReturnTrackList().at(i).getTitle() << " has been selected. ";
-			//this if statement means the movie has not been in favorites
-			if (checkInFavorites(inputID) == false){
-				cout << "Would you like to add this movie?";
-				string confirmAdd;
-				bool YorN = promptYesOrNo(confirmAdd);
-				//reconfirm if they want to add, if yes, we add
-				if (YorN){
-					movie fMovie = user.ReturnTrackList().at(i);
-					user.AddToFavoriteList(fMovie);
-					//user.getFavoritesList().push_back(user.ReturnTrackList().at(i));
-					
-					cout << user.ReturnTrackList().at(i).getTitle() << " has been added to Favorites." << endl;
-				}
-				//else, we as if they want to add a different movie.
-				
-				else {
-					cout << "Add a different movie? ";
-					string uChoice;
-					bool uChoiceYorN = promptYesOrNo(uChoice);
-					//if so, we will rerun the addToFavorites() func.
-					if (uChoiceYorN){
-						addToFavorites();
-					}
-					//otherwise, we will return to menu
-					else {
-						cout << "Now returning to Main Menu..." << endl;
-						runMenu();
-						break;
-					}
-				}	
-			}
-			//we see the movie in favorites, so we say this and do not add it to the fav list again.
-			else{
-				cout << user.ReturnTrackList().at(i).getTitle() << "is already in Favorites." << endl;
+	int displaySize = user.ReturnTrackList().size();
+	int curSize = 0;
+	
+	while (curSize < displaySize){
+		cout << "You can add " << displaySize - curSize << " movies from the list." << endl;
+		cout << "Enter the itemId of the movie you want to add from the list above:";
+		int inputId;
+		cin >> inputId;
+		while (cin.fail()){
+			//input is not an int
+			cout << "Please enter a valid itemId." << endl;
+			cin.clear();
+			cin.ignore(256, '\n');
+			cin >> inputId;
+		}
+		//check to see if valid id
+		bool foundInTrack = false;
+		int trackIndex;
+		for (unsigned i = 0; i < user.ReturnTrackList().size(); ++i){
+			if (inputId == user.ReturnTrackList().at(i).getItemId()){
+				foundInTrack = true;
+				trackIndex = i;
+				cout << user.ReturnTrackList().at(i).getTitle() << " has been selected. ";
+				break;
 			}
 		}
+		//foundInFav is a bool that will be set to true if movie to add is already in favorites
+		bool foundInFav = checkInFavorites(inputId);
+		//we check if item is already in favorites. if it isn't, we prompt
+		if (!foundInFav && foundInTrack){
+			cout << "Would you like to add this movie?";
+			string confirmAdd;
+			bool YorN = promptYesOrNo(confirmAdd);
+			//reconfirm if they want to add, if yes, we add
+			if (YorN){
+				movie fMovie = user.ReturnTrackList().at(trackIndex);
+				user.AddToFavoriteList(fMovie);
+				//user.getFavoritesList().push_back(user.ReturnTrackList().at(i));
+				
+				cout << user.ReturnTrackList().at(trackIndex).getTitle() << " has been added to Favorites." << endl;
+				++curSize;
+			}
+		}
+		//if it is already in fav, we output message.
+		else if (foundInFav){
+			cout << "Error. This movie has already been added to favorites." << endl;
+		}
+		else if (!foundInTrack){
+			cout << "Movie not found. Please enter a valid ItemId." << endl;
+		}
+		cout << "There are currently " << user.getFavoritesList().size() << " movies in your Favorites List." << endl;
+		if (curSize < displaySize){
+			cout << "Add a different movie? ";
+			string u2Choice;
+			bool u2ChoiceYorN = promptYesOrNo(u2Choice);
+			//if so, we will rerun the addToFavorites() func.
+			if (!u2ChoiceYorN){
+				if (curSize > 1){
+					cout << curSize << " movies have been added. ";	
+				}
+				else if (curSize == 1){
+					cout << curSize << " movie has been added. ";
+				}
+				else {
+					cout << "0" << " movies have been added. ";
+				}
+				cout << "Now returning to Previous Menu..." << endl;
+				break;	
+			}	
+		}
 	}
-	//if the movie was not found(itemid is wrong), we output an error message and 
-	if (found == false) {
-		cout << "Movie not found. Please enter a valid ItemId." << endl;
-	}
-
-	cout << "There are currently " << user.getFavoritesList().size() << " movies in your Favorites List. " << endl;
-	cout << "Add a different movie? ";
-	string u2Choice;
-	bool u2ChoiceYorN = promptYesOrNo(u2Choice);
-	//if so, we will rerun the addToFavorites() func.
-	if (u2ChoiceYorN){
-		addToFavorites();	
-	}	
-	//otherwise, we will return to menu
-	else {
-		cout << "Now returning to Previous Menu..." << endl;
-		return;
-	}
+	cout << "All available movies have been added. Now returning." << endl;
 }
 
 bool Menu::checkInFavorites(const int mID){
