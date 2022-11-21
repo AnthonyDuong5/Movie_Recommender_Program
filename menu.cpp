@@ -579,18 +579,23 @@ bool Menu::checkInFavorites(const int mID){
 }
 
 void Menu::printFavorites(){
-	cout << "==================================================" << endl;
-	cout << "------------------Favorites List------------------" << endl;
-	cout << "==================================================" << endl;
-	vector<movie> fav = user.getFavoritesList();
-	for (unsigned i = 0; i < fav.size(); ++i){
-		fav.at(i).printMovie();
+	if (user.getFavoritesList().size != 0){
+		cout << "==================================================" << endl;
+		cout << "------------------Favorites List------------------" << endl;
+		cout << "==================================================" << endl;
+		vector<movie> fav = user.getFavoritesList();
+		for (unsigned i = 0; i < fav.size(); ++i){
+			fav.at(i).printMovie();
+		}
+		cout << "==================================================" << endl;
+		cout << "-------------------End Of List--------------------" << endl;
+		cout << "==================================================" << endl;
+		cout << "Total of " << fav.size() << " movies in Favorites." << endl;
+		cout << "==================================================" << endl;
 	}
-	cout << "==================================================" << endl;
-	cout << "-------------------End Of List--------------------" << endl;
-	cout << "==================================================" << endl;
-	cout << "Total of " << fav.size() << " movies in Favorites." << endl;
-	cout << "==================================================" << endl;
+	else {
+		cout << "There are no movies in the Favorites list." << endl;
+	}
 }
 
 void Menu::getCriteria(string title, double ratingOne, double ratingTwo, int yearOne, int yearTwo, int genre) {
