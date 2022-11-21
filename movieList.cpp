@@ -26,9 +26,9 @@ Genre HashIt (std::string const& inString) {
 	else if (inString == "Action") return Action;
 	else if (inString == "Animation") return Animation;
 	else if (inString == "Children") return Children;
-	else if (inString == "Comedy") return Comedy;	
+	// else if (inString == "Comedy") return Comedy;	
 	else if (inString == "Crime") return Crime;
-	else if (inString == "Documentarys") return Documentarys;
+	else if (inString == "Documentary") return Documentary;
 	else if (inString == "Drama") return Drama;
 	else if (inString == "Fantasy") return Fantasy;
 	else if (inString == "Film-Noir") return FilmNoir;
@@ -41,7 +41,7 @@ Genre HashIt (std::string const& inString) {
 	else if (inString == "Thriller") return Thriller;
 	else if (inString == "War") return War;
 	else if(inString == "Western") return Western;
-	return Comedy;
+	else { return Comedy;}
 }
 
 void movieList::readMovieListFiles(){
@@ -149,11 +149,11 @@ void movieList::printMovies(){
 		cout << "------------------" << endl;
 		cout << i + 1 << "." << endl;
 		cout<<"title: "<< movieListPrint.at(i).getTitle()<<endl;
-		cout<<"year: "<< movieListPrint.at(i).getYear()<<endl;
+		//cout<<"year: "<< movieListPrint.at(i).getYear()<<endl;
 		cout<<"director: "<<movieListPrint.at(i).getDirector()<<endl;
 		cout<<"casting: "<<movieListPrint.at(i).getCast()<<endl;
 		cout<<"rating: "<<movieListPrint.at(i).getRating()<<endl;
-		cout<<"IMDB ID: "<<movieListPrint.at(i).getImdbId()<<endl;
+		//cout<<"IMDB ID: "<<movieListPrint.at(i).getImdbId()<<endl;
 		cout<<"item: "<<movieListPrint.at(i).getItemId()<<endl;
 		cout<<"Genre: "; for (auto gen : movieListPrint.at(i).getGenreList()){ cout<<gen<<" ";} cout<<endl;
 
