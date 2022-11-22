@@ -531,7 +531,7 @@ void Menu::addToFavorites(){
 	//case for only 1 movie in track list
 	if (user.ReturnTrackList().size() == 1 && (checkInFavorites(user.ReturnTrackList().front().getItemId()) == false) ){
 		cout << user.ReturnTrackList().front().getTitle() << " has been selected. ";
-		cout << "Would you like to add this movie?";
+		cout << "Would you like to add this movie? ";
 		string confirmAdd;
 		bool YorN = promptYesOrNo(confirmAdd);
 		//reconfirm if they want to add, if yes, we add
@@ -551,7 +551,7 @@ void Menu::addToFavorites(){
 		while (curSize < displaySize){
 			cout << "There are " << countInFavorites() << " movie(s) from the current list that are already in Favorites." << endl;
 			cout << "You can add " << displaySize - curSize - countInFavorites() << " movies from the list." << endl;
-			cout << "Enter the itemId of the movie you want to add from the list above:";
+			cout << "Enter the itemId of the movie you want to add from the list above: ";
 			int inputId;
 			cin >> inputId;
 			while (cin.fail()){
