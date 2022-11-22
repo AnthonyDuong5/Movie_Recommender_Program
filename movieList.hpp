@@ -23,6 +23,7 @@ class movieList{
 
 		//TITLE
 		void sortAscendingTitles(vector <movie>&);
+		void sortAscendingTitles_2(vector <movie>&);
 		void sortDescendingTitles(vector <movie>&);
 		void searchMovieTitle(string);
 		vector<movie> searchMovieTitle(string, vector<movie>&);		//test
@@ -60,6 +61,7 @@ class movieList{
 		//FOR RECOMMENDATION
 		vector <movie> returnLatestTop30(){return latestTop30;}
 		void makeLatestTop30 (int);
+		void mergeList(vector<movie>&m1,vector<movie>&m2,vector<movie>&m3);
 
 
 // ------------------------- Incomplete/Pending Function Progress------------------- //

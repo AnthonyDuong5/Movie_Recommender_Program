@@ -278,6 +278,21 @@ void movieList::sortAscendingTitles(vector <movie>& l){
 	}
 }
 
+void movieList::sortAscendingTitles_2(vector <movie>& l){
+	
+	int titleTop;
+	for (unsigned i = 0; i < l.size(); ++i){
+		titleTop = i;
+		for (unsigned j = i + 1; j < l.size(); ++j){
+			if (l.at(j).getTitle() < l.at(titleTop).getTitle() ){
+				titleTop = j;
+			}
+		}
+		swap (l.at(i), l.at(titleTop));
+	}
+	
+}
+
 void movieList::sortDescendingTitles(vector <movie>& l){
 	sortedlist = l;
 	int titleLast;
@@ -472,5 +487,18 @@ void movieList::makeLatestTop30(int latest){
 	
 	for (int i = 0; i<30; i++){
 		latestTop30.push_back(filter1.at(i));
+	}
+}
+
+void movieList::mergeList(vector<movie>&m1,vector<movie>&m2,vector<movie>&m3){
+	m3 = m1;
+	bool same = false;
+	for (auto x: m2){
+		for (auto y: m1){
+			if(x.getItemId()==y.getImdbId()){same = true;}
+		}
+		if(same == false){
+			m3.push_back(x);
+		}
 	}
 }

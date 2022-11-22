@@ -49,8 +49,10 @@ vector<movie> User::getRec(){
 	int year1, year2, year3 =0;
 	Genre gen1, gen2, gen3;
 	string director1, director2, director3;
-	vector <movie> filteredList1,filteredList2,filteredList3; //filter year, genre, string
-   	int A, B, C = 0; //size of filteredList1, filteredList2, filteredList3
+	vector <movie> filteredList1,filteredList2,filteredList3,filteredList4 ; 
+   	int A, B, C, D = 0; //size of filteredList1, filteredList2, filteredList3, filteredList4
+
+	map<Genre, int>freqGenre = help_getFreq(genreslist);
 
 	//making a top 30 list
 	MovieDatabase.makeLatestTop30(2018);
@@ -103,6 +105,35 @@ vector<movie> User::getRec(){
 
 	//2. 2 movies in the favorites
 		// using year1, year2 and genre1, genre2
+	else if(favoriteCount == 2){
+
+		//for 2 movies situation, take the union of {(year range and gen1), )(year range and gen2)}
+		//and select movies from it.
+		year1 = *min_element(yearlist.begin(),yearlist.end());
+		year2 = *max_element(yearlist.begin(),yearlist.end());
+		gen1 = help_getTopFreq(freqGenre);	
+		gen2 = help_getTopFreq(freqGenre);	
+	
+
+		//Begin filtering
+		filteredList1 = MovieDatabase.searchYearRange_2(year1, year2, filteredList);
+		A = filteredList1.size();
+		if (A!=0){
+
+			filteredList2 = MovieDatabase.searchByGenre_2(gen1,filteredList1);
+			B = filteredList2.size();
+			MovieDatabase.sortAscendingTitles_2(filteredList2);
+			
+			filteredList3 = MovieDatabase.searchByGenre_2(gen2,filteredList1);
+			C = filteredList2.size();
+			MovieDatabase.sortAscendingTitles_2(filteredList3);
+		
+		}
+
+		MovieDatabase.mergeList(filteredList2,filteredList3, filteredList4);
+		
+
+	}
 
 	//3. 3+ movies in the favorites
 		// using year range and genre1, genre2, genre3

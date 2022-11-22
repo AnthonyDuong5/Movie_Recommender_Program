@@ -44,6 +44,7 @@ class User {
 		void removeFromViewingList(unsigned idx);
 		vector<movie> getRec();
 		vector<movie> filterlist(const vector<movie>& list); // pass in Favorites or ViewingList
+
 		
 };
 
@@ -92,6 +93,7 @@ T help_getTopFreq(map<T, int> &freqMap){
 	freqMap.erase(MostSeenT);
 	return MostSeenT;
 }
+
 
 
 #endif

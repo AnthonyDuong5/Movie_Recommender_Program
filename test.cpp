@@ -13,60 +13,60 @@
 // }
 
 
-TEST(SortTest, testSortByRatingDescending) {
-    movieList MovieDatabase;
-    MovieDatabase.readMovieListFiles();
-    MovieDatabase.sortByRatingDescending();
-    for (unsigned i = 0; i < 5000; i+=500) {
-        MovieDatabase.returnSortedList().at(i).printMovie();
-	}
-}
+// TEST(SortTest, testSortByRatingDescending) {
+//     movieList MovieDatabase;
+//     MovieDatabase.readMovieListFiles();
+//     MovieDatabase.sortByRatingDescending();
+//     for (unsigned i = 0; i < 5000; i+=500) {
+//         MovieDatabase.returnSortedList().at(i).printMovie();
+// 	}
+// }
 
-TEST(SortTest, testSortByRatingAscending) {
-    movieList MovieDatabase;
-    MovieDatabase.readMovieListFiles();
-    MovieDatabase.sortByRatingAscending();
-    for (unsigned i = 0; i < 5000; i+=500) {
-        MovieDatabase.returnSortedList().at(i).printMovie();
-	}
-}
+// TEST(SortTest, testSortByRatingAscending) {
+//     movieList MovieDatabase;
+//     MovieDatabase.readMovieListFiles();
+//     MovieDatabase.sortByRatingAscending();
+//     for (unsigned i = 0; i < 5000; i+=500) {
+//         MovieDatabase.returnSortedList().at(i).printMovie();
+// 	}
+// }
 
-TEST(SortTest, testSearchByRatings) {
-    movieList MovieDatabase;
-    MovieDatabase.readMovieListFiles();
-    MovieDatabase.searchByRatings(4.0, 4.5);
-    for (unsigned i = 100; i < 1100; i += 100) {
-        MovieDatabase.returnSortedList().at(i).printMovie();
-	}
-}
+// TEST(SortTest, testSearchByRatings) {
+//     movieList MovieDatabase;
+//     MovieDatabase.readMovieListFiles();
+//     MovieDatabase.searchByRatings(4.0, 4.5);
+//     for (unsigned i = 100; i < 1100; i += 100) {
+//         MovieDatabase.returnSortedList().at(i).printMovie();
+// 	}
+// }
 
-TEST(SortTest, testSortAscendingTitles) {
-    movieList MovieDatabase;
-    MovieDatabase.readMovieListFiles();
-    MovieDatabase.sortAscendingTitles(MovieDatabase.returnList());
-	for (unsigned i = 0; i < 5000; i+=500) {
-        MovieDatabase.returnSortedList().at(i).printMovie();
-	}
-}
+// TEST(SortTest, testSortAscendingTitles) {
+//     movieList MovieDatabase;
+//     MovieDatabase.readMovieListFiles();
+//     MovieDatabase.sortAscendingTitles(MovieDatabase.returnList());
+// 	for (unsigned i = 0; i < 5000; i+=500) {
+//         MovieDatabase.returnSortedList().at(i).printMovie();
+// 	}
+// }
 
-TEST(SortTest, testSortDescendingTitles) {
-    movieList MovieDatabase;
-    MovieDatabase.readMovieListFiles();
-    MovieDatabase.sortDescendingTitles(MovieDatabase.returnList());
-    for (unsigned i = 0; i < 5000; i+=500) {
-        MovieDatabase.returnSortedList().at(i).printMovie();
-	}
-}
+// TEST(SortTest, testSortDescendingTitles) {
+//     movieList MovieDatabase;
+//     MovieDatabase.readMovieListFiles();
+//     MovieDatabase.sortDescendingTitles(MovieDatabase.returnList());
+//     for (unsigned i = 0; i < 5000; i+=500) {
+//         MovieDatabase.returnSortedList().at(i).printMovie();
+// 	}
+// }
 
 
-TEST (SortTest, testSearchMovieTitle){
-    movieList MovieDatabase;
-    MovieDatabase.readMovieListFiles();
-    MovieDatabase.searchMovieTitle("Hotel");
-    for (unsigned i = 0; i < MovieDatabase.returnSortedList().size(); ++i) {
-        MovieDatabase.returnSortedList().at(i).printMovie();
-	}
-}
+// TEST (SortTest, testSearchMovieTitle){
+//     movieList MovieDatabase;
+//     MovieDatabase.readMovieListFiles();
+//     MovieDatabase.searchMovieTitle("Hotel");
+//     for (unsigned i = 0; i < MovieDatabase.returnSortedList().size(); ++i) {
+//         MovieDatabase.returnSortedList().at(i).printMovie();
+// 	}
+// }
 
 
 // TEST(SortByGenres, testGenreList){
@@ -79,29 +79,29 @@ TEST (SortTest, testSearchMovieTitle){
 //     EXPECT_EQ(MovieDatabase.getGenres().size(),19);
 // }
 
-TEST(SortByGenres, searchByGenre_Genre){
-    movieList MovieDatabase;
-    MovieDatabase.readMovieListFiles();
-    cout << "database has been set" << endl;
-    Genre gType = Mystery; 
-    vector<movie> genreMovieList = MovieDatabase.searchByGenre(gType);
-    cout << genreMovieList.size()<< " movies from Mystery."<<endl;
-    for (unsigned i = 0; i < 10; i ++) {
-        genreMovieList.at(i).printMovie();
-    }
-}
+// TEST(SortByGenres, searchByGenre_Genre){
+//     movieList MovieDatabase;
+//     MovieDatabase.readMovieListFiles();
+//     cout << "database has been set" << endl;
+//     Genre gType = Mystery; 
+//     vector<movie> genreMovieList = MovieDatabase.searchByGenre(gType);
+//     cout << genreMovieList.size()<< " movies from Mystery."<<endl;
+//     for (unsigned i = 0; i < 10; i ++) {
+//         genreMovieList.at(i).printMovie();
+//     }
+// }
 
-TEST(SortByGenres, searchByGenre_int){
-    movieList MovieDatabase;
-    MovieDatabase.readMovieListFiles();
-    cout << "database has been set" << endl;
-    int input = 1; 
-    vector<movie> genreMovieList = MovieDatabase.searchByGenre(input);
-    cout << genreMovieList.size()<< " movies from Adventure."<<endl;
-    for (unsigned i = 0; i < 10; i ++) {
-        genreMovieList.at(i).printMovie();
-    }
-}
+// TEST(SortByGenres, searchByGenre_int){
+//     movieList MovieDatabase;
+//     MovieDatabase.readMovieListFiles();
+//     cout << "database has been set" << endl;
+//     int input = 1; 
+//     vector<movie> genreMovieList = MovieDatabase.searchByGenre(input);
+//     cout << genreMovieList.size()<< " movies from Adventure."<<endl;
+//     for (unsigned i = 0; i < 10; i ++) {
+//         genreMovieList.at(i).printMovie();
+//     }
+// }
 
 // TEST(movie, printmovie){
 //     movieList MovieDatabase;
@@ -227,85 +227,145 @@ TEST(SortByGenres, searchByGenre_int){
 //      Menu menu1;
 // }
 
-TEST(User, getRec){
-    vector<movie> rec;
-	vector<int> yearlist;
-	vector<string>directorlist;
-	vector<Genre> genreslist;
+// TEST(UsergetRec, 1movie){
+//     vector<movie> rec;
+// 	vector<int> yearlist;
+// 	vector<string>directorlist;
+// 	vector<Genre> genreslist;
 	
-    movieList MovieDatabase;
-    MovieDatabase.readMovieListFiles();
-    vector <movie> filteredList = MovieDatabase.returnList();
+//     movieList MovieDatabase;
+//     MovieDatabase.readMovieListFiles();
+//     vector <movie> filteredList = MovieDatabase.returnList();
     
-    //making a top 30 list 0f 2018. 
-    MovieDatabase.makeLatestTop30(2018);
-	vector<movie> latest30 = MovieDatabase.returnLatestTop30();
+//     //making a top 30 list 0f 2018. 
+//     MovieDatabase.makeLatestTop30(2018);
+// 	vector<movie> latest30 = MovieDatabase.returnLatestTop30();
 
     
-    vector<movie> tempFav;
-    for(int i = 0; i <= 100; i ++){
+//     vector<movie> tempFav;
+//     for(int i = 0; i <= 100; i ++){
+// 	tempFav.push_back(MovieDatabase.returnList().at(i));
+//     }
+//     for(movie x: tempFav){ 
+//         yearlist.push_back(x.getYear());
+// 		directorlist.push_back(x.getDirector());
+// 		for(Genre y: x.genre_list){
+// 			genreslist.push_back(y);
+// 		}
+// 	}
+
+// 	int year1=0;
+// 	Genre gen1;
+// 	string director1;
+   
+//     year1 = help_getTopFreq(yearlist);	
+//     director1 = help_getTopFreq(directorlist);	
+//     gen1 = help_getTopFreq(genreslist);	
+    
+//     cout<<"top year: "<< year1<<endl;
+//     cout<<"director: "<<director1<<endl;
+//     cout<<"genra: "<<gen1<<endl;
+//     vector <movie> filteredList1,filteredList2,filteredList3;
+//     int A, B, C; //size of filteredList1, filteredList2, filteredList3
+
+//     //Begin filtering
+//     filteredList1 = MovieDatabase.searchYearRange_2(year1, year1, filteredList);
+//     A = filteredList1.size();
+//     if (A!=0){
+
+//         filteredList2 = MovieDatabase.searchByGenre_2(gen1,filteredList1);
+//         B = filteredList2.size();
+        
+//         if(B!=0){
+
+//             filteredList3 = MovieDatabase.searchByDirector(director1,filteredList);
+//             C = filteredList3.size();
+//         }
+      
+//     }
+
+//     if(A<30){rec = filteredList1;}
+//     else if(B<30){rec =filteredList2;}
+//     else {rec = filteredList3;}
+
+// 	int recSize = rec.size();
+// 	if(recSize<30){
+// 		int j = 0;
+// 		for(int i = recSize; i<30; i++){
+// 			rec.push_back(latest30.at(j++));
+// 		}
+		
+// 	}
+
+    
+// cout<<"filter1 size : "<<A<<endl;
+// cout<<"filter2 size : "<<B<<endl;
+// cout<<"filter3 size : "<<C<<endl;
+//     cout<<"exit filter"<<endl;
+//     cout<<"rec list size: "<<rec.size()<<endl;
+//     // for (auto x : rec){
+//     //     x.printMovie();
+//     // }
+    
+// }
+
+TEST(UsergetRec, 2movies){
+	vector<movie> rec;
+	vector<int> yearlist;
+	vector<Genre> genreslist;
+
+
+movieList MovieDatabase;
+MovieDatabase.readMovieListFiles();
+vector <movie> filteredList = MovieDatabase.returnList();
+vector<movie> tempFav;
+    for(int i = 0; i <= 10; i ++){
 	tempFav.push_back(MovieDatabase.returnList().at(i));
     }
     for(movie x: tempFav){ 
         yearlist.push_back(x.getYear());
-		directorlist.push_back(x.getDirector());
 		for(Genre y: x.genre_list){
 			genreslist.push_back(y);
 		}
 	}
 
-	int year1 =0;
-	Genre gen1;
-	string director1;
+	//use criteria (year, director, director) to generate a rec list.
+	//may be using different combination of criteria based on the condition
+	int year1, year2, year3 =0;
+	Genre gen1, gen2, gen3;
+	string director1, director2, director3;
+	vector <movie> filteredList1,filteredList2,filteredList3,filteredList4 ; 
+   	int A, B, C, D = 0; //size of filteredList1, filteredList2, filteredList3, filteredList4
+
+
+	map<Genre, int>freqGenre = help_getFreq(genreslist);
    
-    year1 = help_getTopFreq(yearlist);	
-    director1 = help_getTopFreq(directorlist);	
-    gen1 = help_getTopFreq(genreslist);	
-    
-    cout<<"top year: "<< year1<<endl;
-    cout<<"director: "<<director1<<endl;
-    cout<<"genra: "<<gen1<<endl;
-    vector <movie> filteredList1,filteredList2,filteredList3;
-    int A, B, C; //size of filteredList1, filteredList2, filteredList3
+		year1 = *min_element(yearlist.begin(),yearlist.end());
+		year2 = *max_element(yearlist.begin(),yearlist.end());
+		gen1 = help_getTopFreq(freqGenre);	
+		gen2 = help_getTopFreq(freqGenre);	
+	
 
-    //Begin filtering
-    filteredList1 = MovieDatabase.searchYearRange_2(year1, year1, filteredList);
-    A = filteredList1.size();
-    if (A!=0){
+		//Begin filtering
+		filteredList1 = MovieDatabase.searchYearRange_2(year1, year2, filteredList);
+		A = filteredList1.size();
+		if (A!=0){
 
-        filteredList2 = MovieDatabase.searchByGenre_2(gen1,filteredList1);
-        B = filteredList2.size();
-        
-        if(B!=0){
-
-            filteredList3 = MovieDatabase.searchByDirector(director1,filteredList);
-            C = filteredList3.size();
-        }
-      
-    }
-
-    if(A<30){rec = filteredList1;}
-    else if(B<30){rec =filteredList2;}
-    else {rec = filteredList3;}
-
-	int recSize = rec.size();
-	if(recSize<30){
-		int j = 0;
-		for(int i = recSize; i<30; i++){
-			rec.push_back(latest30.at(j++));
-		}
+			filteredList2 = MovieDatabase.searchByGenre_2(gen1,filteredList1);
+			B = filteredList2.size();
+			MovieDatabase.sortAscendingTitles_2(filteredList2);
+			
+			filteredList3 = MovieDatabase.searchByGenre_2(gen2,filteredList1);
+			C = filteredList2.size();
+			MovieDatabase.sortAscendingTitles_2(filteredList3);
 		
-	}
+		}
 
-    
-cout<<"filter1 size : "<<A<<endl;
-cout<<"filter2 size : "<<B<<endl;
-cout<<"filter3 size : "<<C<<endl;
-    cout<<"exit filter"<<endl;
-    cout<<"rec list size: "<<rec.size()<<endl;
-    // for (auto x : rec){
-    //     x.printMovie();
-    // }
+		MovieDatabase.mergeList(filteredList2,filteredList3, filteredList4);
+        for(auto x: filteredList4){
+            cout<<x.getTitle()<<endl;
+        }
+        cout<<filteredList4.size();
     
 }
 
