@@ -220,12 +220,6 @@ TEST(SortByGenres, searchByGenre_int){
 //    cout << "#1 director: "<<help_getMaximumValue(freqMap).first<<" "<<help_getMaximumValue(freqMap).second<<endl;
 // }
 
-// CANNOT USE AS TEST FOR CI, IMPLEMENT IN MAIN
-
-// TEST(UserMenu, RandomMovies) {
-//      Menu menu1;
-// }
-
 TEST(User, getRec){
     vector<movie> rec;
 	vector<int> yearlist;
