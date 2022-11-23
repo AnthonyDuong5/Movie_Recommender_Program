@@ -57,9 +57,11 @@ vector<movie> User::getRec(){
 
 	//making a top 30 list
 	MovieDatabase.makeLatestTop30(2018);
+
 	vector<movie> latest30 = MovieDatabase.returnLatestTop30();
 	//0: nothing in favorites
 		//return top30 (for now)
+
 	if(favoriteCount == 0){
 
 		return latest30;

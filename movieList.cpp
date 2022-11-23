@@ -254,7 +254,6 @@ vector<movie> movieList::searchYearRange(int minYear, int maxYear, vector<movie>
 
 vector<movie> movieList::searchYearRange_2(int minYear, int maxYear, const vector<movie>& filterList) {
 	vector<movie> newList;
-
 		for(unsigned i = 0; i < filterList.size(); ++i) {
 			if (filterList.at(i).getYear() >= minYear && filterList.at(i).getYear() <= maxYear) {
 				newList.push_back(filterList.at(i));
@@ -480,11 +479,9 @@ vector<movie> movieList::searchByDirector(string dir,const vector<movie> &filter
 }
 
 void movieList::makeLatestTop30(int latest){
-	
+	readMovieListFiles();
 	vector<movie> filter1 = searchYearRange_2(latest,latest,list);
-	cout<<"filter1 size = "<<filter1.size()<<endl;
 	sortByRatingDescending_2(filter1);
-	
 	for (int i = 0; i<30; i++){
 		latestTop30.push_back(filter1.at(i));
 	}

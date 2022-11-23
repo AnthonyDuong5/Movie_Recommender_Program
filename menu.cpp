@@ -715,24 +715,34 @@ bool Menu::promptYesOrNo(string response) {
 }
 
 void Menu::getRecommendation(){
-	vector<movie> recommendation = user.getRec();
-	int userInput =11;
 
-	while(userInput!=12){
+
+	vector<movie> recommendation = user.getRec();
+	int userInput =6;
+
+	while(userInput!=7){
 		
 		unsigned randIndex;
-		for( unsigned i = 0 ; i < 10 ; i++){
+		cout<<"Here you go, 5 recommended movies"<<endl;
+		for( unsigned i = 0 ; i < 5 ; i++){
 			randIndex = rand() % 30;
 			movie curMovie = recommendation.at(randIndex);
 			cout << i + 1 << "." << endl;
-			curMovie.printMovie();
+			curMovie.printMovie_2();
 		}
-		cout<<"11. Get more recommendations";
-		cout<<"12. Back to Menu";
+		cout<<endl;
+		cout<<"6. Get more recommendations"<<endl;
+		cout<<"7. Back to Menu"<<endl<<endl;
+		cin.clear();
+		cin.ignore(256, '\n');
 		cin>>userInput;
-		
-		while(userInput!=11 && userInput!=12){
-			cout<< "Please choose 11 to get more recommendations or 12 to back to Menu"<<endl;
+
+		while(userInput!=6 && userInput!=7){
+			cout<< "Please choose"  <<endl;
+			cout<< "(6) Get more recommendations or"<<endl;
+			cout<< "(7) Back to Menu. "<<endl;
+			cin.clear();
+			cin.ignore(256, '\n');
 			cin>>userInput;
 		}
 
