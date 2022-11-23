@@ -54,3 +54,20 @@ void movie::printMovie(){
 		cout << "--------------------------------------------------" << endl;
 	
 }
+
+void movie::printMovie_2(){
+
+		cout << "--------------------------------------------------" << endl;
+		cout << "itemID: " << itemId << endl;
+		cout << "title: " << title << endl;
+		//cout << "year: " << year<< endl;
+		cout << "director: " << director << endl;
+		//cout << "casting: " << cast << endl;
+		//cout << "rating: " << rating << endl;
+		//cout << "imbdid: " << imdbId<< endl;
+		cout << "genre: ";
+		for (string x : genreList) {cout << x << " ";} 
+		cout << endl;
+		cout << "--------------------------------------------------" << endl;
+	
+}

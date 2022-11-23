@@ -254,7 +254,6 @@ vector<movie> movieList::searchYearRange(int minYear, int maxYear, vector<movie>
 
 vector<movie> movieList::searchYearRange_2(int minYear, int maxYear, const vector<movie>& filterList) {
 	vector<movie> newList;
-
 		for(unsigned i = 0; i < filterList.size(); ++i) {
 			if (filterList.at(i).getYear() >= minYear && filterList.at(i).getYear() <= maxYear) {
 				newList.push_back(filterList.at(i));
@@ -276,6 +275,21 @@ void movieList::sortAscendingTitles(vector <movie>& l){
 		}
 		swap (sortedlist.at(i), sortedlist.at(titleTop));
 	}
+}
+
+void movieList::sortAscendingTitles_2(vector <movie>& l){
+
+	int titleTop;
+	for (unsigned i = 0; i < l.size(); ++i){
+		titleTop = i;
+		for (unsigned j = i + 1; j < l.size(); ++j){
+			if (l.at(j).getTitle() < l.at(titleTop).getTitle() ){
+				titleTop = j;
+			}
+		}
+		swap (l.at(i), l.at(titleTop));
+	}
+	
 }
 
 void movieList::sortDescendingTitles(vector <movie>& l){
@@ -386,16 +400,16 @@ vector<movie> movieList::searchByGenre(Genre g){
 vector<movie> movieList::searchByGenre_2(Genre g, vector<movie> &filter){
 
 	vector<movie> newlist;
-	
 	for (int i = 0; i< filter.size();i++){
-		vector <Genre> gen_list = list.at(i).genre_list;
+		vector <Genre> gen_list = filter.at(i).genre_list;
 		for (auto x : gen_list){
 			if(x==g){
-				newlist.push_back(list.at(i));
+				newlist.push_back(filter.at(i));
 				break;
 			}
 		}
 	}
+	
 	
 	return newlist;
 }
@@ -465,12 +479,23 @@ vector<movie> movieList::searchByDirector(string dir,const vector<movie> &filter
 }
 
 void movieList::makeLatestTop30(int latest){
-	
+	readMovieListFiles();
 	vector<movie> filter1 = searchYearRange_2(latest,latest,list);
-	cout<<"filter1 size = "<<filter1.size()<<endl;
 	sortByRatingDescending_2(filter1);
-	
 	for (int i = 0; i<30; i++){
 		latestTop30.push_back(filter1.at(i));
+	}
+}
+
+void movieList::mergeList(vector<movie>&m1,vector<movie>&m2,vector<movie>&m3){
+	m3 = m1;
+	bool same = false;
+	for (auto x: m2){
+		for (auto y: m1){
+			if(x.getItemId()==y.getImdbId()){same = true;}
+		}
+		if(same == false){
+			m3.push_back(x);
+		}
 	}
 }

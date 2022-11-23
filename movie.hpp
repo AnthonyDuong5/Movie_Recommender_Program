@@ -54,6 +54,7 @@ class movie{
         int getItemId() const;
         vector<string> getGenreList() const;
         void printMovie();
+        void printMovie_2();
         
         
 };
