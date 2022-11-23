@@ -106,7 +106,6 @@ vector<movie> User::getRec(){
 	}
 
 	//2. 2 movies in the favorites
-		// using year1, year2 and genre1, genre2
 	else if(favoriteCount == 2){
 
         //for 2 movies situation, take the union of 
@@ -115,8 +114,11 @@ vector<movie> User::getRec(){
         year1 = *min_element(yearlist.begin(),yearlist.end());
         year2 = *max_element(yearlist.begin(),yearlist.end());
         gen1 = help_getTopFreq(freqGenre);  
+
+	//gen1 != gen2
+		if(freqGenre.size()!=0){
         gen2 = help_getTopFreq(freqGenre);  
-    
+				
 		
         //Begin filtering: year1 + gen1 + gen2 + high rate
 			filteredList1 = MovieDatabase.searchYearRange_2(year1, year1, filteredList);
@@ -171,8 +173,61 @@ vector<movie> User::getRec(){
 
 				rec = rec3;
 			}
+			else{
+				rec = rec1;
+			}
+		}
 
-			rec = rec1;
+	//gen1 == gen2
+		else{
+	
+        //Begin filtering: year1 + gen1 + high rate
+			filteredList1 = MovieDatabase.searchYearRange_2(year1, year1, filteredList);
+			A = filteredList1.size();
+				
+			//(year1 && gen1) 
+			filteredList2 = MovieDatabase.searchByGenre_2(gen1,filteredList1);
+			B = filteredList2.size();
+
+			if(B>10){
+				MovieDatabase.sortByRatingDescending_2(filteredList2);
+				for(int i = 0 ; i < 10 ; i ++){
+					rec1.push_back(filteredList2.at(i));
+				}
+			}
+			else {
+
+				rec1 = filteredList2;
+			}
+				
+			if(year1!=year2){
+			//filtering: year2 + gen1 + high rate		
+				filteredList1 = MovieDatabase.searchYearRange_2(year2, year2, filteredList);
+				A = filteredList1.size();
+					
+				//(year2 && gen1) 
+				filteredList2 = MovieDatabase.searchByGenre_2(gen2,filteredList1);
+				B = filteredList2.size();
+
+				if(B>10){
+					MovieDatabase.sortByRatingDescending_2(filteredList2);
+					for(int i = 0 ; i < 10 ; i ++){
+						rec2.push_back(filteredList2.at(i));
+					}
+				}
+				else {
+					rec2 = filteredList2;
+				}
+				MovieDatabase.mergeList(rec1, rec2, rec3);
+				rec = rec3;
+			}
+
+			else{
+
+				rec = rec1;
+			}
+
+		}
 
     }
 
