@@ -202,7 +202,6 @@
 //     cout << "#3 Genre: "<<g3<<" "<<help_getMaximumValue(freqMap3).second<<" movies"<<endl;
 // }
 
-
 // TEST(getRec, directorFrequence_template2){
 //    movieList MovieDatabase;
 //    MovieDatabase.readMovieListFiles();
@@ -221,17 +220,13 @@
 //    cout << "#1 director: "<<help_getMaximumValue(freqMap).first<<" "<<help_getMaximumValue(freqMap).second<<endl;
 // }
 
-// CANNOT USE AS TEST FOR CI, IMPLEMENT IN MAIN
 
-// TEST(UserMenu, RandomMovies) {
-//      Menu menu1;
-// }
+TEST(User, getRec){
+    vector<movie> rec;
+	vector<int> yearlist;
+	vector<string>directorlist;
+	vector<Genre> genreslist;
 
-// TEST(UsergetRec, 1movie){
-//     vector<movie> rec;
-// 	vector<int> yearlist;
-// 	vector<string>directorlist;
-// 	vector<Genre> genreslist;
 	
 //     movieList MovieDatabase;
 //     MovieDatabase.readMovieListFiles();
