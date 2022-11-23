@@ -58,7 +58,7 @@ void movie::printMovie(){
 void movie::printMovie_2(){
 
 		cout << "--------------------------------------------------" << endl;
-		//cout << "itemID: " << itemId << endl;
+		cout << "itemID: " << itemId << endl;
 		cout << "title: " << title << endl;
 		//cout << "year: " << year<< endl;
 		cout << "director: " << director << endl;

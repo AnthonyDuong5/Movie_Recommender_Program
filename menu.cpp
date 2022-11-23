@@ -10,11 +10,7 @@
 using namespace std;
 
 Menu::Menu() {
-	// printMenu();
-    // int choice = getPrompt();
-    // processPrompt(choice);
-	// user.ClearTrackList();
-	// repeat();
+	
 	runMenu();
 }
 void Menu::runMenu(){
@@ -100,16 +96,12 @@ void Menu::printTenRandomMovies() {
 	string addChoice;
 
 	cout << "Add any of the Movies to Favorites? ";
-	// cin >> addChoice;
 	bool YorN;
 	// cout << "------------------" << endl;
 	YorN = promptYesOrNo(addChoice);
 	if (YorN){
 		addToFavorites();
 	}
-
-	// printMenu();
-	// processPrompt(getPrompt());
 	return;
 }
 
@@ -189,9 +181,6 @@ void Menu::printFiveByCategories(){
 		movieList defaultDatabase;
 		defaultDatabase.readMovieListFiles();
 		
-		
-
-
 		vector<movie>actionGenre = defaultDatabase.returnList();
 		vector<movie>comedyGenre = defaultDatabase.returnList();
 		vector<movie>dramaGenre = defaultDatabase.returnList();
@@ -523,6 +512,9 @@ void Menu::addToFavorites(){
 	else if (optionTracker == 4){
 		cout << "Adding to Favorites from Advanced Search." << endl;
 	}
+	else if (optionTracker == 5){
+		cout << "Adding to Favorites from Movie Recommendations." << endl;
+	}
 
 	int displaySize = user.ReturnTrackList().size();
 	int curSize = 0;
@@ -660,6 +652,8 @@ void Menu::printFavorites(){
 		cout << "==================================================" << endl;
 		cout << "-------------------End Of List--------------------" << endl;
 		cout << "==================================================" << endl;
+		cout << endl;
+		cout << "==================================================" << endl;
 		cout << "Total of " << fav.size() << " movies in Favorites." << endl;
 		cout << "==================================================" << endl;
 	}
@@ -716,31 +710,45 @@ bool Menu::promptYesOrNo(string response) {
 
 void Menu::getRecommendation(){
 
-
+	optionTracker = 5;
 	vector<movie> recommendation = user.getRec();
-	int userInput =6;
-
-	while(userInput!=7){
-		
+	int userInput =1;
+	
+	while(userInput!=2){
+		user.ClearTrackList();
 		unsigned randIndex;
-		cout<<"Here you go, 5 recommended movies"<<endl;
+		cout<<"\n\nHere are 5 movies you might like: "<<endl;
 		for( unsigned i = 0 ; i < 5 ; i++){
 			randIndex = rand() % 30;
 			movie curMovie = recommendation.at(randIndex);
 			cout << i + 1 << "." << endl;
 			curMovie.printMovie_2();
+			//this tracks output movies
+			user.AddToTrackList(recommendation.at(randIndex));
 		}
 		cout<<endl;
-		cout<<"6. Get more recommendations"<<endl;
-		cout<<"7. Back to Menu"<<endl<<endl;
+		// cout << "Test track size: " << user.ReturnTrackList().size() << endl;
+
+		//since there is a sub menu after 
+		cout << "Add any of the Movies to Favorites? ";
+		string addChoice;
+		bool YorN;
+		// cout << "------------------" << endl;
+		YorN = promptYesOrNo(addChoice);
+		if (YorN){
+			addToFavorites();
+		}
+		cout << endl;
+		cout<<"1. Get more recommendations"<<endl;
+		cout<<"2. Back to Menu"<<endl<<endl;
 		cin.clear();
 		cin.ignore(256, '\n');
 		cin>>userInput;
 
-		while(userInput!=6 && userInput!=7){
+		while(userInput!=1 && userInput!=2){
 			cout<< "Please choose"  <<endl;
-			cout<< "6. Get more recommendations or"<<endl;
-			cout<< "7. Back to Menu. "<<endl;
+			cout<< "1. Get more recommendations or"<<endl;
+			cout<< "2. Back to Menu. "<<endl;
 			cin.clear();
 			cin.ignore(256, '\n');
 			cin>>userInput;
