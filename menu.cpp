@@ -739,8 +739,8 @@ void Menu::getRecommendation(){
 
 		while(userInput!=6 && userInput!=7){
 			cout<< "Please choose"  <<endl;
-			cout<< "(6) Get more recommendations or"<<endl;
-			cout<< "(7) Back to Menu. "<<endl;
+			cout<< "6. Get more recommendations or"<<endl;
+			cout<< "7. Back to Menu. "<<endl;
 			cin.clear();
 			cin.ignore(256, '\n');
 			cin>>userInput;
