@@ -74,7 +74,7 @@ void Menu::processPrompt(const int& prompt){
 	if (prompt == 2) printFiveByCategories();
 	if (prompt == 3) searchByTitle();
 	if (prompt == 4) advancedMovieFilter();
-
+	if (prompt == 5) getRecommendation();
 	if (prompt == 6) printFavorites();
 	if (prompt == 7) {
 		optionTracker = 7;
@@ -711,5 +711,33 @@ bool Menu::promptYesOrNo(string response) {
 	}while(response != "Y" && response != "N");
 
 	return YesOrNo;
+
+}
+
+void Menu::getRecommendation(){
+	vector<movie> recommendation = user.getRec();
+	int userInput =11;
+
+	while(userInput!=12){
+		
+		unsigned randIndex;
+		for( unsigned i = 0 ; i < 10 ; i++){
+			randIndex = rand() % 30;
+			movie curMovie = recommendation.at(randIndex);
+			cout << i + 1 << "." << endl;
+			curMovie.printMovie();
+		}
+		cout<<"11. Get more recommendations";
+		cout<<"12. Back to Menu";
+		cin>>userInput;
+		
+		while(userInput!=11 && userInput!=12){
+			cout<< "Please choose 11 to get more recommendations or 12 to back to Menu"<<endl;
+			cin>>userInput;
+		}
+
+	}
+
+
 
 }

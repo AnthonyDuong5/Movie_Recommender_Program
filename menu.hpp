@@ -33,6 +33,8 @@ class Menu {
 		int countInFavorites();
 		int optionTracker = 0;
 		bool AdvSearch = false;
+
+		void getRecommendation();
 };
 
 #endif
