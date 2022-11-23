@@ -36,7 +36,7 @@ void User::ClearTrackList(){
 }
 
 vector<movie> User::getRec(){
-	vector<movie> rec;
+	
 	vector<int> yearlist;
 	vector<string>directorlist;
 	vector<Genre> genreslist;
@@ -50,6 +50,7 @@ vector<movie> User::getRec(){
 	Genre gen1, gen2, gen3;
 	string director1, director2, director3;
 	vector <movie> filteredList1,filteredList2,filteredList3,filteredList4 ; 
+	vector <movie> rec, rec1, rec2, rec3, rec4;
    	int A, B, C, D = 0; //size of filteredList1, filteredList2, filteredList3, filteredList4
 
 	map<Genre, int>freqGenre = help_getFreq(genreslist);
@@ -61,7 +62,7 @@ vector<movie> User::getRec(){
 		//return top30 (for now)
 	if(favoriteCount == 0){
 
-		return rec = latest30;
+		return latest30;
 	}
 	
 	//storing each critera (year, director, director) into its vector
@@ -90,7 +91,7 @@ vector<movie> User::getRec(){
 			
 			if(B!=0){
 				
-				filteredList3 = MovieDatabase.searchByDirector(director1,filteredList);
+				filteredList3 = MovieDatabase.searchByDirector(director1,filteredList2);
 				C = filteredList3.size();
 			}
 		
@@ -100,6 +101,7 @@ vector<movie> User::getRec(){
    		else if(B<30){rec =filteredList2;}
    		else {rec = filteredList3;}
 
+		return rec;
 
 	}
 
@@ -107,36 +109,85 @@ vector<movie> User::getRec(){
 		// using year1, year2 and genre1, genre2
 	else if(favoriteCount == 2){
 
-		//for 2 movies situation, take the union of {(year range and gen1), )(year range and gen2)}
-		//and select movies from it.
-		year1 = *min_element(yearlist.begin(),yearlist.end());
-		year2 = *max_element(yearlist.begin(),yearlist.end());
-		gen1 = help_getTopFreq(freqGenre);	
-		gen2 = help_getTopFreq(freqGenre);	
-	
-
-		//Begin filtering
-		filteredList1 = MovieDatabase.searchYearRange_2(year1, year2, filteredList);
-		A = filteredList1.size();
-		if (A!=0){
-
+        //for 2 movies situation, take the union of 
+		//{(year1, gen1, rate),(year1, gen2, rate),(year2, gen1, rate),(year2, gen2, rate)}
+        //and select movies from it
+        year1 = *min_element(yearlist.begin(),yearlist.end());
+        year2 = *max_element(yearlist.begin(),yearlist.end());
+        gen1 = help_getTopFreq(freqGenre);  
+        gen2 = help_getTopFreq(freqGenre);  
+    
+		
+        //Begin filtering: year1 + gen1 + gen2 + high rate
+			filteredList1 = MovieDatabase.searchYearRange_2(year1, year1, filteredList);
+			A = filteredList1.size();
+				
+			//(year1 && gen1) 
 			filteredList2 = MovieDatabase.searchByGenre_2(gen1,filteredList1);
 			B = filteredList2.size();
-			MovieDatabase.sortAscendingTitles_2(filteredList2);
-			
+			//(year1 && gen2)
 			filteredList3 = MovieDatabase.searchByGenre_2(gen2,filteredList1);
-			C = filteredList2.size();
-			MovieDatabase.sortAscendingTitles_2(filteredList3);
-		
-		}
+			C = filteredList3.size();
 
-		MovieDatabase.mergeList(filteredList2,filteredList3, filteredList4);
-		
+			//(year1 && gen1) U (year1 && gen2)
+			MovieDatabase.mergeList(filteredList2,filteredList3, filteredList4);
+			D = filteredList4.size();
+			if(D>10){
+				MovieDatabase.sortByRatingDescending_2(filteredList4);
+				for(int i = 0 ; i < 10 ; i ++){
+					rec1.push_back(filteredList4.at(i));
+				}
+			}
+			else {
+				rec1 = filteredList4;
+			}
+				
+			if(year1!=year2){
+			//filtering: year2 + gen1 + gen2 + high rate		
+				filteredList1 = MovieDatabase.searchYearRange_2(year2, year2, filteredList);
+				A = filteredList1.size();
+					
+				//(year2 && gen1) 
+				filteredList2 = MovieDatabase.searchByGenre_2(gen2,filteredList1);
+				B = filteredList2.size();
+				//(year2 && gen2)
+				filteredList3 = MovieDatabase.searchByGenre_2(gen2,filteredList1);
+				C = filteredList3.size();
 
-	}
+				//(year2 && gen1) U (year2 && gen2)
+				MovieDatabase.mergeList(filteredList2,filteredList3, filteredList4);
+				D = filteredList4.size();
+				if(D>10){
+					MovieDatabase.sortByRatingDescending_2(filteredList4);
+					for(int i = 0 ; i < 10 ; i ++){
+						rec2.push_back(filteredList4.at(i));
+					}
+				}
+				else {
+					rec2 = filteredList4;
+				}
+				MovieDatabase.mergeList(rec1, rec2, rec3);
+
+
+				rec = rec3;
+			}
+
+			rec = rec1;
+
+    }
+
+		
+	
 
 	//3. 3+ movies in the favorites
 		// using year range and genre1, genre2, genre3
+	else if (favoriteCount>=3){
+
+	
+
+
+
+	}
 
 	
 

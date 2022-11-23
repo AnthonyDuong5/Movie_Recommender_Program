@@ -279,7 +279,7 @@ void movieList::sortAscendingTitles(vector <movie>& l){
 }
 
 void movieList::sortAscendingTitles_2(vector <movie>& l){
-	
+
 	int titleTop;
 	for (unsigned i = 0; i < l.size(); ++i){
 		titleTop = i;
@@ -401,16 +401,16 @@ vector<movie> movieList::searchByGenre(Genre g){
 vector<movie> movieList::searchByGenre_2(Genre g, vector<movie> &filter){
 
 	vector<movie> newlist;
-	
 	for (int i = 0; i< filter.size();i++){
-		vector <Genre> gen_list = list.at(i).genre_list;
+		vector <Genre> gen_list = filter.at(i).genre_list;
 		for (auto x : gen_list){
 			if(x==g){
-				newlist.push_back(list.at(i));
+				newlist.push_back(filter.at(i));
 				break;
 			}
 		}
 	}
+	
 	
 	return newlist;
 }
