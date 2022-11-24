@@ -83,8 +83,9 @@ template<typename T>
 T help_getTopFreq(vector<T> &list){
 	map<T, int> freqMap = help_getFreq(list);	
 	T MostSeenT = help_getMaximumValue(freqMap).first;
+	T MostSeen = MostSeenT;
 	freqMap.erase(MostSeenT);
-	return MostSeenT;
+	return MostSeen;
 }
 
 template<typename T>
