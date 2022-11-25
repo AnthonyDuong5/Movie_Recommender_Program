@@ -142,7 +142,6 @@ vector<movie> User::getRec(){
 			}
 		
 		}
-		cout<<A <<" "<<B<<" "<<C<<" ";
 		if(A<30){rec = filteredList1;}
    		else if(B<30){rec =filteredList2;}
    		else {rec = filteredList3;}
