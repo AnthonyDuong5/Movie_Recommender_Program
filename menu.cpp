@@ -712,14 +712,15 @@ void Menu::getRecommendation(){
 
 	optionTracker = 5;
 	vector<movie> recommendation = user.getRec();
+
 	int userInput =1;
-	
+	int recSize = recommendation.size();
 	while(userInput!=2){
 		user.ClearTrackList();
 		unsigned randIndex;
 		cout<<"\n\nHere are 5 movies you might like: "<<endl;
 		for( unsigned i = 0 ; i < 5 ; i++){
-			randIndex = rand() % 30;
+			randIndex = rand() % recSize;
 			movie curMovie = recommendation.at(randIndex);
 			cout << i + 1 << "." << endl;
 			curMovie.printMovie_2();
@@ -738,21 +739,22 @@ void Menu::getRecommendation(){
 		if (YorN){
 			addToFavorites();
 		}
-		cout << endl;
-		cout<<"1. Get more recommendations"<<endl;
-		cout<<"2. Back to Menu"<<endl<<endl;
+		
+		cout<<"1) Get more recommendations"<<endl;
+		cout<<"2) Back to Menu"<<endl;
 		cin.clear();
 		cin.ignore(256, '\n');
 		cin>>userInput;
 
 		while(userInput!=1 && userInput!=2){
 			cout<< "Please choose"  <<endl;
-			cout<< "1. Get more recommendations or"<<endl;
-			cout<< "2. Back to Menu. "<<endl;
+			cout<< "1) Get more recommendations"<<endl;
+			cout<< "2) Back to Menu. "<<endl;
 			cin.clear();
 			cin.ignore(256, '\n');
 			cin>>userInput;
 		}
+
 
 	}
 
