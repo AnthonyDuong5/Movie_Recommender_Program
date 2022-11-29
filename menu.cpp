@@ -711,17 +711,21 @@ bool Menu::promptYesOrNo(string response) {
 void Menu::getRecommendation(){
 
 	optionTracker = 5;
-	vector<movie> recommendation = user.getRec();
+	// vector<movie> recommendation = user.getRec();
 
 	int userInput =1;
 	int recSize = recommendation.size();
 	while(userInput!=2){
+		vector<movie> recommendation = user.getRec();
 		user.ClearTrackList();
 		unsigned randIndex;
 		cout<<"\n\nHere are 5 movies you might like: "<<endl;
 		for( unsigned i = 0 ; i < 5 ; i++){
+			recSize = recommendation.size();
 			randIndex = rand() % recSize;
 			movie curMovie = recommendation.at(randIndex);
+			// ViewingList.erase(ViewingList.begin() + idx);
+			recommendation.erase(recommendation.begin() + randIndex);
 			cout << i + 1 << "." << endl;
 			curMovie.printMovie_2();
 			//this tracks output movies

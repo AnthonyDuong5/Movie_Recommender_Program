@@ -103,7 +103,8 @@ vector<movie> User::getRec(){
 		int j = 0;
 		for(int i = recSize; i<30; i++){
 			rec.push_back(latest30.at(j++));
-			}
+		}
+
 		return rec;
 	}
 	
@@ -122,19 +123,22 @@ vector<movie> User::getRec(){
 	//1: only 1 movie in favorites
 	
 	if(favoriteCount == 1){
+		cout << "WE ARE HERE" << endl;
+		cout << "WE ARE HERE" << endl;
 		year1 = help_getTopFreq(yearlist);	
 		gen1 = help_getTopFreq(genreslist);	
 		director1 = help_getTopFreq(directorlist);	
-		cout<<year1<<gen1<<director1;
+		cout<<year1<<"||" << gen1<< "||" << director1 << endl;
 	
 		//Begin filtering
 		filteredList1 = MovieDatabase.searchYearRange_2(year1, year1, filteredList);
 		A = filteredList1.size();
+		//check size of filtered list1.
 		if (A!=0){
 
 			filteredList2 = MovieDatabase.searchByGenre_2(gen1,filteredList1);
 			B = filteredList2.size();
-			
+			// check size of filtered list 2
 			if(B!=0){
 				
 				filteredList3 = MovieDatabase.searchByDirector(director1,filteredList2);
@@ -142,15 +146,37 @@ vector<movie> User::getRec(){
 			}
 		
 		}
-		if(A<30){rec = filteredList1;}
-   		else if(B<30){rec =filteredList2;}
-   		else {rec = filteredList3;}
-		
+		if(A<30){
+			rec = filteredList1; 
+			cout << "WE ASSIGNED REC in IF" << endl;
+		}
+   		else if(B<30){
+			rec =filteredList2;
+			cout << "WE ASSIGNED REC in ELSE IF" << endl;
+		}
+   		else {
+			rec = filteredList3;
+			cout << "WE ASSIGNED REC in ELSE" << endl;
+		}
+		cout << "REC SIZE IS: " << rec.size() << endl;
+		vector <movie> dupCheckList = rec;
+		bool checkDupe = false;
+		for (int i = 0; i < rec.size(); ++i){
+			for (int j = i+1; j < dupCheckList.size()-1; ++j){
+				if (dupCheckList.at(j).getItemId() == rec.at(i).getItemId()){
+					checkDupe = true;
+					cout << "DUPLICATE IS FOUND" << endl;
+					dupCheckList.at(j).printMovie();
+					cout << "THIS IS THE DUPLICATE" << endl;
+					break;
+				}
+			}
+		}
 	}
 
 	//2. 2 movies in the favorites
 	else if(favoriteCount == 2){
-
+		cout << "ENTERED favoriteCount == 2" << endl;
         //for 2 movies situation, take the union of 
 		//{(year1, gen1, rate),(year1, gen2, rate),(year2, gen1, rate),(year2, gen2, rate)}
         //and select movies from it
@@ -161,7 +187,8 @@ vector<movie> User::getRec(){
 
 	//gen1 != gen2
 		if(freqGenre.size()!=0){
-        gen2 = help_getTopFreq(freqGenre);  
+			cout << "Entered freqGenre.size() != 0" << endl;
+        	gen2 = help_getTopFreq(freqGenre);  
 				
 		
         //Begin filtering: year1 + gen1 + gen2 + high rate
@@ -179,6 +206,7 @@ vector<movie> User::getRec(){
 			MovieDatabase.mergeList(filteredList2,filteredList3, filteredList4);
 			D = filteredList4.size();
 			if(D>10){
+				cout << "Entered D> 10" << endl;
 				MovieDatabase.sortByRatingDescending_2(filteredList4);
 				for(int i = 0 ; i < 10 ; i ++){
 
@@ -186,12 +214,13 @@ vector<movie> User::getRec(){
 				}
 			}
 			else {
-
+				cout << "Entered freqGenre.size() != 0 >> else" << endl;
 				rec1 = filteredList4;
 			}
 				
 			if(year1!=year2){
 			//filtering: year2 + gen1 + gen2 + high rate		
+				cout << "Entered year1 != year2" << endl;
 				filteredList1 = MovieDatabase.searchYearRange_2(year2, year2, filteredList);
 				A = filteredList1.size();
 					
@@ -213,7 +242,7 @@ vector<movie> User::getRec(){
 					}
 				}
 				else {
-
+					cout << "year1 != year2 >>> else" << endl;
 					rec2 = filteredList4;
 				}
 				MovieDatabase.mergeList(rec1, rec2, rec3);
@@ -222,7 +251,7 @@ vector<movie> User::getRec(){
 
 			}
 			else{
-
+				cout << "Entered else (year1 == year2)" << endl;
 				rec = rec1;
 
 			}
@@ -411,11 +440,14 @@ vector<movie> User::getRec(){
 		
 	}
 
-		
+	
 
-
+	cout << "Rec size: " << rec.size() << endl;
+	for (unsigned i = 0; i < rec.size(); ++i){
+		cout << rec.at(i).getTitle() << endl;
+	}
 	return rec;
-
+	
 }
 
 
