@@ -29,6 +29,7 @@ class User {
 
 		//for getRec
 		vector <movie> filteredList;
+		vector <movie> alrRecList;
 	public:
 		User();
 		vector<movie> ReturnTrackList (){return TrackViewList;}
@@ -44,7 +45,7 @@ class User {
 		void removeFromViewingList(unsigned idx);
 		vector<movie> getRec();
 		vector<movie> filterlist(const vector<movie>& list); // pass in Favorites or ViewingList
-
+		vector<movie> getalrRecList(){ return alrRecList;		}
 		
 };
 
