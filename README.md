@@ -15,23 +15,23 @@ The user will use the keyboard to input desired movie criteria (e.g. genre, year
 The movie recommender will allow users to find certain movies based on certain criteria. For example, users can provide a movie and the application will recommend a list of movies that are similar to the provided movie. Additionally, users can also sort lists of movies based on rating, release date, genre, etc.
  
 ## Class Diagram
- 
-![Movie Recommender](https://user-images.githubusercontent.com/74810222/202556494-01834a62-7bbf-4402-b2df-fdf1e69e96ba.png)
+
+
+![Movie Recommender (1)](https://user-images.githubusercontent.com/74810222/204652566-90e103e9-70e3-4475-8d06-7ed94eb193b2.png)
 
 
 
 ## Diagram Description
 The current plan is to create four classes. The ```Movie``` class will store all the necessary categories that each movie has, such as ```MovieTitle```, ```Director```, ```Cast```, ```Rating```, ```ImdbID```, ```ItemID```, ```Genre```, and ```Year```, all of which will be set to private. There will be helper functions that can help the programmer retrieve values for each of these variables.
 
-This brings us to the next class, ```MovieList```. ```MovieList``` will be the class that needs the most implementation, as there will be many different functions. We will firstly have two declared vectors, namely ```vector<Movie>List``` and ```vector<Movie>SortedList```. The difference is that the former will contain all the movies before the sorting has been done, while the latter will only contain sorted values. The third private data member is the the `vector<string>genres`, which stores a vector of 19 genres.
-As we can see from the UML Diagram included below, we have implemented several functions for the constructor of this class, creation of the movie file, and parsing as well. Then, we also have the necessary sort functions for each single category, like title, rating, year and genre. These functions will all modify the ```sortedList``` vector previously mentioned, and the vector will be used to display the output, which is called by the `printMovies()` function.
+This brings us to the next class, ```MovieList```. ```MovieList``` will be the class that needs the most implementation, as there will be many different functions. We will firstly have two declared vectors, namely ```vector<Movie>List``` and ```vector<Movie>SortedList```. The difference is that the former will contain all the movies before the sorting has been done, while the latter will only contain sorted values. The third private data member is the the `vector<string>genres`, which stores a vector of 19 genres.Lastly, we have a `vector<movie>` called `latestTop30`, which stores the most recent highest rated movies.
 
-There will be a function called ```readMovieListFile()``` that will be used to read a database of movies and store them into the ```vector<Movie>List```. So far, we will only implement it for ```.json``` files, but we will look to expand to ```.txt``` and ```.csv``` files as well. The ```sortList()``` function will run individual sort functions depending on user input. For example, if the user wants to sort by Movie Title, it will call the function ```sortByMovieTitle()```. Lastly, there will also be the function that prints the sorted List, called ```printList()```.
+As we can see from the UML Diagram included above, we have implemented several functions for the constructor of this class, creation of the movie file, and parsing as well. Then, we also have the necessary sort functions for each single category, like title, rating, year and genre. These functions will all modify the ```sortedList``` vector previously mentioned, and the vector will be used to display the output, which is called by the `printMovies()` function.
+There will be a function called ```readMovieListFile()``` that will be used to read a database of movies and store them into the ```vector<Movie>List```. So far, we will only implement it for ```.json``` files. There are many individual sort functions depending on user input. For example, if the user wants to sort by Movie Title, it will call the function ```sortByMovieTitle()```. 
 
 Users of this Movie Recommender can view recommended movies though the ```User``` class interface. An object of type ```User``` holds private data members ```UserName```, ```Favorites```, ```DefaultList```, ```ViewingList```, ```prompt``` and ```userFavList```, which will all be used to help the menu class carry out its work. Since the ```User``` class is associated with the ```Menu``` class, ```User``` objects have accessor functions like ```getFavoritesList()```, ```getDefaultList()``` and ```getViewingList```. Additionally, it will have a ```AddToFavorite(const movie&)``` function, which will add the movie of the User's choice to the object of `vector<movie>Favorites`. The class will also have helper functions like ```removeFromViewingList(unsigned)```, which will help the program remove movies that have been displayed by the `printTenRandomMovies()` function from the `Menu` Class. Most importantly, the `getRec()` function will be used to generate movies to recommend to the User based on the User's favorite list. Templates are also implemented in the class to help streamline the `getRec()` function.
 
-The `Menu` Class will have the necessary functions for implementing a userinterface that would serve as a guide/menu for the User. It will contain functions such as `printMenu()` which displays available options of the program, `getPrompt()`, which asks the user for their choice of option with validation checks, and `processPrompt(const int&)`, which will call related functions according to the User's choices. Additionally, it will have a function called `getCriteria()`, which asks the user to choose a category for searching Movies, and `printTenRandomMovies()`, which can be used to display ten random movies to the User if they want to start there. The main function of this class will be the `searchMovies()`, which will start a process of filtering/searching for movies.
-
+The `Menu` Class will have the necessary functions for implementing a userinterface that would serve as a guide/menu for the User. It will contain functions such as `printMenu()` which displays available options of the program, `getPrompt()`, which asks the user for their choice of option with validation checks, and `processPrompt(const int&)`, which will call related functions according to the User's choices. Additionally, it will have a function called `getCriteria()`, which asks the user to choose a category for searching Movies, and `printTenRandomMovies()`, which can be used to display ten random movies to the User if they want to start there. The main function of this class will be the `searchMovies()`, which will start a process of filtering/searching for movies. The Menu class' functions will go hand in hand with the functions of the User class as the User will only be interacting with the program through the Menu class.
  
 
  
@@ -58,12 +58,18 @@ The `Menu` Class will have the necessary functions for implementing a userinterf
      `git clone --recursive https://github.com/cs100/final-project-aduon067-ichen064-jpare033-wtin001.git`
 
  3. build movie recommender
+ 
+    a. Either through CMake: 
 
-     `cmake .`
+    `cmake .`
+   
+    `make`
+ 
+    b. or directly using g++: 
 
-     `make`
+     `g++ -o movie_recommender main.cpp movie.cpp movieList.cpp user.cpp menu.cpp`
 
- 4. run movie recommender
+4. run movie recommender
 
      `./movie_recommender`
 
