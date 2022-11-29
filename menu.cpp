@@ -711,12 +711,13 @@ bool Menu::promptYesOrNo(string response) {
 void Menu::getRecommendation(){
 
 	optionTracker = 5;
-	vector<movie> recommendation = user.getRec();
-
+	// vector<movie> recommendation = user.getRec();
+	vector<movie> recommendation;
 	int userInput =1;
-	int recSize = recommendation.size();
+	// int recSize = recommendation.size();
 	while(userInput!=2){
 		recommendation = user.getRec();
+		int recSize = recommendation.size();
 		user.ClearTrackList();
 		unsigned randIndex;
 		cout<<"\n\nHere are 5 movies you might like: "<<endl;
@@ -725,14 +726,18 @@ void Menu::getRecommendation(){
 			randIndex = rand() % recSize;
 			movie curMovie = recommendation.at(randIndex);
 			// ViewingList.erase(ViewingList.begin() + idx);
+			//this tracks output movies
+			user.AddToTrackList(recommendation.at(randIndex));
 			recommendation.erase(recommendation.begin() + randIndex);
 			cout << i + 1 << "." << endl;
 			curMovie.printMovie_2();
-			//this tracks output movies
-			user.AddToTrackList(recommendation.at(randIndex));
+			
 		}
 		cout<<endl;
 		// cout << "Test track size: " << user.ReturnTrackList().size() << endl;
+		// for (unsigned i = 0; i < user.ReturnTrackList().size(); ++i){
+		// 	cout << user.ReturnTrackList().at(i).getTitle() << endl;
+		// }
 
 		//since there is a sub menu after 
 		cout << "Add any of the Movies to Favorites? ";

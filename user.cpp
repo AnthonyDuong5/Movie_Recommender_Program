@@ -123,12 +123,12 @@ vector<movie> User::getRec(){
 	//1: only 1 movie in favorites
 	
 	if(favoriteCount == 1){
-		cout << "WE ARE HERE" << endl;
-		cout << "WE ARE HERE" << endl;
+		// cout << "WE ARE HERE" << endl;
+		// cout << "WE ARE HERE" << endl;
 		year1 = help_getTopFreq(yearlist);	
 		gen1 = help_getTopFreq(genreslist);	
 		director1 = help_getTopFreq(directorlist);	
-		cout<<year1<<"||" << gen1<< "||" << director1 << endl;
+		// cout<<year1<<"||" << gen1<< "||" << director1 << endl;
 	
 		//Begin filtering
 		filteredList1 = MovieDatabase.searchYearRange_2(year1, year1, filteredList);
@@ -148,15 +148,15 @@ vector<movie> User::getRec(){
 		}
 		if(A<30){
 			rec = filteredList1; 
-			cout << "WE ASSIGNED REC in IF" << endl;
+			// cout << "WE ASSIGNED REC in IF" << endl;
 		}
    		else if(B<30){
 			rec =filteredList2;
-			cout << "WE ASSIGNED REC in ELSE IF" << endl;
+			// cout << "WE ASSIGNED REC in ELSE IF" << endl;
 		}
    		else {
 			rec = filteredList3;
-			cout << "WE ASSIGNED REC in ELSE" << endl;
+			// cout << "WE ASSIGNED REC in ELSE" << endl;
 		}
 		// cout << "REC SIZE IS: " << rec.size() << endl;
 		vector <movie> dupCheckList = rec;
@@ -187,7 +187,7 @@ vector<movie> User::getRec(){
 
 	//gen1 != gen2
 		if(freqGenre.size()!=0){
-			cout << "Entered freqGenre.size() != 0" << endl;
+			// cout << "Entered freqGenre.size() != 0" << endl;
         	gen2 = help_getTopFreq(freqGenre);  
 				
 		
@@ -206,7 +206,7 @@ vector<movie> User::getRec(){
 			MovieDatabase.mergeList(filteredList2,filteredList3, filteredList4);
 			D = filteredList4.size();
 			if(D>10){
-				cout << "Entered D> 10" << endl;
+				// cout << "Entered D> 10" << endl;
 				MovieDatabase.sortByRatingDescending_2(filteredList4);
 				for(int i = 0 ; i < 10 ; i ++){
 
@@ -214,13 +214,13 @@ vector<movie> User::getRec(){
 				}
 			}
 			else {
-				cout << "Entered freqGenre.size() != 0 >> else" << endl;
+				// cout << "Entered freqGenre.size() != 0 >> else" << endl;
 				rec1 = filteredList4;
 			}
 				
 			if(year1!=year2){
 			//filtering: year2 + gen1 + gen2 + high rate		
-				cout << "Entered year1 != year2" << endl;
+				// cout << "Entered year1 != year2" << endl;
 				filteredList1 = MovieDatabase.searchYearRange_2(year2, year2, filteredList);
 				A = filteredList1.size();
 					
@@ -242,7 +242,7 @@ vector<movie> User::getRec(){
 					}
 				}
 				else {
-					cout << "year1 != year2 >>> else" << endl;
+					// cout << "year1 != year2 >>> else" << endl;
 					rec2 = filteredList4;
 				}
 				MovieDatabase.mergeList(rec1, rec2, rec3);
@@ -251,7 +251,7 @@ vector<movie> User::getRec(){
 
 			}
 			else{
-				cout << "Entered else (year1 == year2)" << endl;
+				// cout << "Entered else (year1 == year2)" << endl;
 				rec = rec1;
 
 			}
@@ -429,8 +429,6 @@ vector<movie> User::getRec(){
 		}
 	}
 	
-
-
 	int recSize = rec.size();
 	if(recSize<30){
 		int j = 0;
@@ -440,12 +438,33 @@ vector<movie> User::getRec(){
 		
 	}
 
-	
-
-	cout << "Rec size: " << rec.size() << endl;
-	for (unsigned i = 0; i < rec.size(); ++i){
-		cout << rec.at(i).getTitle() << endl;
+	//to prevent abortion of the program, i added some movies based on rating to the rec.
+	//i also made sure there are no duplicates added to the rec.
+	movieList rDatabase;
+	rDatabase.readMovieListFiles();
+	rDatabase.sortByRatingDescending();
+	vector<movie> top1000MoviesbyRating;
+	for (unsigned i = 0; i < 100; ++i){
+		top1000MoviesbyRating.push_back(rDatabase.returnSortedList().at(i));
 	}
+	// cout << "Test topmovies size " << top1000MoviesbyRating.size() << endl;
+	// cout << "Test rec size " << rec.size() << endl;
+	bool isDup = false;
+	for (unsigned i = 0; i < top1000MoviesbyRating.size(); ++i){
+		for (unsigned j = 0; j < rec.size(); ++j){
+			if (top1000MoviesbyRating.at(i).getItemId() == rec.at(j).getItemId() ){
+				isDup = true;
+				// cout << "Duplicate, movie name: " << top1000MoviesbyRating.at(i).getTitle() << endl;
+				break;
+			}
+		}
+		if (!isDup){
+			rec.push_back(top1000MoviesbyRating.at(i));
+		}
+		
+	}
+	// cout << "REC SIZE: " << rec.size() << endl;
+	// cout << "Test rec size " << rec.size() << endl;
 	return rec;
 	
 }
