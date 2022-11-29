@@ -56,6 +56,8 @@ The `Menu` Class will have the necessary functions for implementing a userinterf
  2. clone repository
 
      `git clone --recursive https://github.com/cs100/final-project-aduon067-ichen064-jpare033-wtin001.git`
+     
+     `cd final-project-aduon067-ichen064-jpare033-wtin001`
 
  3. build movie recommender
  
@@ -72,7 +74,6 @@ The `Menu` Class will have the necessary functions for implementing a userinterf
 4. run movie recommender
 
      `./movie_recommender`
-
 
  ## Testing
   [![CI](https://github.com/cs100/final-project-aduon067-ichen064-jpare033-wtin001/actions/workflows/main.yml/badge.svg)](https://github.com/cs100/final-project-aduon067-ichen064-jpare033-wtin001/actions/workflows/main.yml)
