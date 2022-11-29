@@ -158,16 +158,16 @@ vector<movie> User::getRec(){
 			rec = filteredList3;
 			cout << "WE ASSIGNED REC in ELSE" << endl;
 		}
-		cout << "REC SIZE IS: " << rec.size() << endl;
+		// cout << "REC SIZE IS: " << rec.size() << endl;
 		vector <movie> dupCheckList = rec;
 		bool checkDupe = false;
 		for (int i = 0; i < rec.size(); ++i){
 			for (int j = i+1; j < dupCheckList.size()-1; ++j){
 				if (dupCheckList.at(j).getItemId() == rec.at(i).getItemId()){
 					checkDupe = true;
-					cout << "DUPLICATE IS FOUND" << endl;
+					// cout << "DUPLICATE IS FOUND" << endl;
 					dupCheckList.at(j).printMovie();
-					cout << "THIS IS THE DUPLICATE" << endl;
+					// cout << "THIS IS THE DUPLICATE" << endl;
 					break;
 				}
 			}
@@ -176,7 +176,7 @@ vector<movie> User::getRec(){
 
 	//2. 2 movies in the favorites
 	else if(favoriteCount == 2){
-		cout << "ENTERED favoriteCount == 2" << endl;
+		// cout << "ENTERED favoriteCount == 2" << endl;
         //for 2 movies situation, take the union of 
 		//{(year1, gen1, rate),(year1, gen2, rate),(year2, gen1, rate),(year2, gen2, rate)}
         //and select movies from it
