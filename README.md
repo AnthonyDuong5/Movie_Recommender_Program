@@ -45,7 +45,29 @@ The `Menu` Class will have the necessary functions for implementing a userinterf
  ## Screenshots
  > Screenshots of the input/output after running your application
  ## Installation/Usage
- > Instructions on installing and running your application
+ Run the following commands in terminal:
+
+ 1. setup directory
+
+     `mkdir movieRec`
+
+     `cd movieRec`
+ 
+ 2. clone repository
+
+     `git clone --recursive https://github.com/cs100/final-project-aduon067-ichen064-jpare033-wtin001.git`
+
+ 3. build movie recommender
+
+     `cmake .`
+
+     `make`
+
+ 4. run movie recommender
+
+     `./movie_recommender`
+
+
  ## Testing
   [![CI](https://github.com/cs100/final-project-aduon067-ichen064-jpare033-wtin001/actions/workflows/main.yml/badge.svg)](https://github.com/cs100/final-project-aduon067-ichen064-jpare033-wtin001/actions/workflows/main.yml)
  > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
