@@ -39,6 +39,49 @@ TEST(SortTest, testSortByRatingAscending) {
 	SUCCEED() << "Movies are correctly sorted by rating in ascending order.";
 }
 
+TEST(SortTest, testSortAscendingYear) {
+    movieList MovieDatabase;
+    MovieDatabase.readMovieListFiles();
+    MovieDatabase.sortByYearAscending();
+	for (unsigned i = 1; i < MovieDatabase.returnSortedList().size(); ++i) {
+		if (MovieDatabase.returnSortedList().at(i).getYear() < MovieDatabase.returnSortedList().at(i - 1).getYear()) {
+			FAIL() << "Movies are not correctly sorted by year in ascending order.";
+		}
+	}
+	SUCCEED() << "Movies are correctly sorted by year in ascending order.";
+}
+
+TEST(SortTest, testSortDescendingYear) {
+    movieList MovieDatabase;
+    MovieDatabase.readMovieListFiles();
+    MovieDatabase.sortByYearDescending();
+    for (unsigned i = 1; i < MovieDatabase.returnSortedList().size(); ++i) {
+        if (MovieDatabase.returnSortedList().at(i).getYear() > MovieDatabase.returnSortedList().at(i - 1).getYear()) {
+			FAIL() << "Movies are not correctly sorted by year in descending order.";
+		}
+	}
+	SUCCEED() << "Movies are correctly sorted by year in descending order.";
+}
+
+TEST(SortTest, testSearchByYear) {
+    movieList MovieDatabase;
+	int minYear = 2000;
+	int maxYear = 2002;
+    MovieDatabase.readMovieListFiles();
+    MovieDatabase.searchYearRange(minYear, maxYear);
+    for (unsigned i = 1; i < MovieDatabase.returnSortedList().size(); ++i) {
+        if (MovieDatabase.returnSortedList().at(i).getYear() < MovieDatabase.returnSortedList().at(i - 1).getYear()) {
+			FAIL() << "Movies are not correctly sorted by year in ascending order.";
+		}
+	}
+	for (unsigned i = 0; i < MovieDatabase.returnSortedList().size(); ++i) {
+		if (MovieDatabase.returnSortedList().at(i).getYear() < minYear || MovieDatabase.returnSortedList().at(i).getYear() > maxYear) {
+			FAIL() << "Movies are not correctly filtered by year within the search range.";
+		}
+	}
+	SUCCEED() << "Movies are correctly filtered by year within the search range and sorted by year in ascending order.";
+}
+
 TEST(SortTest, testSearchByRatings) {
     movieList MovieDatabase;
     MovieDatabase.readMovieListFiles();
