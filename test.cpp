@@ -31,6 +31,50 @@
 // 	}
 // }
 
+TEST(SortTest, testSortAscendingYear) {
+    movieList MovieDatabase;
+    MovieDatabase.readMovieListFiles();
+    MovieDatabase.sortByYearAscending();
+	for (unsigned i = 1; i < MovieDatabase.returnSortedList().size(); ++i) {
+		if (MovieDatabase.returnSortedList().at(i).getYear() < MovieDatabase.returnSortedList().at(i - 1).getYear()) {
+			FAIL() << "Movies are not correctly sorted by year in ascending order.";
+		}
+	}
+	SUCCEED() << "Movies are correctly sorted by year in ascending order.";
+}
+
+TEST(SortTest, testSortDescendingYear) {
+    movieList MovieDatabase;
+    MovieDatabase.readMovieListFiles();
+    MovieDatabase.sortByYearDescending();
+    for (unsigned i = 1; i < MovieDatabase.returnSortedList().size(); ++i) {
+        if (MovieDatabase.returnSortedList().at(i).getYear() > MovieDatabase.returnSortedList().at(i - 1).getYear()) {
+			FAIL() << "Movies are not correctly sorted by year in descending order.";
+		}
+	}
+	SUCCEED() << "Movies are correctly sorted by year in descending order.";
+}
+
+TEST(SortTest, testSearchByYear) {
+    movieList MovieDatabase;
+	int minYear = 2000;
+	int maxYear = 2002;
+    MovieDatabase.readMovieListFiles();
+    MovieDatabase.searchYearRange(minYear, maxYear);
+    for (unsigned i = 1; i < MovieDatabase.returnSortedList().size(); ++i) {
+        if (MovieDatabase.returnSortedList().at(i).getYear() < MovieDatabase.returnSortedList().at(i - 1).getYear()) {
+			FAIL() << "Movies are not correctly sorted by year in ascending order.";
+		}
+	}
+	for (unsigned i = 0; i < MovieDatabase.returnSortedList().size(); ++i) {
+		if (MovieDatabase.returnSortedList().at(i).getYear() < minYear || MovieDatabase.returnSortedList().at(i).getYear() > maxYear) {
+			FAIL() << "Movies are not correctly filtered by year within the search range.";
+		}
+	}
+	SUCCEED() << "Movies are correctly filtered by year within the search range and sorted by year in ascending order.";
+}
+
+
 // TEST(SortTest, testSearchByRatings) {
 //     movieList MovieDatabase;
 //     MovieDatabase.readMovieListFiles();
@@ -221,12 +265,6 @@
 //    cout << "#1 director: "<<help_getMaximumValue(freqMap).first<<" "<<help_getMaximumValue(freqMap).second<<endl;
 // }
 
-// CANNOT USE AS TEST FOR CI, IMPLEMENT IN MAIN
-
-// TEST(UserMenu, RandomMovies) {
-//      Menu menu1;
-// }
-
 // TEST(UsergetRec, 1movie){
 //     vector<movie> rec;
 // 	vector<int> yearlist;
@@ -309,110 +347,110 @@
     
 // }
 
-TEST(UsergetRec, 2movies){
-	vector<movie> rec;
-	vector<int> yearlist;
-	vector<Genre> genreslist;
+// TEST(UsergetRec, 2movies){
+// 	vector<movie> rec;
+// 	vector<int> yearlist;
+// 	vector<Genre> genreslist;
 
 
-movieList MovieDatabase;
-MovieDatabase.readMovieListFiles();
-vector <movie> filteredList = MovieDatabase.returnList();
+// movieList MovieDatabase;
+// MovieDatabase.readMovieListFiles();
+// vector <movie> filteredList = MovieDatabase.returnList();
 
 
-	int year1, year2;
-	Genre gen1, gen2;
-	year1 = 2010; year2 = 2013; gen1 = Crime; gen2 = Horror;
-	vector <movie> filteredList1,filteredList2,filteredList3,filteredList4, rec1, rec2, rec3, rec4 ; 
-   	int A, B, C, D = 0; //size of filteredList1, filteredList2, filteredList3, filteredList4
+// 	int year1, year2;
+// 	Genre gen1, gen2;
+// 	year1 = 2010; year2 = 2013; gen1 = Crime; gen2 = Horror;
+// 	vector <movie> filteredList1,filteredList2,filteredList3,filteredList4, rec1, rec2, rec3, rec4 ; 
+//    	int A, B, C, D = 0; //size of filteredList1, filteredList2, filteredList3, filteredList4
 	
 
-		//Begin filtering
+// 		//Begin filtering
 		
-		filteredList1 = MovieDatabase.searchYearRange_2(year1, year1, filteredList);
-		A = filteredList1.size();
+// 		filteredList1 = MovieDatabase.searchYearRange_2(year1, year1, filteredList);
+// 		A = filteredList1.size();
 
-		std::cout<<"A size: "<<A<<endl;
+// 		std::cout<<"A size: "<<A<<endl;
 				
-			//(year1 && gen1) 
-			filteredList2 = MovieDatabase.searchByGenre_2(gen1,filteredList1);
-			B = filteredList2.size();
+// 			//(year1 && gen1) 
+// 			filteredList2 = MovieDatabase.searchByGenre_2(gen1,filteredList1);
+// 			B = filteredList2.size();
 	
-		std::cout<<"B size: "<<B<<endl;
-			//(year1 && gen2)
-			filteredList3 = MovieDatabase.searchByGenre_2(gen2,filteredList1);
-			C = filteredList3.size();
-		std::cout<<"C size: "<<C<<endl;
-			//(year1 && gen1) U (year1 && gen2)
-			MovieDatabase.mergeList(filteredList2,filteredList3, filteredList4);
-			D = filteredList4.size();
-		std::cout<<"D size: "<<D<<endl;
-			for(int i = 0; i < 5; i++){
-			std::cout<<filteredList4.at(i).getYear()<<endl;
-		}
-			if(D>10){
-				MovieDatabase.sortByRatingDescending_2(filteredList4);
-				for(int i = 0 ; i < 10 ; i ++){
-					rec1.push_back(filteredList4.at(i));
-				}
-			}
-			else {
-				rec1 = filteredList4;
-			}
-		for(auto x: rec1){
-            std::cout<<x.getTitle()<<" "<<x.getYear()<<endl;
+// 		std::cout<<"B size: "<<B<<endl;
+// 			//(year1 && gen2)
+// 			filteredList3 = MovieDatabase.searchByGenre_2(gen2,filteredList1);
+// 			C = filteredList3.size();
+// 		std::cout<<"C size: "<<C<<endl;
+// 			//(year1 && gen1) U (year1 && gen2)
+// 			MovieDatabase.mergeList(filteredList2,filteredList3, filteredList4);
+// 			D = filteredList4.size();
+// 		std::cout<<"D size: "<<D<<endl;
+// 			for(int i = 0; i < 5; i++){
+// 			std::cout<<filteredList4.at(i).getYear()<<endl;
+// 		}
+// 			if(D>10){
+// 				MovieDatabase.sortByRatingDescending_2(filteredList4);
+// 				for(int i = 0 ; i < 10 ; i ++){
+// 					rec1.push_back(filteredList4.at(i));
+// 				}
+// 			}
+// 			else {
+// 				rec1 = filteredList4;
+// 			}
+// 		for(auto x: rec1){
+//             std::cout<<x.getTitle()<<" "<<x.getYear()<<endl;
 			
-        }
+//         }
 
-		if(year1!=year2){
-			//filtering: year2 + gen1 + gen2 + high rate		
-				filteredList1 = MovieDatabase.searchYearRange_2(year2, year2, filteredList);
-				A = filteredList1.size();
+// 		if(year1!=year2){
+// 			//filtering: year2 + gen1 + gen2 + high rate		
+// 				filteredList1 = MovieDatabase.searchYearRange_2(year2, year2, filteredList);
+// 				A = filteredList1.size();
 					
-				//(year2 && gen1) 
-				filteredList2 = MovieDatabase.searchByGenre_2(gen2,filteredList1);
-				B = filteredList2.size();
-			std::cout<<" test B size:"<< B<<endl;
-				//(year2 && gen2)
-				filteredList3 = MovieDatabase.searchByGenre_2(gen2,filteredList1);
-				C = filteredList3.size();
-			std::cout<<" test C size:"<<C<<endl;
+// 				//(year2 && gen1) 
+// 				filteredList2 = MovieDatabase.searchByGenre_2(gen2,filteredList1);
+// 				B = filteredList2.size();
+// 			std::cout<<" test B size:"<< B<<endl;
+// 				//(year2 && gen2)
+// 				filteredList3 = MovieDatabase.searchByGenre_2(gen2,filteredList1);
+// 				C = filteredList3.size();
+// 			std::cout<<" test C size:"<<C<<endl;
 
-				//(year2 && gen1) U (year2 && gen2)
-				MovieDatabase.mergeList(filteredList2,filteredList3, filteredList4);
-				D = filteredList4.size();
-			std::cout<<" test D size:"<< D<<endl;
-				if(D>10){
-					MovieDatabase.sortByRatingDescending_2(filteredList4);
-					for(int i = 0 ; i < 10 ; i ++){
-						rec2.push_back(filteredList4.at(i));
-					}
-				}
-				else {
-					rec2 = filteredList4;
-				}
-				MovieDatabase.mergeList(rec1, rec2, rec3);
+// 				//(year2 && gen1) U (year2 && gen2)
+// 				MovieDatabase.mergeList(filteredList2,filteredList3, filteredList4);
+// 				D = filteredList4.size();
+// 			std::cout<<" test D size:"<< D<<endl;
+// 				if(D>10){
+// 					MovieDatabase.sortByRatingDescending_2(filteredList4);
+// 					for(int i = 0 ; i < 10 ; i ++){
+// 						rec2.push_back(filteredList4.at(i));
+// 					}
+// 				}
+// 				else {
+// 					rec2 = filteredList4;
+// 				}
+// 				MovieDatabase.mergeList(rec1, rec2, rec3);
 
 
-				rec = rec3;
-		}
-		else{
-			rec = rec1;
-		}
+// 				rec = rec3;
+// 		}
+// 		else{
+// 			rec = rec1;
+// 		}
 			
 
-        for(auto x: rec){
-            std::cout<<x.getTitle()<<" "<<x.getYear()<<endl;
+//         for(auto x: rec){
+//             std::cout<<x.getTitle()<<" "<<x.getYear()<<endl;
 			
-        }
-        std::cout<<"rec1 size: "<< rec1.size()<<endl;
-        std::cout<<"rec2 size: "<< rec2.size()<<endl;
-        std::cout<<"rec size: "<< rec.size()<<endl;
-        std::cout<<"gen1: "<<gen1<<endl;
-        std::cout<<"gen2: "<<gen2<<endl;
+//         }
+//         std::cout<<"rec1 size: "<< rec1.size()<<endl;
+//         std::cout<<"rec2 size: "<< rec2.size()<<endl;
+//         std::cout<<"rec size: "<< rec.size()<<endl;
+//         std::cout<<"gen1: "<<gen1<<endl;
+//         std::cout<<"gen2: "<<gen2<<endl;
 		
     
-}
+// }
 
 int main(int argc, char **argv) {
     srand(time(0));
