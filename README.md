@@ -16,8 +16,7 @@ The movie recommender will allow users to find certain movies based on certain c
  
 ## Class Diagram
 
-![Screen Shot 2022-11-29 at 7 59 16 PM](https://user-images.githubusercontent.com/107961338/204704505-21e5283d-a143-464e-82d6-a2f96b7f3ac9.png)
-
+![Movie Recommender (1)](https://user-images.githubusercontent.com/74810222/204706076-07443f81-e566-4604-877b-4bc54d8cefce.png)
 
 
 
