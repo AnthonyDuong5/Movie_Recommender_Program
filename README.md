@@ -46,7 +46,10 @@ The `Menu` Class will have the necessary functions for implementing a userinterf
 ![Screen Shot 2022-11-29 at 7 59 16 PM](https://user-images.githubusercontent.com/107961338/204704544-f5d55df2-5403-40c4-bfac-e794bf8c01a0.png)
 1)	View Random Recommended Movies and Add to Favorites
 
-![Screen Shot 2022-11-29 at 8 02 02 PM](https://user-images.githubusercontent.com/107961338/204704737-15e614d5-1750-44ea-bf34-8042296f9d40.png)
+![Screen Shot 2022-11-30 at 12 03 38 PM](https://user-images.githubusercontent.com/107961338/204897220-2fdecde2-703b-42c3-ba9a-e316fa2ae4c7.png)
+
+![Screen Shot 2022-11-30 at 12 03 51 PM](https://user-images.githubusercontent.com/107961338/204897237-f3958d63-e4e9-42c5-888a-a6dc9ffe521e.png)
+
 
 2)	Browse Category and Add to Favorites
 
