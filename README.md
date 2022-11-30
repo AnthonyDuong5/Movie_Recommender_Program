@@ -16,8 +16,8 @@ The movie recommender will allow users to find certain movies based on certain c
  
 ## Class Diagram
 
+![Screen Shot 2022-11-29 at 7 59 16 PM](https://user-images.githubusercontent.com/107961338/204704505-21e5283d-a143-464e-82d6-a2f96b7f3ac9.png)
 
-![Movie Recommender (1)](https://user-images.githubusercontent.com/74810222/204652566-90e103e9-70e3-4475-8d06-7ed94eb193b2.png)
 
 
 
@@ -43,7 +43,37 @@ The `Menu` Class will have the necessary functions for implementing a userinterf
  > * Make sure your README file and Project board are up-to-date reflecting the current status of your project (e.g. any changes that you have made during the project such as changes to your class diagram). Previous versions should still be visible through your commit history. 
  
  ## Screenshots
- > Screenshots of the input/output after running your application
+
+![Screen Shot 2022-11-29 at 7 59 16 PM](https://user-images.githubusercontent.com/107961338/204704544-f5d55df2-5403-40c4-bfac-e794bf8c01a0.png)
+1)	View Random Recommended Movies and Add to Favorites
+
+![Screen Shot 2022-11-29 at 8 02 02 PM](https://user-images.githubusercontent.com/107961338/204704737-15e614d5-1750-44ea-bf34-8042296f9d40.png)
+
+2)	Browse Category and Add to Favorites
+
+![Screen Shot 2022-11-29 at 8 03 09 PM](https://user-images.githubusercontent.com/107961338/204704886-7a7613e6-2cbb-4009-b894-10bde83931f3.png)
+
+3) Search By Title and Add to Favorites
+
+![Screen Shot 2022-11-29 at 8 06 02 PM](https://user-images.githubusercontent.com/107961338/204705255-41f47ef7-cd33-4418-af18-657ac6951418.png)
+
+4) Advanced Movie Search and Add to Favorites
+
+![Screen Shot 2022-11-29 at 8 08 34 PM](https://user-images.githubusercontent.com/107961338/204705746-10c1b293-af84-4ce8-98eb-383e98ac23bc.png)
+
+
+5) Get Recommendation Based on Favorites 
+
+![Screen Shot 2022-11-29 at 8 09 40 PM](https://user-images.githubusercontent.com/107961338/204705617-ff45c21d-8c3b-4096-9194-81afe5676138.png)
+
+![Screen Shot 2022-11-29 at 8 10 13 PM](https://user-images.githubusercontent.com/107961338/204705679-c2303214-c937-4c88-980f-d10a3b59f70b.png)
+
+
+
+
+
+
+
  ## Installation/Usage
  Run the following commands in terminal:
 
