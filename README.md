@@ -74,7 +74,6 @@ The `Menu` Class will have the necessary functions for implementing a userinterf
 
 
  ## Installation/Usage
- Run the following commands in terminal:
 
 1) Make sure C++ is installed and your computer can compile C++. If not, you may need to install it. See here for more info:
 https://www.freecodecamp.org/news/how-to-install-c-and-cpp-compiler-on-windows/
@@ -88,7 +87,8 @@ https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 
 5) Navigate to the folder you have created using the command line
 
-
+  Run the following commands in terminal:
+  
   setup directory
 
      mkdir movieRec
