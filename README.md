@@ -90,32 +90,42 @@ https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
   Run the following commands in terminal:
   
   - setup directory
+  
+  ```
+  mkdir movie_recommender
 
-      mkdir movie_recommender
-
-      cd movie_recommender
- 
+  cd movie_recommender
+  ```
+  
   - clone repository
-
-      git clone --recursive https://github.com/cs100/final-project-aduon067-ichen064-jpare033-wtin001.git
+  
+  ```
+  git clone --recursive https://github.com/cs100/final-project-aduon067-ichen064-jpare033-wtin001.git
      
-      cd final-project-aduon067-ichen064-jpare033-wtin001
-     
+  cd final-project-aduon067-ichen064-jpare033-wtin001
+  ```
+  
   - build movie recommender
   
     - either through CMake: 
-
-      cmake .
+    
+    ```
+    cmake .
    
-      make
- 
+    make
+    ```
+    
     - or directly using g++: 
-
-      g++ -std=c++11 -o movie_recommender main.cpp movie.cpp movieList.cpp user.cpp menu.cpp
-
+    
+    ```
+    g++ -std=c++11 -o movie_recommender main.cpp movie.cpp movieList.cpp user.cpp menu.cpp
+    ```
+    
   - run movie recommender
-
-      ./movie_recommender
+  
+  ```
+  ./movie_recommender
+  ```
 
  ## Testing
   [![CI](https://github.com/cs100/final-project-aduon067-ichen064-jpare033-wtin001/actions/workflows/main.yml/badge.svg)](https://github.com/cs100/final-project-aduon067-ichen064-jpare033-wtin001/actions/workflows/main.yml)
