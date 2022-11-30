@@ -17,7 +17,7 @@ The movie recommender will allow users to find certain movies based on certain c
 Based on the movies that the user has viewed while using the program, and based on the movies the user has currently added to favorites, the program will generate a list of movies to recommend to the user. So far, we have set it so that the program will output and recommend 5 movies to the user every time the user asks for a recommendation. The recommender works even if the user has not viewed any movies or added any movies to favorites.
 
 We have referred the dataset of movies from [Grouplens](https://grouplens.org/datasets/movielens/25m/), and revised our own dataset of movies with ratings greater than or equal to 3.5 as the basis of our program. We will make the program read from a `.json` file containing these movie datasets.
-To read the `.json` files and implement it easily in our C++ based program, we have included a [json library from Niels Lohmann](https://github.com/nlohmann/json).The library is used to read the movies from the dataset easier. 
+To read the `.json` files and implement it easily in our C++ based program, we have included a [json library from Niels Lohmann](https://github.com/nlohmann/json).
 
 ## Class Diagram
 
