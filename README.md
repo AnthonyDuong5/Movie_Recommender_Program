@@ -111,7 +111,7 @@ https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
  
   or directly using g++: 
 
-     g++ -o movie_recommender main.cpp movie.cpp movieList.cpp user.cpp menu.cpp
+     g++ -std=c++11 -o movie_recommender main.cpp movie.cpp movieList.cpp user.cpp menu.cpp
 
   run movie recommender
 
