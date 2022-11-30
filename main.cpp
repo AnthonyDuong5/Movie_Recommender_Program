@@ -14,7 +14,6 @@
 using namespace std;
 using json = nlohmann::json;
 
-// vector<string> getGenreList(movie&);
 int main(){
 
     srand(time(0));
@@ -23,7 +22,6 @@ int main(){
 
     defMenu.runMenu();
     return 0;
-
 
 }
 

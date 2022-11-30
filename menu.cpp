@@ -97,7 +97,6 @@ void Menu::printTenRandomMovies() {
 
 	cout << "Add any of the Movies to Favorites? ";
 	bool YorN;
-	// cout << "------------------" << endl;
 	YorN = promptYesOrNo(addChoice);
 	if (YorN){
 		addToFavorites();
@@ -117,7 +116,7 @@ void Menu::printFiveByCategories(){
 		 << "Choose an option(1-2):\n";
 	int gSelect;
 	cin >> gSelect;
-	/// DO STUFF HERE
+
 	while (cin.fail()) {
 			cout << "Please enter either 1 or 2." << endl;
 			cin.clear();
@@ -134,7 +133,7 @@ void Menu::printFiveByCategories(){
 			<< "5) Comedy    || 6) Crime      || 7) Documentaries  || 8) Drama \n"
 			<< "9) Fantasy   || 10) FilmNoir  || 11) Horror        || 12) IMAX \n"
 			<< "13) Musical  || 14) Mystery   || 15) Romance       || 16) SciFi \n"
-			<< "17) Thriller || 18) War       || 19) Western \n";
+			<< "17) Thriller || 18) War       || 19) Western \n\n";
 
 		vector<int>genreChoice;
 		int uIn;
@@ -477,7 +476,6 @@ void Menu::advancedMovieFilter() {
 				//this will be used to validate in AddToFav
 				cout << "Add any of the movies to favorites?" << endl;
 				string uPrompt;
-				// cin >> uPrompt;
 				bool toAdd = promptYesOrNo(uPrompt);
 				if (toAdd) {
 					addToFavorites();
@@ -530,8 +528,6 @@ void Menu::addToFavorites(){
 		if (YorN){
 			movie fMovie = user.ReturnTrackList().front();
 			user.AddToFavoriteList(fMovie);
-				//user.getFavoritesList().push_back(user.ReturnTrackList().at(i));
-				
 			cout << user.ReturnTrackList().front().getTitle() << " has been added to Favorites." << endl;
 		}
 	}
@@ -575,8 +571,6 @@ void Menu::addToFavorites(){
 				if (YorN){
 					movie fMovie = user.ReturnTrackList().at(trackIndex);
 					user.AddToFavoriteList(fMovie);
-					//user.getFavoritesList().push_back(user.ReturnTrackList().at(i));
-					
 					cout << user.ReturnTrackList().at(trackIndex).getTitle() << " has been added to Favorites." << endl;
 					++curSize;
 				}
@@ -725,25 +719,17 @@ void Menu::getRecommendation(){
 			recSize = recommendation.size();
 			randIndex = rand() % recSize;
 			movie curMovie = recommendation.at(randIndex);
-			// ViewingList.erase(ViewingList.begin() + idx);
 			//this tracks output movies
 			user.AddToTrackList(recommendation.at(randIndex));
 			recommendation.erase(recommendation.begin() + randIndex);
 			cout << i + 1 << "." << endl;
 			curMovie.printMovie_2();
-			
 		}
 		cout<<endl;
-		// cout << "Test track size: " << user.ReturnTrackList().size() << endl;
-		// for (unsigned i = 0; i < user.ReturnTrackList().size(); ++i){
-		// 	cout << user.ReturnTrackList().at(i).getTitle() << endl;
-		// }
-
 		//since there is a sub menu after 
 		cout << "Add any of the Movies to Favorites? ";
 		string addChoice;
 		bool YorN;
-		// cout << "------------------" << endl;
 		YorN = promptYesOrNo(addChoice);
 		if (YorN){
 			addToFavorites();
@@ -763,10 +749,5 @@ void Menu::getRecommendation(){
 			cin.ignore(256, '\n');
 			cin>>userInput;
 		}
-
-
 	}
-
-
-
 }
