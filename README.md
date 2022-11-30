@@ -81,39 +81,39 @@ https://www.freecodecamp.org/news/how-to-install-c-and-cpp-compiler-on-windows/
 2) Make sure git has also been installed, since we will need it to clone this current repository into your local computer. See here for more info:
 https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 
-3) create a suitable folder, preferrably name it movie_recommender.
+3) Create a suitable folder, preferrably name it `movie_recommender`.
 
 4) If you do not have a compiler, feel free to use the command prompt or the terminal.
 
-5) Navigate to the folder you have created using the command line
+5) Navigate to the folder you have created using the command line.
 
   Run the following commands in terminal:
   
-  setup directory
+  - setup directory
 
      mkdir movie_recommender
 
      cd movie_recommender
  
-  clone repository
+  - clone repository
 
      git clone --recursive https://github.com/cs100/final-project-aduon067-ichen064-jpare033-wtin001.git
      
      cd final-project-aduon067-ichen064-jpare033-wtin001
      
-  build movie recommender
+  - build movie recommender
   
-  either through CMake: 
+  - either through CMake: 
 
     cmake .
    
     make
  
-  or directly using g++: 
+  - or directly using g++: 
 
      g++ -std=c++11 -o movie_recommender main.cpp movie.cpp movieList.cpp user.cpp menu.cpp
 
-  run movie recommender
+  - run movie recommender
 
      ./movie_recommender
 
