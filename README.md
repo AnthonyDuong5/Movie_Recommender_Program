@@ -91,9 +91,9 @@ https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
   
   setup directory
 
-     mkdir movieRec
+     mkdir movie_recommender
 
-     cd movieRec
+     cd movie_recommender
  
   clone repository
 
