@@ -15,13 +15,9 @@ using namespace std;
 using json = nlohmann::json;
 
 int main(){
-
     srand(time(0));
-
     Menu defMenu;
-
     defMenu.runMenu();
     return 0;
-
 }
 

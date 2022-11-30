@@ -167,21 +167,13 @@ void movieList::printMovies(){
 		cout << "------------------" << endl;
 		cout << i + 1 << "." << endl;
 		cout<<"title: "<< movieListPrint.at(i).getTitle()<<endl;
-		//cout<<"year: "<< movieListPrint.at(i).getYear()<<endl;
 		cout<<"director: "<<movieListPrint.at(i).getDirector()<<endl;
 		cout<<"casting: "<<movieListPrint.at(i).getCast()<<endl;
 		cout<<"rating: "<<movieListPrint.at(i).getRating()<<endl;
-		//cout<<"IMDB ID: "<<movieListPrint.at(i).getImdbId()<<endl;
 		cout<<"item: "<<movieListPrint.at(i).getItemId()<<endl;
 		cout<<"Genre: "; for (auto gen : movieListPrint.at(i).getGenreList()){ cout<<gen<<" ";} cout<<endl;
 
 	}
-	// another version, but I'm not sure if we are just priting sorted list.
-	// void printMovies(vector<movie>& movies) //this way we can print any movieList
-	//   for(movie x: movies){
-	// 	 x.printMovie();
-	// } 
-
 }
 
 void movieList::sortByYearAscending() {
@@ -314,14 +306,12 @@ void movieList::searchMovieTitle(string m1){
  
     // using transform() function and ::tolower in STL
     transform(lowercasem1.begin(), lowercasem1.end(), lowercasem1.begin(), ::tolower);
-    // cout<< "lowercase: " << lowercasem1<<endl;
  
 
 	for (unsigned i = 0; i < sortedlist.size(); ++i){
 		lowercasemsorted = sortedlist.at(i).getTitle();
 		transform(lowercasemsorted.begin(), lowercasemsorted.end(), lowercasemsorted.begin(), ::tolower);
 		if (lowercasemsorted.find(lowercasem1) != std::string::npos) {
-    		//cout << "found!" << '\n';
 			newList.push_back(returnSortedList().at(i));
 		}
 		
