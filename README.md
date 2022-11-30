@@ -47,33 +47,46 @@ The `Menu` Class will have the necessary functions for implementing a userinterf
  ## Installation/Usage
  Run the following commands in terminal:
 
- 1. setup directory
+1) Make sure C++ is installed and your computer can compile C++. If not, you may need to install it. See here for more info:
+https://www.freecodecamp.org/news/how-to-install-c-and-cpp-compiler-on-windows/
 
-     `mkdir movieRec`
+2) Make sure git has also been installed, since we will need it to clone this current repository into your local computer. See here for more info:
+https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 
-     `cd movieRec`
+3) create a suitable folder, preferrably name it movie_recommender.
+
+4) If you do not have a compiler, feel free to use the command prompt or the terminal.
+
+5) Navigate to the folder you have created using the command line
+
+
+  setup directory
+
+     mkdir movieRec
+
+     cd movieRec
  
- 2. clone repository
+  clone repository
 
-     `git clone --recursive https://github.com/cs100/final-project-aduon067-ichen064-jpare033-wtin001.git`
+     git clone --recursive https://github.com/cs100/final-project-aduon067-ichen064-jpare033-wtin001.git
      
-     `cd final-project-aduon067-ichen064-jpare033-wtin001`
+     cd final-project-aduon067-ichen064-jpare033-wtin001
+     
+  build movie recommender
+  
+  either through CMake: 
 
- 3. build movie recommender
- 
-    a. Either through CMake: 
-
-    `cmake .`
+    cmake .
    
-    `make`
+    make
  
-    b. or directly using g++: 
+  or directly using g++: 
 
-     `g++ -o movie_recommender main.cpp movie.cpp movieList.cpp user.cpp menu.cpp`
+     g++ -o movie_recommender main.cpp movie.cpp movieList.cpp user.cpp menu.cpp
 
-4. run movie recommender
+  run movie recommender
 
-     `./movie_recommender`
+     ./movie_recommender
 
  ## Testing
   [![CI](https://github.com/cs100/final-project-aduon067-ichen064-jpare033-wtin001/actions/workflows/main.yml/badge.svg)](https://github.com/cs100/final-project-aduon067-ichen064-jpare033-wtin001/actions/workflows/main.yml)
