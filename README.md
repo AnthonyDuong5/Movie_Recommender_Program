@@ -59,15 +59,15 @@ As a sample iteration, we can see the different outputs when the user chooses to
 
 2)	Browse Category and Add to Favorites
 
-![image](https://user-images.githubusercontent.com/74810222/204925638-e4eb42f5-fb06-4eb6-a737-46b34619da6b.png)
-
+<img width="610" alt="Screen Shot 2022-11-30 at 7 52 25 PM" src="https://user-images.githubusercontent.com/107961338/204962105-a3c1e4fc-72e8-4fab-806e-90c1e3a31469.png">
 
 ![Screen Shot 2022-11-29 at 8 03 09 PM](https://user-images.githubusercontent.com/107961338/204704886-7a7613e6-2cbb-4009-b894-10bde83931f3.png)
 
 On another iteration, the user decides to choose option 2 from the main menu. There will be two options. The user decides to go with option 1 here.
 Here, the user decides to view some movies that have the Adventure Genre, before returning to the menu. The screenshot is cut short, but the program will output 10 movies of the genre the user has selected. 
 If the user had decided to go with option 2, the program would have printed out 5 movies each from Action, Comedy, Drama, Horror, and Romance Genres. The screenshot has been cut short for clarity. 
-![alt 3](https://user-images.githubusercontent.com/74810222/204926569-f3e32981-bbe5-4e0b-9387-adedb1482582.jpg)
+
+<img width="606" alt="Screen Shot 2022-11-30 at 7 57 36 PM" src="https://user-images.githubusercontent.com/107961338/204962531-c630a3ac-5f6f-47ef-a844-7989adbec353.png">
 
 
 3) Search By Title and Add to Favorites
