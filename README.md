@@ -145,3 +145,9 @@ https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
   
  This movie recommender application is tested to make sure that movies are sorted and filtered correctly based on various criteria such as genre, rating, title, and year. The tests create a failure if two adjacent movies are not sorted in the correct order, if a movie does not belong within a filtered specification, or if there are other small errors in creating a movie list. The CI tool used is GitHub Actions, which shows a check if the cmake build and all tests pass. Alternatively, running the `test` executable after compiling with either `cmake .`, `make` or `g++ -o test test.cpp movie.cpp movieList.cpp user.cpp menu.cpp` displays the same information.
  
+ The following contains a Valgrind Memory Check Report after running the program. 
+ ![v1](https://user-images.githubusercontent.com/74810222/205168631-8c25fc9b-5913-4575-bc09-77838b586b14.jpg)
+![v2](https://user-images.githubusercontent.com/74810222/205168636-c4c9a7ce-ff94-4d04-ae30-8a759e631653.jpg)
+![v3](https://user-images.githubusercontent.com/74810222/205168637-3cc4abff-1d83-40fb-83d2-6a307e9e8f96.jpg)
+
+ 
