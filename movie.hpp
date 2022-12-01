@@ -40,8 +40,6 @@ class movie{
         int itemId;
         vector<string> genreList;
         
-        
-
     public: 
         vector<Genre> genre_list;
         movie(string title, string director, string cast, double rating, int imdbId, int itemId, int year, vector<string> genreList);
@@ -58,7 +56,5 @@ class movie{
         
         
 };
-
-
 
 #endif

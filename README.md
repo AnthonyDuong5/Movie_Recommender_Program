@@ -12,13 +12,16 @@ In this application movies are organized into categories and subcategories to re
 This project will help us gain experience in creating software programs involving databases. We're interested in how we can implement a database into an algorithm that can display movies based on certain criteria.
 We will be using C++ as our main programming language.
 The user will use the keyboard to input desired movie criteria (e.g. genre, year, rating). The output will then be a list of movies that correlate with the given criteria. 
-The movie recommender will allow users to find certain movies based on certain criteria. For example, users can provide a movie and the application will recommend a list of movies that are similar to the provided movie. Additionally, users can also sort lists of movies based on rating, release date, genre, etc.
- 
+The movie recommender will allow users to find certain movies based on certain criteria. For example, users can provide a movie and the application will recommend a list of movies that are similar to the provided movie. Additionally, users can also sort lists of movies based on rating, release date, genre, etc. 
+
+Based on the movies that the user has viewed while using the program, and based on the movies the user has currently added to favorites, the program will generate a list of movies to recommend to the user. So far, we have set it so that the program will output and recommend 5 movies to the user every time the user asks for a recommendation. The recommender works even if the user has not viewed any movies or added any movies to favorites.
+
+We have referred the dataset of movies from [Grouplens](https://grouplens.org/datasets/movielens/25m/), and revised our own dataset of movies with ratings greater than or equal to 3.5 as the basis of our program. We will make the program read from a `.json` file containing these movie datasets.
+To read the `.json` files and implement it easily in our C++ based program, we have included a [json library from Niels Lohmann](https://github.com/nlohmann/json).
+
 ## Class Diagram
 
 ![Movie Recommender (1)](https://user-images.githubusercontent.com/74810222/204706076-07443f81-e566-4604-877b-4bc54d8cefce.png)
-
-
 
 ## Diagram Description
 The current plan is to create four classes. The ```Movie``` class will store all the necessary categories that each movie has, such as ```MovieTitle```, ```Director```, ```Cast```, ```Rating```, ```ImdbID```, ```ItemID```, ```Genre```, and ```Year```, all of which will be set to private. There will be helper functions that can help the programmer retrieve values for each of these variables.
@@ -43,6 +46,8 @@ The `Menu` Class will have the necessary functions for implementing a userinterf
  
  ## Screenshots
 
+While using the program, the user will only need to enter input through the keyboard. They will either input the number corresponding to the menu options, choose either Yes(Y/y) or No(N/n) for certain choices, the movie name they want to search, or the itemId of the movie they would like to add to their favorites.
+
 ![Screen Shot 2022-11-29 at 7 59 16 PM](https://user-images.githubusercontent.com/107961338/204704544-f5d55df2-5403-40c4-bfac-e794bf8c01a0.png)
 1)	View Random Recommended Movies and Add to Favorites
 
@@ -50,29 +55,42 @@ The `Menu` Class will have the necessary functions for implementing a userinterf
 
 ![Screen Shot 2022-11-30 at 12 03 51 PM](https://user-images.githubusercontent.com/107961338/204897237-f3958d63-e4e9-42c5-888a-a6dc9ffe521e.png)
 
+As a sample iteration, we can see the different outputs when the user chooses to output ten random movies. The user decides to add one of the movies to favorites, and then chooses to return to the main menu by entering N when prompted again.
 
 2)	Browse Category and Add to Favorites
 
+![image](https://user-images.githubusercontent.com/74810222/204925638-e4eb42f5-fb06-4eb6-a737-46b34619da6b.png)
+
+
 ![Screen Shot 2022-11-29 at 8 03 09 PM](https://user-images.githubusercontent.com/107961338/204704886-7a7613e6-2cbb-4009-b894-10bde83931f3.png)
+
+On another iteration, the user decides to choose option 2 from the main menu. There will be two options. The user decides to go with option 1 here.
+Here, the user decides to view some movies that have the Adventure Genre, before returning to the menu. The screenshot is cut short, but the program will output 10 movies of the genre the user has selected. 
+If the user had decided to go with option 2, the program would have printed out 5 movies each from Action, Comedy, Drama, Horror, and Romance Genres. The screenshot has been cut short for clarity. 
+![alt 3](https://user-images.githubusercontent.com/74810222/204926569-f3e32981-bbe5-4e0b-9387-adedb1482582.jpg)
+
 
 3) Search By Title and Add to Favorites
 
 ![Screen Shot 2022-11-29 at 8 06 02 PM](https://user-images.githubusercontent.com/107961338/204705255-41f47ef7-cd33-4418-af18-657ac6951418.png)
 
+Here, the user then decides to search a movie by title, and add it to favorites, as shown above, before returning to main menu.
+
+
 4) Advanced Movie Search and Add to Favorites
 
 ![Screen Shot 2022-11-29 at 8 08 34 PM](https://user-images.githubusercontent.com/107961338/204705746-10c1b293-af84-4ce8-98eb-383e98ac23bc.png)
 
+This is a sample interface for the case where the user decides to carry out an Advanced Movie Search and add one of the movies filtered by the search to favorites.
 
 5) Get Recommendation Based on Favorites 
 
 ![Screen Shot 2022-11-29 at 8 09 40 PM](https://user-images.githubusercontent.com/107961338/204705617-ff45c21d-8c3b-4096-9194-81afe5676138.png)
 
+When checking the favorite list (option 6 from main menu), movies in the favorite list will be displayed.
+When the user decides to get some movie recommendations (option 5 from main menu), 5 movies will be recommended to the user.
+
 ![Screen Shot 2022-11-29 at 8 10 13 PM](https://user-images.githubusercontent.com/107961338/204705679-c2303214-c937-4c88-980f-d10a3b59f70b.png)
-
-
-
-
 
 
 

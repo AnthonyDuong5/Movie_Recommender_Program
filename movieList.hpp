@@ -64,15 +64,6 @@ class movieList{
 		void mergeList(vector<movie>&m1,vector<movie>&m2,vector<movie>&m3);
 
 
-// ------------------------- Incomplete/Pending Function Progress------------------- //
-
-
-	//unfinished functions or functions that can be removed if not needed
-	void sortBySpecificTitle(vector<movie>& movieList, char movieLetter);
-	void sortAlphabetical();
-	void getCriteria();
-	void sortList();
-		
 };		
 
 #endif
